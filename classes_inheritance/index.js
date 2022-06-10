@@ -68,6 +68,10 @@ class Builder {
   static random(from, to) {
     return Math.round(Math.random() * (to - from) + from);
   }
+
+  toString() {
+    return this.storage;
+  }
 }
 
 // ES6
@@ -83,7 +87,9 @@ function StringBuilder(int = '') {
 }
 StringBuilder.prototype = Object.create(Builder.prototype);
 StringBuilder.prototype.constructor = StringBuilder;
-
+StringBuilder.prototype.toString = function() {
+  return this.storage;
+}
 
 
 //TESTS
@@ -91,22 +97,23 @@ StringBuilder.prototype.constructor = StringBuilder;
 console.log('\nTests ES6')
 console.log(IntBuilder.random(10, 100));
 let intBuilder = new IntBuilder(10); 
-console.log(intBuilder
+intBuilder
   .plus(2, 3, 2)              // 17;
   .minus(1, 2)                // 14;
   .multiply(2)                // 28;
   .divide(4)                  // 7;
   .mod(3)                     // 1;
-  .get());                    // -> 1;
-
+  .get();                    // -> 1;
+console.log('ES6 chain returns  --> ' + intBuilder)
 
 
 console.log('\nTests ES5')
 let strBuilder = new StringBuilder('Hello'); // 'Hello';
-console.log(strBuilder
+strBuilder
   .plus(' all', '!')                         // 'Hello all!'
   .minus(4)                                  // 'Hello '
   .multiply(3)                               // 'Hello Hello Hello '
   .divide(4)                                 // 'Hell';(strBuilder.remove('l'))                               // 'He';
   .sub(1,1)                                  // 'e';
-  .get());                                    // -> 'e';
+  .get();                                    // -> 'e';
+console.log('ES5 chain returns --> ' + strBuilder)
