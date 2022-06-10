@@ -11,7 +11,8 @@ class Builder {
   funcForStorage(expression) {
     this.storage = expression;
     this.int = this.storage;
-    return this.storage;
+    console.log( this.storage)
+    return this;
   }
 
   plus() {
@@ -82,35 +83,30 @@ function StringBuilder(int = '') {
 }
 StringBuilder.prototype = Object.create(Builder.prototype);
 StringBuilder.prototype.constructor = StringBuilder;
-StringBuilder.superclass = Builder.prototype;
 
 
 
 //TESTS
 
 console.log('\nTests ES6')
-console.log(IntBuilder.random(10, 100));          // 42;
-let intBuilder = new IntBuilder(10); // 10;
-console.log(intBuilder.plus(2, 3, 2))                     // 17;
-console.log(intBuilder.minus(1, 2))                       // 14;
-console.log(intBuilder.multiply(2))                       // 28;
-console.log(intBuilder.divide(4))                         // 7;
-console.log(intBuilder.mod(3))                            // 1;
-console.log(intBuilder.get());                            // -> 1;
-console.log('additional tests')
-console.log(intBuilder.plus(2, 104, 103))                 // 210;
-console.log(intBuilder.remove(1))                         // 20;
-console.log(intBuilder.sub(2, 5))                         // 50;
+console.log(IntBuilder.random(10, 100));
+let intBuilder = new IntBuilder(10); 
+console.log(intBuilder
+  .plus(2, 3, 2)              // 17;
+  .minus(1, 2)                // 14;
+  .multiply(2)                // 28;
+  .divide(4)                  // 7;
+  .mod(3)                     // 1;
+  .get());                    // -> 1;
+
 
 
 console.log('\nTests ES5')
 let strBuilder = new StringBuilder('Hello'); // 'Hello';
-console.log(strBuilder.plus(' all', '!'))                         // 'Hello all!'
-console.log(strBuilder.minus(4))                                  // 'Hello '
-console.log(strBuilder.multiply(3))                               // 'Hello Hello Hello '
-console.log(strBuilder.divide(4))                                 // 'Hell';
-console.log(strBuilder.remove('l'))                               // 'He';
-console.log(strBuilder.sub(1,1))                                  // 'e';
-console.log(strBuilder.get());                                    // -> 'e';
-console.log('additional tests');
-console.log(strBuilder.mod('Good work!'));                        // 'Good work!';
+console.log(strBuilder
+  .plus(' all', '!')                         // 'Hello all!'
+  .minus(4)                                  // 'Hello '
+  .multiply(3)                               // 'Hello Hello Hello '
+  .divide(4)                                 // 'Hell';(strBuilder.remove('l'))                               // 'He';
+  .sub(1,1)                                  // 'e';
+  .get());                                    // -> 'e';
