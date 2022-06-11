@@ -18,9 +18,7 @@ new IntBuilder(int) // constructor takes starting integer, if not passed starts 
 
 random(from, to)    // static method; from, to: integer; values limits the range of random values; 
 
-additional - not in the scope of the task
-.remove(n)          // remove taken number n from stored;  
-.sub(from, n)       // replace number 'from' to number 'n';
+
 
 // EXAMPLE:
 IntBuilder.random(10, 100);          // 42;
@@ -33,10 +31,6 @@ intBuilder
   .divide(4)                         // 7;
   .mod(3)                            // 1;
   .get();                            // -> 1;
-  'additional tests'
-  .plus(2, 104, 103)                 // 210;
-  .remove(1)                         // 20;
-  .sub(2, 5)                         // 50;
 ```
 
 #### ES5 class StringBuilder
@@ -51,8 +45,7 @@ divide(n)                // leaves first k chars of stored string, where k = Mat
 remove(str)              // remove taken string str from stored; Prohibited to use String.prototype.replace(); 
 sub(from, n)             // leaves substring starting from and with length n;
 get()                    // returns stored value;
-additional - not in the scope of the task
-mod(n)                   // clear stored string and add new string 'n'; 
+
 
 // EXAMPLE:
 let strBuilder = new StringBuilder('Hello'); // 'Hello';
@@ -64,6 +57,4 @@ strBuilder
   .remove('l')                               // 'He';
   .sub(1,1)                                  // 'e';
   .get();                                    // -> 'e';
-  'additional tests'
-  .mod('Good work!')                         // 'Good work!';
 ```
