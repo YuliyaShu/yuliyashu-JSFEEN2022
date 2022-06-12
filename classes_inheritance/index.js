@@ -14,15 +14,17 @@ class Builder {
   }
 
   minus(...n) {
+    console.log(this.value);
     return this;
   }
 
-  multiply(n) {
+  multiply() {
+    console.log(this.value);
     return this;
   }
 
-  divide(n, val) {
-    this.value = Math.floor(val / n);
+  divide(n) {
+    console.log(this.value);
     return this;
   }
 
@@ -37,11 +39,12 @@ class Builder {
 
 // ES6
 class IntBuilder extends Builder {
-
+  
   constructor(value = 0) {
     super(value);
+    console.log(this.value);
   }
-
+  
   mod(n) {
    this.value = this.value % n;
    console.log(this.value);
@@ -50,20 +53,17 @@ class IntBuilder extends Builder {
 
   minus(...n) {
     this.value = Object.values(arguments).reduce((res, e) => res - e, this.value);
-    console.log(this.value);
-    return this;
+    return super.minus();
   }
 
   multiply(n) {
     this.value = n * this.value;
-    console.log(this.value);
-    return this;
+    return super.multiply();
   }
 
   divide(n) {
-    super.divide(n, this.value);
-    console.log(this.value);
-    return this;
+    this.value = Math.floor(this.value / n);
+    return super.divide();;
   }
 
   static random(from, to) {
@@ -75,6 +75,7 @@ class IntBuilder extends Builder {
 //ES5
 function StringBuilder(value = '') {
   this.value = value;
+  console.log(this.value);
 }
 StringBuilder.prototype = Object.create(Builder.prototype);
 StringBuilder.prototype.constructor = StringBuilder;
@@ -98,20 +99,18 @@ StringBuilder.prototype.minus = function(n){
 }
 
 StringBuilder.prototype.multiply = function(n) {
-  let arr = [];
-    while (arr.length < n) {
-       arr.push(this.value);
+  let str = '';
+  for (let i =0; i < n; i++) {
+       str += this.value;
     }
-  this.value = arr.join('');
-  console.log(this.value);
+  this.value = str;
+  console.log(this.value)
   return this;
 }
 
 StringBuilder.prototype.divide = function(n) {
-  let x = Object.getPrototypeOf(StringBuilder.prototype)
-          .divide(n, this.value.length).value;
-  this.value = this.value.substring(0, x);
-  console.log(this.value);
+  this.value = this.value.substring(0, Math.floor(this.value.length / n));
+  console.log(this.value)
   return this;
 }
 
@@ -121,7 +120,7 @@ StringBuilder.prototype.divide = function(n) {
 
 console.log('\nTests ES6')
 console.log(IntBuilder.random(10, 100));
-let intBuilder = new IntBuilder(10); 
+let intBuilder = new IntBuilder(10);  // 10
 intBuilder
   .plus(2, 3, 2)              // 17;
   .minus(1, 2)                // 14;
