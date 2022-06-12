@@ -5,6 +5,7 @@
 class Builder {
   constructor(value) {
     this.value = value;
+    console.log(this.value);
   }
 
   plus(...n) {
@@ -39,11 +40,6 @@ class Builder {
 
 // ES6
 class IntBuilder extends Builder {
-  
-  constructor(value = 0) {
-    super(value);
-    console.log(this.value);
-  }
   
   mod(n) {
    this.value = this.value % n;
