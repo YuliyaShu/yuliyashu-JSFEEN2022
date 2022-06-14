@@ -3,9 +3,10 @@ import IntBuilder from "./Child_Classes/IntBuilder.js";
 import StringBuilder from "./Child_Classes/StringBuilder.js";
 
 console.log('\nTests ES6')
-console.log(IntBuilder.random(10, 100));
+console.log('random method test -> ' + IntBuilder.random(10, 100));
 let intBuilder = new IntBuilder(10);  // 10
-console.log(intBuilder
+console.log('IntBuilder chain of methods test -> ' + 
+intBuilder
   .plus(2, 3, 2)              // 17;
   .minus(1, 2)                // 14;
   .multiply(2)                // 28;
@@ -19,7 +20,8 @@ console.log(`intBuilder instanceof IntBuilder -> ${intBuilder instanceof IntBuil
 
 console.log('\nTests ES5')
 let strBuilder = new StringBuilder('Hello'); // 'Hello';
-console.log(strBuilder
+console.log('StringBuilder chain of methods test -> ' + 
+strBuilder
   .plus(' all', '!')                         // 'Hello all!'
   .minus(4)                                  // 'Hello '
   .multiply(3)                               // 'Hello Hello Hello '

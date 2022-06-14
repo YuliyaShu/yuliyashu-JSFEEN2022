@@ -16,7 +16,6 @@ class IntBuilder extends Builder {
       throw new Error('IntBuilder.mod() method: parameter should be integer and > 0');
     }
    this.value = this.value % n;
-   console.log(this.value);
    return this;
   }
 
@@ -27,7 +26,6 @@ class IntBuilder extends Builder {
       }
     }
     this.value = Object.values(arguments).reduce((res, numMinus) => res - numMinus, this.value);
-    console.log(this.value);
     return this;
   }
 
@@ -36,7 +34,6 @@ class IntBuilder extends Builder {
       throw new Error('IntBuilder.multiply() method: parameter should be integer and > 0');
     }
     this.value = n * this.value;
-    console.log(this.value);
     return this;
   }
 
@@ -45,7 +42,6 @@ class IntBuilder extends Builder {
       throw new Error('IntBuilder.divide() method: parameter should be integer and > 0');
     }
     this.value = Math.floor(this.value / n);
-    console.log(this.value);
     return this;
   }
 
