@@ -7,6 +7,15 @@ StringBuilder.prototype = Object.create(Builder.prototype);
 StringBuilder.prototype.constructor = StringBuilder;
 
 
+StringBuilder.prototype.plus = function(...str) {
+  console.log
+  if (str.forEach((strUnit) => typeof strUnit !== 'string')) {
+    throw new Error('StringBuilder.plus() method: parameters should be type of string');
+  }
+  this.value = Object.values(str).reduce((res, unit) => res + unit, this.value);
+  return this;
+}
+
 StringBuilder.prototype.remove = function(str) {
   if (typeof str !== 'string') {
     throw new Error('StringBuilder.remove() method: parameter should be type of string');

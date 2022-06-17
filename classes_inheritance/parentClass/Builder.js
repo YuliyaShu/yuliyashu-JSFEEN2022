@@ -4,7 +4,6 @@ class Builder {
   }
 
   plus() {
-    this.value = Object.values(arguments).reduce((res, unit) => res + unit, this.value);
     return this;
   }
 

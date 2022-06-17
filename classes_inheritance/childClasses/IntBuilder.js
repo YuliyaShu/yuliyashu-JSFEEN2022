@@ -12,7 +12,8 @@ class IntBuilder extends Builder {
         throw new Error('IntBuilder.plus() method: parameter should be integer');
       }
     }
-    return super.plus(...n);
+    this.value = Object.values(n).reduce((res, unit) => res + unit, this.value);
+    return this;
   }
   
   mod(n) {
