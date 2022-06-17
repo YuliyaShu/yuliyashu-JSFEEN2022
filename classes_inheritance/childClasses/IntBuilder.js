@@ -2,8 +2,12 @@ import Builder from "../parentClass/Builder.js";
 
 class IntBuilder extends Builder {
 
+  constructor(value = 0) {
+    super(value);
+  }
+
   plus(...n) {
-    for (let param of arguments) {
+    for (let param of n) {
       if  (!Number.isInteger(param)) { 
         throw new Error('IntBuilder.plus() method: parameter should be integer');
       }
@@ -19,13 +23,13 @@ class IntBuilder extends Builder {
    return this;
   }
 
-  minus() {
-    for (let param of arguments) {
+  minus(...n) {
+    for (let param of n) {
       if  (!Number.isInteger(param)) {
         throw new Error('IntBuilder.minus() method: parameter should be integer');
       }
     }
-    this.value = Object.values(arguments).reduce((res, numMinus) => res - numMinus, this.value);
+    this.value = Object.values(n).reduce((res, numMinus) => res - numMinus, this.value);
     return this;
   }
 
