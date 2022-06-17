@@ -1,6 +1,6 @@
-import Builder from "./parentClass/Builder.js";
-import IntBuilder from "./childClasses/IntBuilder.js";
-import StringBuilder from "./childClasses/StringBuilder.js";
+import Builder from "./parent-class/Builder.js";
+import IntBuilder from "./child-classes/IntBuilder.js";
+import StringBuilder from "./child-classes/StringBuilder.js";
 
 console.log('\nTests ES6')
 console.log('random method test -> ' + IntBuilder.random(10, 100));

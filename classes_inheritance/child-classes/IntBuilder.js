@@ -1,4 +1,4 @@
-import Builder from "../parentClass/Builder.js";
+import Builder from "../parent-class/Builder.js";
 
 class IntBuilder extends Builder {
 
