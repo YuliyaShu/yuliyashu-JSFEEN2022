@@ -6,47 +6,47 @@ class IntBuilder extends Builder {
     super(value);
   }
 
-  plus(...n) {
-    for (let param of n) {
+  plus(...num) {
+    for (let param of num) {
       if  (!Number.isInteger(param)) { 
         throw new Error('IntBuilder.plus() method: parameter should be integer');
       }
     }
-    this.value = Object.values(n).reduce((res, unit) => res + unit, this.value);
+    this.value = Object.values(num).reduce((res, unit) => res + unit, this.value);
     return this;
   }
   
-  mod(n) {
-    if (!Number.isInteger(n) || n <= 0) {
+  mod(num) {
+    if (!Number.isInteger(num) || num <= 0) {
       throw new Error('IntBuilder.mod() method: parameter should be integer and > 0');
     }
-   this.value = this.value % n;
+   this.value = this.value % num;
    return this;
   }
 
-  minus(...n) {
-    for (let param of n) {
+  minus(...num) {
+    for (let param of num) {
       if  (!Number.isInteger(param)) {
         throw new Error('IntBuilder.minus() method: parameter should be integer');
       }
     }
-    this.value = Object.values(n).reduce((res, numMinus) => res - numMinus, this.value);
+    this.value = Object.values(num).reduce((res, numMinus) => res - numMinus, this.value);
     return this;
   }
 
-  multiply(n) {
-    if (!Number.isInteger(n) || n <= 0) {
+  multiply(num) {
+    if (!Number.isInteger(num) || num <= 0) {
       throw new Error('IntBuilder.multiply() method: parameter should be integer and > 0');
     }
-    this.value = n * this.value;
+    this.value = num * this.value;
     return this;
   }
 
-  divide(n) {
-    if (!Number.isInteger(n) || n <= 0) {
+  divide(num) {
+    if (!Number.isInteger(num) || num <= 0) {
       throw new Error('IntBuilder.divide() method: parameter should be integer and > 0');
     }
-    this.value = Math.floor(this.value / n);
+    this.value = Math.floor(this.value / num);
     return this;
   }
 

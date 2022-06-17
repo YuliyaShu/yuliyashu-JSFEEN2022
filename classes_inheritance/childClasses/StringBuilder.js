@@ -24,43 +24,43 @@ StringBuilder.prototype.remove = function(str) {
   return this;
 }
 
-StringBuilder.prototype.sub = function(from, n) {
-  if (!Number.isInteger(from) || from < 0
-   || !Number.isInteger(n) || n < 0) {
+StringBuilder.prototype.sub = function(fromNum, num) {
+  if (!Number.isInteger(fromNum) || fromNum < 0
+   || !Number.isInteger(num) || num < 0) {
     throw new Error('StringBuilder.sub() method: parameter(s) should be integers and >= 0');
    }
-  if (from >= this.value.length) {
+  if (fromNum >= this.value.length) {
     throw new Error(`StringBuilder.sub() method: first parameter should be < than ${this.value.length} - stored value length`);
   }
-  this.value = this.value.substring(from, from + n);
+  this.value = this.value.substring(fromNum, fromNum + num);
   return this;
 }
 
-StringBuilder.prototype.minus = function(n){
-  if (!Number.isInteger(n) || n < 0) {
+StringBuilder.prototype.minus = function(num){
+  if (!Number.isInteger(num) || num < 0) {
     throw new Error('StringBuilder.minus() method:parameter should be integer and >= 0');
   }
-  this.value = this.value.substring(0, this.value.length - n);
+  this.value = this.value.substring(0, this.value.length - num);
   return this;
 }
 
-StringBuilder.prototype.multiply = function(n) {
-  if (!Number.isInteger(n) || n <= 0) {
+StringBuilder.prototype.multiply = function(num) {
+  if (!Number.isInteger(num) || num <= 0) {
     throw new Error('StringBuilder.multiply() method: parameter should be integer and > 0');
   }
   let str = '';
-  for (let i =0; i < n; i++) {
+  for (let i =0; i < num; i++) {
     str += this.value;
   }
   this.value = str;
   return this;
 }
 
-StringBuilder.prototype.divide = function(n) {
-  if (!Number.isInteger(n) || n <= 0) {
+StringBuilder.prototype.divide = function(num) {
+  if (!Number.isInteger(num) || num <= 0) {
     throw new Error('StringBuilder.divide() method:parameter should be integer and > 0');
   }
-  this.value = this.value.substring(0, Math.floor(this.value.length / n));
+  this.value = this.value.substring(0, Math.floor(this.value.length / num));
   return this;
 }
 
