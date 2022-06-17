@@ -17,8 +17,8 @@ class IntBuilder extends Builder {
   }
   
   mod(num) {
-    if (!Number.isInteger(num) || num <= 0) {
-      throw new Error('IntBuilder.mod() method: parameter should be integer and > 0');
+    if (!Number.isInteger(num) || num === 0) {
+      throw new Error('IntBuilder.mod() method: parameter should be integer and not 0');
     }
    this.value = this.value % num;
    return this;
@@ -51,9 +51,8 @@ class IntBuilder extends Builder {
   }
 
   static random(from, to) {
-    if (!Number.isInteger(from) || from < 0
-      ||!Number.isInteger(to) || to < 0) {
-        throw new Error('IntBuilder.random() method: parameter(s) should be integers and >= 0');
+    if (!Number.isInteger(from) || !Number.isInteger(to)) {
+        throw new Error('IntBuilder.random() method: parameter(s) should be integers');
       }
     if (to <= from) {
       throw new Error('IntBuilder.random() method: second parameter should be > than first parameter');
