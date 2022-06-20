@@ -45,8 +45,8 @@ class IntBuilder extends Builder {
   }
 
   divide(num) {
-    if (!Number.isInteger(num) || num <= 0) {
-      throw new Error('IntBuilder.divide() method: parameter should be integer and > 0');
+    if (!Number.isInteger(num) || num === 0) {
+      throw new Error('IntBuilder.divide() method: parameter should be integer and not 0');
     }
     this.value = Math.floor(this.value / num);
     return this;
