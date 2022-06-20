@@ -4,23 +4,23 @@ class Builder {
   }
 
   plus() {
-    return this;
+    throw new Error('You have to implement the method plus!');
   }
 
   minus() {
-    return this;
+    throw new Error('You have to implement the method minus!');
   }
 
   multiply() {
-    return this;
+    throw new Error('You have to implement the method multiply!');
   }
 
   divide() {
-    return this;
+    throw new Error('You have to implement the method divide!');
   }
 
   get() {
-    return this.value;
+    throw new Error('You have to implement the method get!');
   }
 }
 

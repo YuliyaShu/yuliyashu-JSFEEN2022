@@ -16,6 +16,10 @@ StringBuilder.prototype.plus = function(...str) {
   return this;
 }
 
+StringBuilder.prototype.get = function() {
+  return this.value;
+}
+
 StringBuilder.prototype.remove = function(str) {
   if (typeof str !== 'string') {
     throw new Error('StringBuilder.remove() method: parameter should be type of string');
