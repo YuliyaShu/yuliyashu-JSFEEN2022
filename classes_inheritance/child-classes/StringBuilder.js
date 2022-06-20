@@ -1,4 +1,4 @@
-import Builder from "../parent-class/Builder.js";
+import Builder from "../Builder.js";
 
 function StringBuilder(value = '') {
   this.value = value;

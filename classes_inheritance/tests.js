@@ -1,4 +1,4 @@
-import Builder from "./parent-class/Builder.js";
+import Builder from "./Builder.js";
 import IntBuilder from "./child-classes/IntBuilder.js";
 import StringBuilder from "./child-classes/StringBuilder.js";
 
