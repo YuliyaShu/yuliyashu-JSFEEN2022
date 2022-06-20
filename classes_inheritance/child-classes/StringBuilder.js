@@ -8,11 +8,13 @@ StringBuilder.prototype.constructor = StringBuilder;
 
 
 StringBuilder.prototype.plus = function(...strings) {
-  console.log
-  if (strings.forEach((strUnit) => typeof strUnit !== 'string')) {
-    throw new Error('StringBuilder.plus() method: parameters should be type of string');
-  }
-  this.value = Object.values(strings).reduce((res, unit) => res + unit, this.value);
+  this.value = strings.reduce((res, unit) => {
+    if (typeof unit !== 'string') {
+      throw new Error('StringBuilder.plus() method: parameter should be string');
+    } else {
+      return res + unit;
+    }
+  }, this.value);
   return this;
 }
 

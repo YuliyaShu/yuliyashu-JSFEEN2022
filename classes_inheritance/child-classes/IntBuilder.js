@@ -7,12 +7,13 @@ class IntBuilder extends Builder {
   }
 
   plus(...numbers) {
-    for (let param of numbers) {
-      if  (!Number.isInteger(param)) { 
+    this.value = numbers.reduce((res, unit) => {
+      if (!Number.isInteger(unit)) {
         throw new Error('IntBuilder.plus() method: parameter should be integer');
+      } else {
+        return res + unit;
       }
-    }
-    this.value = Object.values(numbers).reduce((res, unit) => res + unit, this.value);
+    }, this.value);
     return this;
   }
   
@@ -25,12 +26,13 @@ class IntBuilder extends Builder {
   }
 
   minus(...numbers) {
-    for (let param of numbers) {
-      if  (!Number.isInteger(param)) {
+    this.value = numbers.reduce((res, unit) => {
+      if (!Number.isInteger(unit)) {
         throw new Error('IntBuilder.minus() method: parameter should be integer');
+      } else {
+        return res - unit;
       }
-    }
-    this.value = Object.values(numbers).reduce((res, numMinus) => res - numMinus, this.value);
+    }, this.value);
     return this;
   }
 
