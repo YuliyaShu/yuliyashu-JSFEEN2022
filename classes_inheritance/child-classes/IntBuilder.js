@@ -40,7 +40,7 @@ class IntBuilder extends Builder {
     if (!Number.isInteger(num)) {
       throw new Error('IntBuilder.multiply() method: parameter should be integer');
     }
-    this.value = num * this.value;
+    this.value *= num;
     return this;
   }
 
