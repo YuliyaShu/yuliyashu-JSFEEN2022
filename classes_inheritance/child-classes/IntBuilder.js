@@ -15,10 +15,6 @@ class IntBuilder extends Builder {
     this.value = Object.values(num).reduce((res, unit) => res + unit, this.value);
     return this;
   }
-
-  get() {
-    return this.value;
-  }
   
   mod(num) {
     if (!Number.isInteger(num) || num === 0) {
