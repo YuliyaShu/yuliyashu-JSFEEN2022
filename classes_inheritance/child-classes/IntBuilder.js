@@ -1,66 +1,65 @@
-import Builder from "../Builder.js";
+import Builder from '../Builder.js'
 
 class IntBuilder extends Builder {
-
-  constructor(value = 0) {
-    super(value);
+  constructor (value = 0) {
+    super(value)
   }
 
-  plus(...numbers) {
+  plus (...numbers) {
     this.value = numbers.reduce((res, unit) => {
       if (!Number.isInteger(unit)) {
-        throw new Error('IntBuilder.plus() method: parameter should be integer');
+        throw new Error('IntBuilder.plus() method: parameter should be integer')
       } else {
-        return res + unit;
+        return res + unit
       }
-    }, this.value);
-    return this;
+    }, this.value)
+    return this
   }
-  
-  mod(num) {
+
+  mod (num) {
     if (!Number.isInteger(num) || num === 0) {
-      throw new Error('IntBuilder.mod() method: parameter should be integer and not 0');
+      throw new Error('IntBuilder.mod() method: parameter should be integer and not 0')
     }
-   this.value %= num;
-   return this;
+    this.value %= num
+    return this
   }
 
-  minus(...numbers) {
+  minus (...numbers) {
     this.value = numbers.reduce((res, unit) => {
       if (!Number.isInteger(unit)) {
-        throw new Error('IntBuilder.minus() method: parameter should be integer');
+        throw new Error('IntBuilder.minus() method: parameter should be integer')
       } else {
-        return res - unit;
+        return res - unit
       }
-    }, this.value);
-    return this;
+    }, this.value)
+    return this
   }
 
-  multiply(num) {
+  multiply (num) {
     if (!Number.isInteger(num)) {
-      throw new Error('IntBuilder.multiply() method: parameter should be integer');
+      throw new Error('IntBuilder.multiply() method: parameter should be integer')
     }
-    this.value *= num;
-    return this;
+    this.value *= num
+    return this
   }
 
-  divide(num) {
+  divide (num) {
     if (!Number.isInteger(num) || num === 0) {
-      throw new Error('IntBuilder.divide() method: parameter should be integer and not 0');
+      throw new Error('IntBuilder.divide() method: parameter should be integer and not 0')
     }
-    this.value = Math.floor(this.value / num);
-    return this;
+    this.value = Math.floor(this.value / num)
+    return this
   }
 
-  static random(from, to) {
+  static random (from, to) {
     if (!Number.isInteger(from) || !Number.isInteger(to)) {
-        throw new Error('IntBuilder.random() method: parameter(s) should be integers');
-      }
-    if (to <= from) {
-      throw new Error('IntBuilder.random() method: second parameter should be > than first parameter');
+      throw new Error('IntBuilder.random() method: parameter(s) should be integers')
     }
-    return Math.round(Math.random() * (to - from) + from);
+    if (to <= from) {
+      throw new Error('IntBuilder.random() method: second parameter should be > than first parameter')
+    }
+    return Math.round(Math.random() * (to - from) + from)
   }
 }
 
-export default IntBuilder;
+export default IntBuilder
