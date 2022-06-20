@@ -8,13 +8,12 @@ StringBuilder.prototype.constructor = StringBuilder;
 
 
 StringBuilder.prototype.plus = function(...strings) {
-  this.value = strings.reduce((res, unit) => {
+  strings.forEach((unit) =>  {
     if (typeof unit !== 'string') {
       throw new Error('StringBuilder.plus() method: parameter should be string');
-    } else {
-      return res + unit;
     }
-  }, this.value);
+  })
+  this.value += strings.join('');
   return this;
 }
 
@@ -51,7 +50,7 @@ StringBuilder.prototype.multiply = function(num) {
     throw new Error('StringBuilder.multiply() method: parameter should be integer and > 0');
   }
   let str = '';
-  for (let i =0; i < num; i++) {
+  for (let i = 0; i < num; i++) {
     str += this.value;
   }
   this.value = str;

@@ -21,7 +21,7 @@ class IntBuilder extends Builder {
     if (!Number.isInteger(num) || num === 0) {
       throw new Error('IntBuilder.mod() method: parameter should be integer and not 0');
     }
-   this.value = this.value % num;
+   this.value %= num;
    return this;
   }
 
@@ -37,8 +37,8 @@ class IntBuilder extends Builder {
   }
 
   multiply(num) {
-    if (!Number.isInteger(num) || num <= 0) {
-      throw new Error('IntBuilder.multiply() method: parameter should be integer and > 0');
+    if (!Number.isInteger(num)) {
+      throw new Error('IntBuilder.multiply() method: parameter should be integer');
     }
     this.value = num * this.value;
     return this;
