@@ -2,6 +2,9 @@ import Builder from '../Builder.js';
 
 class IntBuilder extends Builder {
   constructor(value = 0) {
+    if (!Number.isInteger(value)) {
+      throw new Error('Parameter should be integer');
+    }
     super(value);
   }
 
@@ -59,6 +62,10 @@ class IntBuilder extends Builder {
       throw new Error('IntBuilder.random() method: second parameter should be > than first parameter');
     }
     return Math.round(Math.random() * (to - from) + from);
+  }
+
+  get() {
+    return this.value;
   }
 }
 

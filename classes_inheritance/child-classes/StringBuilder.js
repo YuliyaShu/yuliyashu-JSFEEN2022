@@ -1,6 +1,9 @@
 import Builder from '../Builder.js';
 
 function StringBuilder(value = '') {
+  if (typeof value !== 'string') {
+    throw new Error('Parameter should be string');
+  }
   this.value = value;
 }
 StringBuilder.prototype = Object.create(Builder.prototype);
@@ -63,5 +66,9 @@ StringBuilder.prototype.divide = function (num) {
   this.value = this.value.substring(0, Math.floor(this.value.length / num));
   return this;
 };
+
+StringBuilder.prototype.get = function () {
+  return this.value;
+}
 
 export default StringBuilder;
