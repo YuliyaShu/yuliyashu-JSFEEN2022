@@ -20,7 +20,7 @@ class Builder {
   }
 
   get() {
-    throw new Error('You have to implement the method get!');
+    return this.value;
   }
 }
 

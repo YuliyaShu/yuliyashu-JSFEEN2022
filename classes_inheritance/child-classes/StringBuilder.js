@@ -67,8 +67,4 @@ StringBuilder.prototype.divide = function (num) {
   return this;
 };
 
-StringBuilder.prototype.get = function () {
-  return this.value;
-}
-
 export default StringBuilder;

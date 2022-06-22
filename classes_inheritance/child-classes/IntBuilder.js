@@ -63,10 +63,6 @@ class IntBuilder extends Builder {
     }
     return Math.round(Math.random() * (to - from) + from);
   }
-
-  get() {
-    return this.value;
-  }
 }
 
 export default IntBuilder;
