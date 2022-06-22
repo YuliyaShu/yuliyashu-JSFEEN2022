@@ -2,6 +2,9 @@ import Builder from '../Builder.js';
 
 class IntBuilder extends Builder {
   constructor(value = 0) {
+    if (!Number.isInteger(value)) {
+      throw new Error('Parameter should be integer');
+    }
     super(value);
   }
 

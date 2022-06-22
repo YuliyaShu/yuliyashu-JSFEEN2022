@@ -1,6 +1,9 @@
 import Builder from '../Builder.js';
 
 function StringBuilder(value = '') {
+  if (typeof value !== 'string') {
+    throw new Error('Parameter should be string');
+  }
   this.value = value;
 }
 StringBuilder.prototype = Object.create(Builder.prototype);
