@@ -59,12 +59,7 @@ module.exports = {
     multipleHtmlPlugins[0],
     multipleHtmlPlugins[1],
     multipleHtmlPlugins[2],
-    // new HtmlWebpackPlugin({
-    //   title: 'English-for-kids',
-    //   inject: 'body',
-    //   filename: 'index.html',
-    //   template: path.resolve(__dirname, 'src', 'index.html'),
-    // }),
+    new MiniCssExtractPlugin({ filename: 'style.css', chunkFilename: '[name].css' }),
     new ESLintPlugin(),
     new CleanWebpackPlugin(),
     new CopyPlugin({
