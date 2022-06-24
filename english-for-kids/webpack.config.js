@@ -5,12 +5,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const htmlPageNames = ['main', 'category', 'statistic'];
-const multipleHtmlPlugins = htmlPageNames.map((name) => new HtmlWebpackPlugin({
-  template: `./src/pages/${name}/${name}.html`,
-  filename: `${name}.html`,
-}));
-
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -20,6 +14,13 @@ module.exports = {
   },
   mode: 'development',
   devtool: 'inline-source-map',
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    compress: true,
+    port: 3000,
+  },
   module: {
     rules: [
       {
@@ -56,9 +57,10 @@ module.exports = {
     ],
   },
   plugins: [
-    multipleHtmlPlugins[0],
-    multipleHtmlPlugins[1],
-    multipleHtmlPlugins[2],
+    new HtmlWebpackPlugin({
+      template: './src/main.html',
+      filename: 'main.html',
+    }),
     new MiniCssExtractPlugin({ filename: 'style.css', chunkFilename: '[name].css' }),
     new ESLintPlugin(),
     new CleanWebpackPlugin(),

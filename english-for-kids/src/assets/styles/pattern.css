@@ -199,6 +199,11 @@
   align-items: center;
 }
 
+.header__stat:hover {
+  background-color: var(--orange-color);
+  transition: 0.5s;
+}
+
 .header__stat-img {
   width: 20px;
   height: 20px;
@@ -208,7 +213,6 @@
 /* MAIN */
 .page__main {
   height: 88%;
-  background-color: aquamarine;
 }
 
 /* FOOTER */
