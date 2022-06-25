@@ -1,0 +1,13 @@
+@media (max-width: 768px) {
+  .category__wrapper {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 3;
+  }
+}
+
+@media (max-width: 450px) {
+  .category__wrapper {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: 8;
+  }
+}

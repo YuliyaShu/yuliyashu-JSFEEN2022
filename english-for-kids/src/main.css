@@ -2,5 +2,8 @@
 @import url(./assets/styles/fonts.css);
 @import url(./assets/styles/general.css);
 @import url(./assets/styles/pattern.css);
-@import url(./assets/styles/all-categories.css);
+@import url(./assets/styles/categories-cards.css);
 @import url(../node_modules/normalize.css/normalize.css);
+@import url(./assets/styles/media.css);
+@import url(./assets/styles/burger.css);
+@import url(./assets/styles/cards.css);

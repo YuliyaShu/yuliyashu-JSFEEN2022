@@ -54,6 +54,13 @@ module.exports = {
           filename: 'assets/fonts/[name][ext][query]',
         },
       },
+      {
+        test: /\.json$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/jsons/[name][ext][query]',
+        },
+      },
     ],
   },
   plugins: [
