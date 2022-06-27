@@ -18,15 +18,27 @@ setTimeout(() => {
   const burgerMenuItems = document.querySelectorAll('.burger__menu-item');
   for (let i = 0; i < burgerMenuItems.length; i += 1) {
     burgerMenuItems[i].addEventListener(('click'), (eventMenu) => {
-      const menuClicked = eventMenu.target.parentElement.innerText.toLowerCase();
-      pageWrapper.element.children[1].innerHTML = '';
-      toggle();
-      createCardPageTrain(menuClicked);
+      if (eventMenu.target === burgerMenuItems[i]) {
+        const menuClicked1 = eventMenu.target.innerText.toLowerCase();
+        pageWrapper.element.children[1].innerHTML = '';
+        toggle();
+        createCardPageTrain(menuClicked1);
+      } else {
+        const menuClicked2 = eventMenu.target.parentElement.innerText.toLowerCase();
+        pageWrapper.element.children[1].innerHTML = '';
+        toggle();
+        createCardPageTrain(menuClicked2);
+      }
 
       const cardItem = document.querySelector('.card-train__wrapper');
       cardItem.addEventListener(('click'), (eventCard) => {
-        const cardClicked = eventCard.target.parentElement.innerText.toLowerCase();
-        textToSpeech(cardClicked);
+        if (eventCard.target === cardItem[i]) {
+          const cardClicked1 = eventCard.target.parentElement.innerText.toLowerCase();
+          textToSpeech(cardClicked1);
+        } else {
+          const cardClicked2 = eventCard.target.parentElement.innerText.toLowerCase();
+          textToSpeech(cardClicked2);
+        }
       });
     });
   }

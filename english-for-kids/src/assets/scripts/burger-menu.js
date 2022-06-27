@@ -7,7 +7,7 @@ headerBurger.classList.add('burger');
 const burgerLogo = new ElementNew(headerBurger, 'div', ['burger__logo', 'open']);
 burgerLogo
   .createElem();
-new ElementNew(burgerLogo.element, 'a', 'burger__logo-name', 'ENGLISH KID', ['href', 'https://yuliyashu-english-for-kids.netlify.app/'])
+new ElementNew(burgerLogo.element, 'a', 'burger__logo-name', 'ENGLISH KID', [['href', 'https://yuliyashu-english-for-kids.netlify.app/']])
   .createElem();
 
 const burgerMenu = new ElementNew(headerBurger, 'div', ['burger__menu', 'open']);

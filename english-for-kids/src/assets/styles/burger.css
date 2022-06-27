@@ -59,6 +59,14 @@ html.open {
   font-family: 'Montserrat';
   font-size: 1.5rem;
   color: var(--green-color);
+  text-decoration: none;
+  padding-left: 50px;
+}
+
+.burger__logo-name:hover {
+  color: var(--orange-color);
+  cursor: pointer;
+  transition-duration: 0.3s;
 }
 
 li {

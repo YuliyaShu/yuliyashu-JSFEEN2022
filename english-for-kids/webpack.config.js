@@ -65,8 +65,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/main.html',
-      filename: 'main.html',
+      template: './src/index.html',
+      filename: 'index.html',
     }),
     new MiniCssExtractPlugin({ filename: 'style.css', chunkFilename: '[name].css' }),
     new ESLintPlugin(),
