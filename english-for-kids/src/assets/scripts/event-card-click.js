@@ -6,15 +6,30 @@ setTimeout(() => {
   const categoryItems = document.querySelectorAll('.category__item');
   for (let i = 0; i < categoryItems.length; i += 1) {
     categoryItems[i].addEventListener(('click'), (event) => {
-      const categoryClicked = event.target.parentElement.innerText.toLowerCase();
-      pageWrapper.element.children[1].innerHTML = '';
-      createCardPageTrain(categoryClicked);
+      if (event.target === categoryItems[i]) {
+        const categoryClicked1 = event.target.innerText.toLowerCase();
+        pageWrapper.element.children[1].innerHTML = '';
+        createCardPageTrain(categoryClicked1);
+      } else {
+        const categoryClicked2 = event.target.parentElement.innerText.toLowerCase();
+        pageWrapper.element.children[1].innerHTML = '';
+        createCardPageTrain(categoryClicked2);
+      }
 
-      const cardItem = document.querySelector('.card-train__wrapper');
-      cardItem.addEventListener(('click'), (eventCard) => {
-        const cardClicked = eventCard.target.parentElement.innerText.toLowerCase();
-        textToSpeech(cardClicked);
-      });
+      setTimeout(() => {
+        const cardItem = document.querySelectorAll('.card-train__item');
+        for (let j = 0; j < cardItem.length; j += 1) {
+          cardItem[j].addEventListener(('click'), (eventCard) => {
+            if (eventCard.target === cardItem[j]) {
+              const cardClicked1 = eventCard.target.innerText.toLowerCase();
+              textToSpeech(cardClicked1);
+            } else {
+              const cardClicked2 = eventCard.target.parentElement.innerText.toLowerCase();
+              textToSpeech(cardClicked2);
+            }
+          });
+        }
+      }, 300);
     });
   }
 }, 300);

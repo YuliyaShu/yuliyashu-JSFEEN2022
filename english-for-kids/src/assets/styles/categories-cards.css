@@ -43,7 +43,10 @@
 
 .category__item-name,
 .card-train__item-name {
- font-family: 'Montserrat';
- color: var(--dark-color);
- margin-top: 2%;
+  display: block;
+  width: 100%;
+  font-family: 'Montserrat';
+  color: var(--dark-color);
+  margin-top: 2%;
+  text-align: center;
 }
