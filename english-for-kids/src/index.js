@@ -4,7 +4,9 @@ import './assets/scripts/header';
 import './assets/scripts/footer';
 import './assets/scripts/text-to-speech';
 import './assets/scripts/page-categories';
+import './assets/scripts/burger-menu';
 
-import './assets/scripts/events';
+import './assets/scripts/event-card-click';
+import './assets/scripts/event-menu-click';
 
 export {};

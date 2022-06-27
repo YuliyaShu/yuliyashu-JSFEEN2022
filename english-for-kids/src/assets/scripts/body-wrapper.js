@@ -1,6 +1,8 @@
 import ElementNew from './class-html-element';
 
 const page = document.querySelector('.page');
+const pageBurger = new ElementNew(page, 'div', 'page__burger');
+pageBurger.createElem();
 const pageWrapper = new ElementNew(page, 'div', 'page__wrapper');
 pageWrapper.createElem();
 const pageElements = ['header', 'main', 'footer'];
@@ -9,4 +11,4 @@ pageElements.forEach((e) => {
     .createElem();
 });
 
-export default pageWrapper;
+export { pageWrapper, pageBurger };

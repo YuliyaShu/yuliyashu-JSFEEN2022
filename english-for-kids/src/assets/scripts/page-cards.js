@@ -1,4 +1,4 @@
-import pageWrapper from './body-wrapper';
+import { pageWrapper } from './body-wrapper';
 import Card from './class-card';
 import ElementNew from './class-html-element';
 

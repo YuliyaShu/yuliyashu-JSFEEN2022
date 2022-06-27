@@ -1,5 +1,5 @@
 import ElementNew from './class-html-element';
-import pageWrapper from './body-wrapper';
+import { pageWrapper } from './body-wrapper';
 
 const headerBlocks = new ElementNew(pageWrapper.element.children[0], 'div', 'header__blocks');
 headerBlocks.createElem();

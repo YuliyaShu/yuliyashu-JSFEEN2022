@@ -1,13 +1,27 @@
 @media (max-width: 768px) {
-  .category__wrapper {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-columns: 3;
+
+  .page__wrapper {
+    margin: 5% auto;
+    padding: 0 5%;
   }
+
+  .category__wrapper,
+  .card-train__wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
 }
 
 @media (max-width: 450px) {
-  .category__wrapper {
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-columns: 8;
+
+  .page__wrapper {
+    margin: 10% auto;
+    padding: 0 10%;
   }
+
+  .category__wrapper,
+  .card-train__wrapper {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
 }

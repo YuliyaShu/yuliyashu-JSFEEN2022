@@ -1,30 +1,33 @@
+html.open {
+  overflow-y: hidden;
+}
 
 .overlay {
-	background-color: #211F20;
+	background-color: var(--white-color);
 	margin: 0;
 	overflow-x: hidden;
 	width: 100%;
 	height: 100%;
-	z-index: 2;
+	z-index: 10;
 	opacity: 90%;
 	position: absolute;
 	transition: 0.5s;
 }
 
-.header__burger.open .line__hr-1 {
-  transform: rotate(90deg) translate(10px, 11px);
+.header__menu.open .line__hr-1 {
+  transform: rotate(90deg) translate(19px, 11px);
   z-index: 11;
   transition: 0.5s;
 }
 
-.header__burger.open .line__hr-2 {
-  transform: rotate(90deg) ;
+.header__menu.open .line__hr-2 {
+  transform: rotate(90deg) translate(5px, 0px);
   z-index: 11;
   transition: 0.5s;
 }
 
-.header__burger.open .line__hr-3 {
-  transform: rotate(90deg) translate(-10px, -10px);
+.header__menu.open .line__hr-3 {
+  transform: rotate(90deg) translate(-10px, -11px);
   z-index: 11;
   transition: 0.5s;
 }
@@ -33,22 +36,29 @@
   display: flex;
   position: absolute;
   top: 0px;
-  right: -320px;
+  left: -320px;
   transition: all 1s ease-in-out;
   flex-direction: column;
   width: 320px;
   height: 100vh;
-  background-color: var(--color-dark-3xl);
+  background-color: var(--white-color);
   z-index: 12;
+  overflow-y: auto;
 }
 
 .header__burger.open {
   z-index: 13;
-  right: 0px;
+  left: 0px;
 }
 
-.burger__container.open {
-  display: flex;
+.burger__logo {
+  margin-top: 20px;
+}
+
+.burger__logo-name {
+  font-family: 'Montserrat';
+  font-size: 1.5rem;
+  color: var(--green-color);
 }
 
 li {
@@ -56,20 +66,39 @@ li {
 }
 
 .burger__menu {
-  margin-top: 158px;
+  margin-top: 45px;
   display: flex;
   flex-direction: column;
-    align-items: center;
+  align-items: center;
 }
 
 .burger__menu.open {
-  margin-top: 134px;
-  margin-left: 127px;
   z-index: 9;
 }
 
-.burger__menu-item.open {
-  margin-bottom: 42px;
+.burger__menu-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+}
+
+.burger__menu-item:hover {
+  transform: translateY(-5px) scale(1.005) translateZ(0);
+    box-shadow: 0px 0px 17px var(--green-color);
+    cursor: pointer;
+}
+
+.burger__menu-item-img {
+  width: 30%;
+  height: auto;
+}
+
+.burger__menu-item-name {
+  font-family: 'Montserrat';
+  font-size: 1rem;
+  color: var(--green-color);
 }
 
 .burger__menu-link {
