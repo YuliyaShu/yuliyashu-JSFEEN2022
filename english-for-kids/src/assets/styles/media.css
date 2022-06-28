@@ -6,7 +6,8 @@
   }
 
   .category__wrapper,
-  .card-train__wrapper {
+  .card-train__wrapper,
+  .card-play__wrapper {
     grid-template-columns: repeat(3, 1fr);
   }
 
@@ -20,7 +21,8 @@
   }
 
   .category__wrapper,
-  .card-train__wrapper {
+  .card-train__wrapper,
+  .card-play__wrapper {
     grid-template-columns: repeat(1, 1fr);
   }
 

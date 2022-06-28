@@ -18,6 +18,17 @@ class ElementNew {
     return this;
   }
 
+  toggleClassToElement() {
+    if (this.class) {
+      if (typeof this.class === 'string') {
+        this.element.classList.toggle(this.class);
+      } else if (Array.isArray(this.class)) {
+        this.class.forEach((e) => this.element.classList.toggle(e));
+      }
+    }
+    return this;
+  }
+
   addTextContentToElement() {
     if (this.text) {
       this.element.innerHTML = this.text;

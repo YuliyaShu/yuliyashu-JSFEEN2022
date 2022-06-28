@@ -1,5 +1,6 @@
 .category, 
-.card-train {
+.card-train,
+.card-play {
   display: flex;
   width: 100%;
   height: auto;
@@ -16,14 +17,15 @@
 }
 
 .category__wrapper, 
-.card-train__wrapper {
+.card-train__wrapper,
+.card-play__wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-columns: 2;
 }
 
 .category__item, 
-.card-train__item {
+.card-train__item,
+.card-play__item {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -35,7 +37,8 @@
 }
 
 .category__item:hover,
-.card-train__item:hover {
+.card-train__item:hover,
+.card-play__item:hover { 
   transform: translateY(-5px) scale(1.005) translateZ(0);
   box-shadow: 0px 0px 17px var(--green-color);
   cursor: pointer;

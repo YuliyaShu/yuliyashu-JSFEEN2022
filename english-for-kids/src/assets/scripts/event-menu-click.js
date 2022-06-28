@@ -1,6 +1,8 @@
 import { pageWrapper } from './body-wrapper';
-import createCardPageTrain from './page-cards';
-import textToSpeech from './text-to-speech';
+import click from './event-card-click';
+import playMode from './event-game';
+import createCardPagePlay from './page-cards-play';
+import createCardPageTrain from './page-cards-train';
 
 const headerMenu = document.querySelector('.header__menu');
 function toggle() {
@@ -22,24 +24,29 @@ setTimeout(() => {
         const menuClicked1 = eventMenu.target.innerText.toLowerCase();
         pageWrapper.element.children[1].innerHTML = '';
         toggle();
-        createCardPageTrain(menuClicked1);
+        if (!document.querySelector('.switch__input').checked) {
+          createCardPageTrain(menuClicked1);
+        } else {
+          createCardPagePlay(menuClicked1);
+        }
       } else {
         const menuClicked2 = eventMenu.target.parentElement.innerText.toLowerCase();
         pageWrapper.element.children[1].innerHTML = '';
         toggle();
-        createCardPageTrain(menuClicked2);
-      }
-
-      const cardItem = document.querySelector('.card-train__wrapper');
-      cardItem.addEventListener(('click'), (eventCard) => {
-        if (eventCard.target === cardItem[i]) {
-          const cardClicked1 = eventCard.target.parentElement.innerText.toLowerCase();
-          textToSpeech(cardClicked1);
+        if (!document.querySelector('.switch__input').checked) {
+          createCardPageTrain(menuClicked2);
+          setTimeout(() => {
+            click();
+          }, 100);
         } else {
-          const cardClicked2 = eventCard.target.parentElement.innerText.toLowerCase();
-          textToSpeech(cardClicked2);
+          createCardPagePlay(menuClicked2);
+          setTimeout(() => {
+            playMode();
+          }, 100);
         }
-      });
+      }
     });
   }
-}, 300);
+}, 100);
+
+export {};
