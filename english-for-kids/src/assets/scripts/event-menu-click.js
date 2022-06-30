@@ -1,6 +1,6 @@
 import { pageWrapper } from './body-wrapper';
 import click from './event-card-click';
-import playMode from './event-game';
+import { playMode } from './event-game-start';
 import createCardPagePlay from './page-cards-play';
 import createCardPageTrain from './page-cards-train';
 

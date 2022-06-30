@@ -32,11 +32,13 @@
   transform: rotateY(0deg);
 }
 
-.card-train__item-back, .card-train__item-back-hidden {
+.card-train__item-back,
+.card-train__item-back-hidden {
   transform: rotateY(180deg);
 }
 
-.card-train__item-back-translate, .card-train__item-back-hidden {
+.card-train__item-back-translate,
+.card-train__item-back-hidden {
   display: flex;
   width: 100%;
   height: 100%;
@@ -75,7 +77,8 @@
   height: 50%;
 }
 
-.card-play__begin-button {
+.card-play__begin-button,
+.card-play__continue-button {
   width: 100%;
   height: 100%;
   border: 0px solid var(--green-color);
@@ -86,7 +89,8 @@
   color: var(--white-color);
 }
 
-.card-play__begin-button:hover {
+.card-play__begin-button:hover,
+.card-play__continue-button:hover {
   background-color: var(--green-color);
   cursor: pointer;
   transition: 0.5s;
@@ -101,4 +105,14 @@
 .card-play__stars-star {
 width: 50%;
 height: 50%;
+}
+
+.card-play__item-name {
+  display: none;
+}
+
+.card-play__item-inactive {
+  pointer-events: none;
+  opacity: 0.5;
+  /* background: var(--grey-dark-color); */
 }

@@ -2,7 +2,7 @@ import { pageWrapper } from './body-wrapper';
 import createCardPageTrain from './page-cards-train';
 import click from './event-card-click';
 import createCardPagePlay from './page-cards-play';
-import playMode from './event-game';
+import { playMode } from './event-game-start';
 
 setTimeout(() => {
   const categoryItems = document.querySelectorAll('.category__item');

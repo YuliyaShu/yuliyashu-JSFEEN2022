@@ -25,7 +25,8 @@
 
 .category__item, 
 .card-train__item,
-.card-play__item {
+.card-play__item,
+.card-play__item-inactive {
   display: flex;
   flex-direction: column;
   width: 100%;

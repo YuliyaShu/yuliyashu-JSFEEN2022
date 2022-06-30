@@ -36,6 +36,7 @@ function createCardPagePlay(nameOfCategory) {
         cardItemFront
           .createElem();
         new Card(cardItemFront.element, `${arrOfKeys[i]}`, nameOfCategory, 'card-play__item-img').createCardImg('card-play image');
+        new Card(cardItemFront.element, `${arrOfKeys[i]}`, nameOfCategory, 'card-play__item-name').createCardName();
       }
     });
 }
