@@ -38,6 +38,11 @@ function createCardPagePlay(nameOfCategory) {
         new Card(cardItemFront.element, `${arrOfKeys[i]}`, nameOfCategory, 'card-play__item-name').createCardName();
       }
     });
+
+  const stars = document.querySelectorAll('.card-play__stars-star');
+  for (let i = 0; i < 8; i += 1) {
+    stars[i].src = './assets/images/02icon-star.png';
+  }
 }
 
 export default createCardPagePlay;

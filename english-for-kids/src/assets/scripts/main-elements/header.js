@@ -33,7 +33,7 @@ new ElementNew(switchWrapper.element, 'span', 'switch__mode', null, [['data-on',
   .createElem();
 
 const headerStat = document.querySelector('.header__stat');
-const linkStat = new ElementNew(headerStat, 'a', 'header__stat-link', null, [['href', 'https://yuliyashu-english-for-kids.netlify.app/pages/statistic/statistic.html']]);
+const linkStat = new ElementNew(headerStat, 'a', 'header__stat-link', null, [['href', '#']]);
 linkStat
   .createElem();
 new ElementNew(linkStat.element, 'img', 'header__stat-img', null, [['src', './assets/images/bar-chart.png'], ['alt', 'statistics']])

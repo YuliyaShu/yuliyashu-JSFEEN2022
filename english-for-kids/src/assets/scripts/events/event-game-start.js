@@ -31,7 +31,7 @@ function startClick() {
         } else if (startButton.textContent === 'REPEAT') {
           const getSound = localStorage.getItem('savedSound');
           textToSpeech(getSound);
-          guessClick(getSound);
+          // guessClick(getSound);
         }
       });
   }
@@ -60,8 +60,17 @@ function click(eventCard) {
     nameSuccess += 1;
     localStorage.setItem('countOfSuccess', nameSuccess);
     playModeContinue(name1);
+    if (countOfNo) {
+      const stars = document.querySelectorAll('.card-play__stars-star');
+      for (let i = 0; i < 8; i += 1) {
+        if (stars[i].src.split('/').slice(-1).join() === '02icon-star.png') {
+          stars[i].src = './assets/images/02icon-star-green.png';
+          break;
+        }
+      }
+    }
+    countOfNo = true;
   } else {
-    console.log(countOfNo);
     if (countOfNo) {
       const currentCountOfFailed = +localStorage.getItem('countOfFailed');
       const newCountOfFailed = currentCountOfFailed + 1;
@@ -97,12 +106,15 @@ function playModeContinue(nameIncome) {
     pageWrapper.element.children[1].innerHTML = '';
     if (localStorage.getItem('countOfFailed') > 0) {
       textToSpeech('You can do it better!');
-      localStorage.setItem('countOfFailed', 0);
       createFinishPageFailed();
     } else {
       textToSpeech('You have finished! Wonderful!');
-      localStorage.setItem('countOfFailed', 0);
       createFinishPageSuccess();
+    }
+    localStorage.setItem('countOfFailed', 0);
+    const stars = document.querySelectorAll('.card-play__stars-star');
+    for (let i = 0; i < 8; i += 1) {
+      stars[i].src = './assets/images/02icon-star-green.png';
     }
   } else {
     const continueButton = document.querySelector('.card-play__continue-button');
