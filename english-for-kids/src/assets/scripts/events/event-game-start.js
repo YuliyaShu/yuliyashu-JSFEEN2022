@@ -52,13 +52,16 @@ function click(eventCard) {
     ? eventCard.target
     : eventCard.target.parentElement;
   if (name1 === cardClick) {
+    console.log(cardClick);
     textToSpeech('yes');
     continueButton.textContent = 'START';
     cardItem.classList.add('card-play__item-inactive');
     cardItem.classList.remove('card-play__item');
-    let nameSuccess = +localStorage.getItem('countOfSuccess');
-    nameSuccess += 1;
-    localStorage.setItem('countOfSuccess', nameSuccess);
+    let nameCorrect = (+localStorage.getItem(`${name1}Correct`))
+      ? +localStorage.getItem(`${name1}Correct`)
+      : 0;
+    nameCorrect += 1;
+    localStorage.setItem(`${name1}Correct`, nameCorrect);
     playModeContinue(name1);
     if (countOfNo) {
       const stars = document.querySelectorAll('.card-play__stars-star');
@@ -77,6 +80,11 @@ function click(eventCard) {
       localStorage.setItem('countOfFailed', newCountOfFailed);
       countOfNo = false;
     }
+    let nameMistake = (+localStorage.getItem(`${name1}Mistake`))
+      ? +localStorage.getItem(`${name1}Mistake`)
+      : 0;
+    nameMistake += 1;
+    localStorage.setItem(`${name1}Mistake`, nameMistake);
     textToSpeech('no');
   }
 }

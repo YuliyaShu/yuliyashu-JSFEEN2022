@@ -1,8 +1,9 @@
 import ElementNew from '../classes/class-html-element';
+import cleanStat from '../events/event-stat-clean-click';
 import { pageWrapper } from '../main-elements/body-wrapper';
 
 function createStatPage() {
-  document.querySelector('.header__switch').innerHTML = '';
+  // document.querySelector('.header__switch').innerHTML = '';
   const mainWrapper = pageWrapper.element.children[1];
   new ElementNew(mainWrapper, 'h1', ['category__h1', 'stat__h1'], 'statistics'.toUpperCase())
     .createElem();
@@ -13,6 +14,7 @@ function createStatPage() {
     .createElem();
   new ElementNew(statButtons.element, 'button', 'main__stat-buttons-clean', 'CLEAN STATISTICS')
     .createElem();
+  cleanStat();
   const cardCards = new ElementNew(mainWrapper, 'div', [['main__stat-wrapper'], ['stat']]);
   cardCards
     .createElem();
@@ -36,11 +38,14 @@ function createStatPage() {
           .then((response) => response.json())
           .then((dataCard) => {
             Object.keys(dataCard).forEach((card) => {
-              console.log(dataCard[card].translate);
-              const correct = +localStorage.getItem(`${card}Correct`);
-              const mistaken = +localStorage.getItem(`${card}Mistake`);
+              const correct = (+localStorage.getItem(`${card}Correct`))
+                ? +localStorage.getItem(`${card}Correct`)
+                : 0;
+              const mistaken = (+localStorage.getItem(`${card}Mistake`))
+                ? +localStorage.getItem(`${card}Mistake`)
+                : 0;
               const total = correct + mistaken;
-              const percent = (total) ? (correct / total) * 100 : '-';
+              const percent = (total) ? Math.round((correct / total) * 100) : '-';
               new ElementNew(cardCards.element, 'div', ['stat__data', `stat__category-${category}`], `${category}`)
                 .createElem();
               new ElementNew(cardCards.element, 'div', ['stat__data', `stat__word-${card}`], `${card}`)
