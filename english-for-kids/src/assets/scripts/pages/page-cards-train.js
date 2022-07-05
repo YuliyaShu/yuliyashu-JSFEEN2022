@@ -1,6 +1,6 @@
-import { pageWrapper } from './body-wrapper';
-import Card from './class-card';
-import ElementNew from './class-html-element';
+import { pageWrapper } from '../main-elements/body-wrapper';
+import Card from '../classes/class-card';
+import ElementNew from '../classes/class-html-element';
 
 function createCardPageTrain(nameOfCategory) {
   const cardCards = new ElementNew(pageWrapper.element.children[1], 'div', [['main__card-train'], ['card-train']]);

@@ -1,8 +1,8 @@
-import { pageWrapper } from './body-wrapper';
+import { pageWrapper } from '../main-elements/body-wrapper';
 import click from './event-card-click';
 import { playMode } from './event-game-start';
-import createCardPagePlay from './page-cards-play';
-import createCardPageTrain from './page-cards-train';
+import createCardPagePlay from '../pages/page-cards-play';
+import createCardPageTrain from '../pages/page-cards-train';
 
 const headerMenu = document.querySelector('.header__menu');
 function toggle() {

@@ -1,6 +1,6 @@
-import { pageWrapper } from './body-wrapper';
-import Card from './class-card';
-import ElementNew from './class-html-element';
+import { pageWrapper } from '../main-elements/body-wrapper';
+import Card from '../classes/class-card';
+import ElementNew from '../classes/class-html-element';
 
 function createCategoryPage() {
   const categoryCards = new ElementNew(pageWrapper.element.children[1], 'div', [['main-category'], ['category']]);
@@ -24,6 +24,9 @@ function createCategoryPage() {
         new Card(categoryItem.element, `${arrOfKeys[i]}`, 'categories', 'category__item-name').createCardName();
       }
     });
+
+  localStorage.setItem('countOfFailed', 0);
+  localStorage.setItem('countOfSuccess', 0);
 }
 
 createCategoryPage();

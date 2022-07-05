@@ -1,4 +1,4 @@
-import textToSpeech from './text-to-speech';
+import textToSpeech from '../main-elements/text-to-speech';
 
 function click() {
   const cardItem = document.querySelectorAll('.card-train__item');

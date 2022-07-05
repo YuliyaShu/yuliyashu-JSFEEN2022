@@ -1,5 +1,5 @@
 const { pageWrapper } = require('./body-wrapper');
-const { default: ElementNew } = require('./class-html-element');
+const { default: ElementNew } = require('../classes/class-html-element');
 
 const footerBlocks = new ElementNew(pageWrapper.element.children[2], 'div', 'footer__blocks');
 footerBlocks.createElem();

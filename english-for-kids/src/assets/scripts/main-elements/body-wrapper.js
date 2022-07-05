@@ -1,4 +1,4 @@
-import ElementNew from './class-html-element';
+import ElementNew from '../classes/class-html-element';
 
 const page = document.querySelector('.page');
 const pageBurger = new ElementNew(page, 'div', 'page__burger');

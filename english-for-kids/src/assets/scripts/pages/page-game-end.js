@@ -1,5 +1,5 @@
-import { pageWrapper } from './body-wrapper';
-import ElementNew from './class-html-element';
+import { pageWrapper } from '../main-elements/body-wrapper';
+import ElementNew from '../classes/class-html-element';
 
 function createFinishPageSuccess() {
   const finish = new ElementNew(pageWrapper.element.children[1], 'div', [['main__finish'], ['finish']]);

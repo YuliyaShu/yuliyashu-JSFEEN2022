@@ -1,5 +1,5 @@
-import Card from './class-card';
-import ElementNew from './class-html-element';
+import Card from '../classes/class-card';
+import ElementNew from '../classes/class-html-element';
 
 const headerBurger = document.querySelector('.header__burger');
 headerBurger.classList.add('burger');
