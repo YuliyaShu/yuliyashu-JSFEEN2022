@@ -31,7 +31,6 @@ function startClick() {
         } else if (startButton.textContent === 'REPEAT') {
           const getSound = localStorage.getItem('savedSound');
           textToSpeech(getSound);
-          // guessClick(getSound);
         }
       });
   }
@@ -52,7 +51,6 @@ function click(eventCard) {
     ? eventCard.target
     : eventCard.target.parentElement;
   if (name1 === cardClick) {
-    console.log(cardClick);
     textToSpeech('yes');
     continueButton.textContent = 'START';
     cardItem.classList.add('card-play__item-inactive');

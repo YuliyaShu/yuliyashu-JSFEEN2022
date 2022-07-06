@@ -32,10 +32,15 @@ function createCardPageTrain(nameOfCategory) {
           .createElem();
         new Card(cardItemBack.element, arrOfKeys[i], nameOfCategory, 'card-train__item-back-translate')
           .createCardRotate();
-        new Card(cardItemFront.element, `${arrOfKeys[i]}`, nameOfCategory, 'card-train__item-img').createCardImg('card-train image');
+        new Card(cardItemFront.element, `${arrOfKeys[i]}`, nameOfCategory, 'card-train__item-img')
+          .createCardImg('card-train image');
         setTimeout(() => {
-          new Card(cardItemFront.element, `${arrOfKeys[i]}`, nameOfCategory, 'card-train__item-name').createCardName();
-          setTimeout(() => { new Card(cardItemFront.element, `${arrOfKeys[i]}`, nameOfCategory, 'card-train__item-rotate').createCardRotateIcon(); }, 50);
+          new Card(cardItemFront.element, `${arrOfKeys[i]}`, nameOfCategory, 'card-train__item-name')
+            .createCardName();
+          setTimeout(() => {
+            new Card(cardItemFront.element, `${arrOfKeys[i]}`, nameOfCategory, 'card-train__item-rotate')
+              .createCardRotateIcon();
+          }, 50);
         }, 50);
       }
     });

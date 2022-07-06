@@ -12,15 +12,19 @@ function switchClick() {
     ? document.querySelector('.card-train__h1').textContent.toLowerCase()
     : document.querySelector('.category__h1').textContent.toLowerCase();
   if (categoryName !== 'english kid') {
-    pageWrapper.element.children[1].innerHTML = '';
-    if (switchInput.checked) {
-      createCardPageTrain(categoryName);
-      setTimeout(() => {
-        click();
-      }, 100);
+    if (categoryName === 'train mistakes' || categoryName === 'there is no play mode for mistaken words') {
+      document.querySelector('.card-train__h1').innerHTML = 'there is no play mode for mistaken words'.toUpperCase();
     } else {
-      createCardPagePlay(categoryName);
-      playMode();
+      pageWrapper.element.children[1].innerHTML = '';
+      if (switchInput.checked) {
+        createCardPageTrain(categoryName);
+        setTimeout(() => {
+          click();
+        }, 100);
+      } else {
+        createCardPagePlay(categoryName);
+        playMode();
+      }
     }
   }
 }

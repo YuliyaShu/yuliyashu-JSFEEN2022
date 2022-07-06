@@ -1,9 +1,9 @@
 import ElementNew from '../classes/class-html-element';
 import cleanStat from '../events/event-stat-clean-click';
+import trainMistakesStat from '../events/event-stat-train-mistakes-click';
 import { pageWrapper } from '../main-elements/body-wrapper';
 
 function createStatPage() {
-  // document.querySelector('.header__switch').innerHTML = '';
   const mainWrapper = pageWrapper.element.children[1];
   new ElementNew(mainWrapper, 'h1', ['category__h1', 'stat__h1'], 'statistics'.toUpperCase())
     .createElem();
@@ -12,6 +12,7 @@ function createStatPage() {
     .createElem();
   new ElementNew(statButtons.element, 'button', 'main__stat-buttons-train', 'TRAIN MISTAKES')
     .createElem();
+  trainMistakesStat();
   new ElementNew(statButtons.element, 'button', 'main__stat-buttons-clean', 'CLEAN STATISTICS')
     .createElem();
   cleanStat();
