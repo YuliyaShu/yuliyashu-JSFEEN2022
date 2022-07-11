@@ -16,32 +16,28 @@ function createCardPageTrain(nameOfCategory) {
   fetch(`./assets/jsons/${nameOfCategory}.json`)
     .then((response) => response.json())
     .then((data) => {
-      for (let i = 0; i < 8; i += 1) {
-        const arrOfKeys = Object.keys(data);
+      for (let i = 0; i < Object.keys(data).length; i += 1) {
+        const arrOfValues = Object.values(data);
         const cardContainer = new ElementNew(cardWrapper.element, 'div', 'card-train__wrapper-container');
         cardContainer
           .createElem();
         const cardFrontBack = new ElementNew(cardContainer.element, 'div', 'card-train__front-back');
         cardFrontBack
           .createElem();
-        const cardItemFront = new ElementNew(cardFrontBack.element, 'div', ['card-train__item', `card-train__item-${arrOfKeys[i]}`]);
+        const cardItemFront = new ElementNew(cardFrontBack.element, 'div', ['card-train__item', `card-train__item-${arrOfValues[i].name}`]);
         cardItemFront
           .createElem();
         const cardItemBack = new ElementNew(cardFrontBack.element, 'div', 'card-train__item-back-hidden');
         cardItemBack
           .createElem();
-        new Card(cardItemBack.element, arrOfKeys[i], nameOfCategory, 'card-train__item-back-translate')
-          .createCardRotate();
-        new Card(cardItemFront.element, `${arrOfKeys[i]}`, nameOfCategory, 'card-train__item-img')
-          .createCardImg('card-train image');
-        setTimeout(() => {
-          new Card(cardItemFront.element, `${arrOfKeys[i]}`, nameOfCategory, 'card-train__item-name')
-            .createCardName();
-          setTimeout(() => {
-            new Card(cardItemFront.element, `${arrOfKeys[i]}`, nameOfCategory, 'card-train__item-rotate')
-              .createCardRotateIcon();
-          }, 50);
-        }, 50);
+
+        new Card(cardItemBack.element)
+          .addName(arrOfValues[i].translate, 'card-train__item-back-translate');
+
+        new Card(cardItemFront.element)
+          .addImg(arrOfValues[i].url, 'card-train__item-img', arrOfValues[i].name)
+          .addName(arrOfValues[i].name.toUpperCase(), 'card-train__item-name')
+          .addImg('./assets/images/01icons8-synchronize-150.png', 'card-train__item-rotate', 'rotate icon');
       }
     });
 }

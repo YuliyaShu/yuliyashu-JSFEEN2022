@@ -16,23 +16,23 @@ function startClick() {
   } else {
     startButton.classList.add('card-play__continue-button');
     startButton.classList.remove('card-play__begin-button');
-    const nameOfGameCategory = document.querySelector('.card-train__h1').textContent.toLowerCase();
-    fetch(`./assets/jsons/${nameOfGameCategory}.json`)
-      .then((response) => response.json())
-      .then((data) => {
-        const nameOfCards = Object.keys(data);
-        localStorage.setItem('nameOfCards', nameOfCards);
-        if (startButton.textContent === 'START') {
-          const random = Math.floor(Math.random() * nameOfCards.length);
-          textToSpeech(nameOfCards[random]);
-          localStorage.setItem('savedSound', nameOfCards[random]);
-          startButton.textContent = 'REPEAT';
-          guessClick(nameOfCards[random]);
-        } else if (startButton.textContent === 'REPEAT') {
-          const getSound = localStorage.getItem('savedSound');
-          textToSpeech(getSound);
-        }
-      });
+
+    const nameOfCards = document.querySelectorAll('.card-play__item-name');
+
+    // const nameOfCards = arrOfCards.map((unit) => unit.innerHTML);
+    // localStorage.setItem('nameOfCards', nameOfCards);
+    if (startButton.textContent === 'START') {
+      const random = Math.floor(Math.random() * nameOfCards.length);
+      const itemName = nameOfCards[random].innerHTML;
+      console.log(itemName);
+      textToSpeech(itemName);
+      localStorage.setItem('savedSound', itemName);
+      startButton.textContent = 'REPEAT';
+      guessClick(itemName);
+    } else if (startButton.textContent === 'REPEAT') {
+      const getSound = localStorage.getItem('savedSound');
+      textToSpeech(getSound);
+    }
   }
 }
 
@@ -43,7 +43,7 @@ function playMode() {
 
 function click(eventCard) {
   const continueButton = document.querySelector('.card-play__continue-button');
-  const name1 = localStorage.getItem('name');
+  const name1 = localStorage.getItem('name').toLowerCase();
   const cardClick = (eventCard.target.tagName.toLowerCase() !== 'img')
     ? eventCard.target.children[1].innerText.toLowerCase()
     : eventCard.target.parentElement.children[1].innerText.toLowerCase();

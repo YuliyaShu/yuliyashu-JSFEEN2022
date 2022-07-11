@@ -29,20 +29,21 @@ function createCardPagePlay(nameOfCategory) {
   fetch(`./assets/jsons/${nameOfCategory}.json`)
     .then((response) => response.json())
     .then((data) => {
-      for (let i = 0; i < 8; i += 1) {
-        const arrOfKeys = Object.keys(data);
-        const cardItemFront = new ElementNew(cardWrapper.element, 'div', ['card-play__item', `card-play__item-${arrOfKeys[i]}`]);
+      for (let i = 0; i < Object.keys(data).length; i += 1) {
+        const arrOfValues = Object.values(data);
+        const cardItemFront = new ElementNew(cardWrapper.element, 'div', ['card-play__item', `card-play__item-${arrOfValues[i].name}`]);
         cardItemFront
           .createElem();
-        new Card(cardItemFront.element, `${arrOfKeys[i]}`, nameOfCategory, 'card-play__item-img').createCardImg('card-play image');
-        new Card(cardItemFront.element, `${arrOfKeys[i]}`, nameOfCategory, 'card-play__item-name').createCardName();
+        new Card(cardItemFront.element)
+          .addImg(arrOfValues[i].url, 'card-play__item-img', arrOfValues[i].name)
+          .addName(arrOfValues[i].name.toUpperCase(), 'card-play__item-name');
       }
     });
 
-  const stars = document.querySelectorAll('.card-play__stars-star');
-  for (let i = 0; i < 8; i += 1) {
-    stars[i].src = './assets/images/02icon-star.png';
-  }
+  // const stars = document.querySelectorAll('.card-play__stars-star');
+  // for (let i = 0; i < 8; i += 1) {
+  //   stars[i].src = './assets/images/02icon-star.png';
+  // }
 }
 
 export default createCardPagePlay;

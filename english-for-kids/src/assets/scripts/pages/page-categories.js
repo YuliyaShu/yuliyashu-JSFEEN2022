@@ -16,12 +16,13 @@ function createCategoryPage() {
   fetch('./assets/jsons/categories.json')
     .then((response) => response.json())
     .then((data) => {
-      for (let i = 0; i < 8; i += 1) {
-        const arrOfKeys = Object.keys(data);
-        const categoryItem = new ElementNew(categoryWrapper.element, 'div', ['category__item', `category__item-${arrOfKeys[i]}`]);
+      for (let i = 0; i < Object.keys(data).length; i += 1) {
+        const arrOfValues = Object.values(data);
+        const categoryItem = new ElementNew(categoryWrapper.element, 'div', ['category__item', `category__item-${arrOfValues[i].name}`]);
         categoryItem.createElem();
-        new Card(categoryItem.element, `${arrOfKeys[i]}`, 'categories', 'category__item-img').createCardImg('category image');
-        new Card(categoryItem.element, `${arrOfKeys[i]}`, 'categories', 'category__item-name').createCardName();
+        new Card(categoryItem.element)
+          .addImg(arrOfValues[i].url, 'category__item-img', arrOfValues[i].name)
+          .addName(arrOfValues[i].name.toUpperCase(), 'category__item-name');
       }
     });
 

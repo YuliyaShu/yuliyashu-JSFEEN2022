@@ -18,11 +18,12 @@ fetch('./assets/jsons/categories.json')
   .then((response) => response.json())
   .then((data) => {
     for (let i = 0; i < Object.keys(data).length; i += 1) {
-      const arrOfKeys = Object.keys(data);
+      const arrOfValues = Object.values(data);
       const menuItem = new ElementNew(burgerMenu.element, 'div', ['burger__menu-item']);
       menuItem.createElem();
-      new Card(menuItem.element, `${arrOfKeys[i]}`, 'categories', 'burger__menu-item-img').createCardImg('category image');
-      new Card(menuItem.element, `${arrOfKeys[i]}`, 'categories', 'burger__menu-item-name').createCardName();
+      new Card(menuItem.element)
+        .addImg(arrOfValues[i].url, 'burger__menu-item-img', arrOfValues[i].name)
+        .addName(arrOfValues[i].name.toUpperCase(), 'burger__menu-item-name');
     }
   });
 
