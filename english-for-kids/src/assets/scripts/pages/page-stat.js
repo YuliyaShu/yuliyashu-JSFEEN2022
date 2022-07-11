@@ -25,7 +25,8 @@ function readData() {
               const percent = (total) ? Math.round((correct / total) * 100) : '-';
               statData.push([]);
               statData[statData.length - 1]
-                .push(category, card, dataCard[card].translate, total, correct, mistaken, percent);
+                .push(category, card, dataCard[card]
+                  .translate, total, correct, mistaken, percent, dataCard[card].url);
             });
           });
       });
@@ -34,7 +35,7 @@ function readData() {
 
 function fillTable(parent) {
   statData.forEach((item) => {
-    for (let i = 0; i < item.length; i += 1) {
+    for (let i = 0; i < item.length - 1; i += 1) {
       new ElementNew(parent, 'div', ['stat__data'], item[i]).createElem();
     }
   });
@@ -67,7 +68,7 @@ function createStatPage() {
     .createElem();
   new ElementNew(statButtons.element, 'button', 'main__stat-buttons-train', 'TRAIN MISTAKES')
     .createElem();
-  trainMistakesStat();
+  trainMistakesStat(statData);
   new ElementNew(statButtons.element, 'button', 'main__stat-buttons-clean', 'CLEAN STATISTICS')
     .createElem();
   cleanStat();

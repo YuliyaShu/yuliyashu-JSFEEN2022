@@ -3,7 +3,7 @@ import { pageWrapper } from '../main-elements/body-wrapper';
 import Card from '../classes/class-card';
 import ElementNew from '../classes/class-html-element';
 
-function createMistakesPageTrain() {
+function createMistakesPageTrain(data) {
   pageWrapper.element.children[1].innerHTML = '';
   const cardCards = new ElementNew(pageWrapper.element.children[1], 'div', [['main__card-train'], ['card-train']]);
   cardCards
@@ -14,51 +14,28 @@ function createMistakesPageTrain() {
   const cardWrapper = new ElementNew(cardCards.element, 'div', 'card-train__wrapper');
   cardWrapper
     .createElem();
-  const arrOfMistakenWords = [];
-  fetch('./assets/jsons/categories.json')
-    .then((response) => response.json())
-    .then((dataCategory) => {
-      Object.keys(dataCategory).forEach((category) => {
-        fetch(`./assets/jsons/${category}.json`)
-          .then((response) => response.json())
-          .then((dataCard) => {
-            Object.keys(dataCard).forEach((card) => {
-              arrOfMistakenWords.push([`${category}-${card}`, +localStorage.getItem(`${card}Mistake`)]);
-            });
-            arrOfMistakenWords.sort((a, b) => b[1] - a[1]);
-            return arrOfMistakenWords;
-          })
-          .then((arr) => {
-            cardWrapper.element.innerHTML = '';
-            for (let i = 0; i < 8; i += 1) {
-              if (arr[i][1]) {
-                const categoryMistake = arr[i][0].split('-')[0];
-                const cardMistake = arr[i][0].split('-')[1];
-                const cardContainer = new ElementNew(cardWrapper.element, 'div', 'card-train__wrapper-container');
-                cardContainer
-                  .createElem();
-                const cardFrontBack = new ElementNew(cardContainer.element, 'div', 'card-train__front-back');
-                cardFrontBack
-                  .createElem();
-                const cardItemFront = new ElementNew(cardFrontBack.element, 'div', ['card-train__item', `card-train__item-${cardMistake}`]);
-                cardItemFront
-                  .createElem();
-                const cardItemBack = new ElementNew(cardFrontBack.element, 'div', 'card-train__item-back-hidden');
-                cardItemBack
-                  .createElem();
-                new Card(cardItemBack.element, cardMistake, categoryMistake, 'card-train__item-back-translate')
-                  .createCardRotate();
-                new Card(cardItemFront.element, cardMistake, categoryMistake, 'card-train__item-img').createCardImg('card-train image');
-                setTimeout(() => {
-                  new Card(cardItemFront.element, cardMistake, categoryMistake, 'card-train__item-name').createCardName();
-                  setTimeout(() => { new Card(cardItemFront.element, cardMistake, categoryMistake, 'card-train__item-rotate').createCardRotateIcon(); }, 50);
-                }, 50);
-                localStorage.setItem(`${cardMistake}Mistake`, 0);
-              }
-            }
-          });
-      });
-    });
+  data.sort((a, b) => b[5] - a[5]);
+  let i = 0;
+  while (i < 8 && data[i][5]) {
+    localStorage.setItem(`${data[i][1]}Mistake`, 0);
+    const cardContainer = new ElementNew(cardWrapper.element, 'div', 'card-train__wrapper-container');
+    cardContainer.createElem();
+    const cardFrontBack = new ElementNew(cardContainer.element, 'div', 'card-train__front-back');
+    cardFrontBack.createElem();
+    const cardItemFront = new ElementNew(cardFrontBack.element, 'div', ['card-train__item']);
+    cardItemFront.createElem();
+    const cardItemBack = new ElementNew(cardFrontBack.element, 'div', 'card-train__item-back-hidden');
+    cardItemBack.createElem();
+
+    new Card(cardItemBack.element)
+      .addName(data[i][2], 'card-train__item-back-translate');
+
+    new Card(cardItemFront.element)
+      .addImg(data[i][7], 'card-train__item-img', data[i][1])
+      .addName(data[i][1].toUpperCase(), 'card-train__item-name')
+      .addImg('./assets/images/01icons8-synchronize-150.png', 'card-train__item-rotate', 'rotate icon');
+    i += 1;
+  }
 }
 
 export default createMistakesPageTrain;
