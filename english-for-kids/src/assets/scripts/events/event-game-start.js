@@ -7,32 +7,25 @@ let countOfNo = true;
 
 function startClick() {
   const startButton = document.querySelector('.card-play__begin-button');
-  if (!startButton) {
-    const continueButton = document.querySelector('.card-play__continue-button');
-    continueButton.addEventListener('click', () => {
-      const getSound = localStorage.getItem('savedSound');
-      textToSpeech(getSound);
-    });
-  } else {
+  if (startButton) {
     startButton.classList.add('card-play__continue-button');
     startButton.classList.remove('card-play__begin-button');
 
-    const nameOfCards = document.querySelectorAll('.card-play__item-name');
+    const nameOfCards = [];
+    document.querySelectorAll('.card-play__item-name').forEach((item) => nameOfCards.push(item.innerHTML.toLowerCase()));
 
-    // const nameOfCards = arrOfCards.map((unit) => unit.innerHTML);
-    // localStorage.setItem('nameOfCards', nameOfCards);
+    localStorage.setItem('nameOfCards', nameOfCards);
     if (startButton.textContent === 'START') {
       const random = Math.floor(Math.random() * nameOfCards.length);
-      const itemName = nameOfCards[random].innerHTML;
-      console.log(itemName);
+      const itemName = nameOfCards[random];
       textToSpeech(itemName);
       localStorage.setItem('savedSound', itemName);
       startButton.textContent = 'REPEAT';
       guessClick(itemName);
-    } else if (startButton.textContent === 'REPEAT') {
-      const getSound = localStorage.getItem('savedSound');
-      textToSpeech(getSound);
     }
+  } else {
+    const getSound = localStorage.getItem('savedSound');
+    textToSpeech(getSound);
   }
 }
 
