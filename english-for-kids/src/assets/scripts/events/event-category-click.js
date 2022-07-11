@@ -1,10 +1,9 @@
 import { pageWrapper } from '../main-elements/body-wrapper';
 import createCardPageTrain from '../pages/page-cards-train';
-import click from './event-card-click';
 import createCardPagePlay from '../pages/page-cards-play';
 import { playMode } from './event-game-start';
 
-setTimeout(() => {
+function eventCategoryClick() {
   const categoryItems = document.querySelectorAll('.category__item');
   for (let i = 0; i < categoryItems.length; i += 1) {
     categoryItems[i].addEventListener(('click'), (event) => {
@@ -21,9 +20,6 @@ setTimeout(() => {
         pageWrapper.element.children[1].innerHTML = '';
         if (!document.querySelector('.switch__input').checked) {
           createCardPageTrain(categoryClicked2);
-          setTimeout(() => {
-            click();
-          }, 100);
         } else {
           createCardPagePlay(categoryClicked2);
           setTimeout(() => {
@@ -33,6 +29,6 @@ setTimeout(() => {
       }
     });
   }
-}, 100);
+}
 
-export {};
+export default eventCategoryClick;

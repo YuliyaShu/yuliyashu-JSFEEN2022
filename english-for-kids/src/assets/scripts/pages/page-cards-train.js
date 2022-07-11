@@ -1,6 +1,7 @@
 import { pageWrapper } from '../main-elements/body-wrapper';
 import Card from '../classes/class-card';
 import ElementNew from '../classes/class-html-element';
+import click from '../events/event-card-click';
 
 function createCardPageTrain(nameOfCategory) {
   const cardCards = new ElementNew(pageWrapper.element.children[1], 'div', [['main__card-train'], ['card-train']]);
@@ -39,6 +40,7 @@ function createCardPageTrain(nameOfCategory) {
           .addName(arrOfValues[i].name.toUpperCase(), 'card-train__item-name')
           .addImg('./assets/images/01icons8-synchronize-150.png', 'card-train__item-rotate', 'rotate icon');
       }
+      click();
     });
 }
 

@@ -1,6 +1,7 @@
 import { pageWrapper } from '../main-elements/body-wrapper';
 import Card from '../classes/class-card';
 import ElementNew from '../classes/class-html-element';
+import eventCategoryClick from '../events/event-category-click';
 
 function createCategoryPage() {
   const categoryCards = new ElementNew(pageWrapper.element.children[1], 'div', [['main-category'], ['category']]);
@@ -24,6 +25,7 @@ function createCategoryPage() {
           .addImg(arrOfValues[i].url, 'category__item-img', arrOfValues[i].name)
           .addName(arrOfValues[i].name.toUpperCase(), 'category__item-name');
       }
+      eventCategoryClick();
     });
 
   localStorage.setItem('countOfFailed', 0);

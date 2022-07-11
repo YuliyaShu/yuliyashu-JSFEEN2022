@@ -39,11 +39,6 @@ function createCardPagePlay(nameOfCategory) {
           .addName(arrOfValues[i].name.toUpperCase(), 'card-play__item-name');
       }
     });
-
-  // const stars = document.querySelectorAll('.card-play__stars-star');
-  // for (let i = 0; i < 8; i += 1) {
-  //   stars[i].src = './assets/images/02icon-star.png';
-  // }
 }
 
 export default createCardPagePlay;

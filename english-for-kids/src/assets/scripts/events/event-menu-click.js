@@ -1,5 +1,4 @@
 import { pageWrapper } from '../main-elements/body-wrapper';
-import click from './event-card-click';
 import { playMode } from './event-game-start';
 import createCardPagePlay from '../pages/page-cards-play';
 import createCardPageTrain from '../pages/page-cards-train';
@@ -16,7 +15,7 @@ headerMenu.addEventListener(('click'), toggle);
 
 document.querySelector('.page__burger').addEventListener(('click'), toggle);
 
-setTimeout(() => {
+function eventMenuClick() {
   const burgerMenuItems = document.querySelectorAll('.burger__menu-item');
   for (let i = 0; i < burgerMenuItems.length; i += 1) {
     burgerMenuItems[i].addEventListener(('click'), (eventMenu) => {
@@ -35,9 +34,6 @@ setTimeout(() => {
         toggle();
         if (!document.querySelector('.switch__input').checked) {
           createCardPageTrain(menuClicked2);
-          setTimeout(() => {
-            click();
-          }, 100);
         } else {
           createCardPagePlay(menuClicked2);
           setTimeout(() => {
@@ -47,6 +43,6 @@ setTimeout(() => {
       }
     });
   }
-}, 100);
+}
 
-export {};
+export default eventMenuClick;

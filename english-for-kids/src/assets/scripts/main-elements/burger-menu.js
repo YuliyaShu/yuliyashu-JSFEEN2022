@@ -1,5 +1,6 @@
 import Card from '../classes/class-card';
 import ElementNew from '../classes/class-html-element';
+import eventMenuClick from '../events/event-menu-click';
 
 const headerBurger = document.querySelector('.header__burger');
 headerBurger.classList.add('burger');
@@ -25,6 +26,7 @@ fetch('./assets/jsons/categories.json')
         .addImg(arrOfValues[i].url, 'burger__menu-item-img', arrOfValues[i].name)
         .addName(arrOfValues[i].name.toUpperCase(), 'burger__menu-item-name');
     }
+    eventMenuClick();
   });
 
 export {};
