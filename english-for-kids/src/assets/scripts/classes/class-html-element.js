@@ -1,3 +1,5 @@
+import { addElemToParentError } from '../utils/string-variables';
+
 class ElementNew {
   constructor(parentElem, type, className = null, textContent = null, attribute = null) {
     this.element = document.createElement(type);
@@ -52,7 +54,7 @@ class ElementNew {
         this.parent.prepend(this.element);
         break;
       default:
-        throw new Error('Incorrect action parameter in  addElemToParent()');
+        throw new Error(addElemToParentError);
     }
     return this;
   }

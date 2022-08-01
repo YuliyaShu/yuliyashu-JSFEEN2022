@@ -1,4 +1,5 @@
 import ElementNew from '../classes/class-html-element';
+import { play, train } from '../utils/string-variables';
 import { pageWrapper } from './body-wrapper';
 
 const headerBlocks = new ElementNew(pageWrapper.element.children[0], 'div', 'header__blocks');
@@ -29,7 +30,7 @@ new ElementNew(switchWrapper.element, 'input', 'switch__input', null, [['type', 
   .createElem();
 new ElementNew(switchWrapper.element, 'span', ['switch__slider', 'switch__slider_round'])
   .createElem();
-new ElementNew(switchWrapper.element, 'span', 'switch__mode', null, [['data-on', 'Play'], ['data-off', 'Train']])
+new ElementNew(switchWrapper.element, 'span', 'switch__mode', null, [['data-on', play], ['data-off', train]])
   .createElem();
 
 const headerStat = document.querySelector('.header__stat');

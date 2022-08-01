@@ -1,8 +1,10 @@
+import { correct, messageToConfirmClear, mistake } from '../utils/string-variables';
+
 function cleanStat() {
   document.querySelector('.main__stat-buttons-clean')
     .addEventListener('click', () => {
       // eslint-disable-next-line no-alert
-      if (window.confirm('Do you definitely want to clear the statistics?')) {
+      if (window.confirm(messageToConfirmClear)) {
         fetch('./assets/jsons/categories.json')
           .then((response) => response.json())
           .then((dataCategory) => {
@@ -11,8 +13,8 @@ function cleanStat() {
                 .then((response) => response.json())
                 .then((dataCard) => {
                   Object.keys(dataCard).forEach((card) => {
-                    localStorage.setItem(`${card}Correct`, 0);
-                    localStorage.setItem(`${card}Mistake`, 0);
+                    localStorage.setItem(`${card}${correct}`, 0);
+                    localStorage.setItem(`${card}${mistake}`, 0);
                   });
                 });
             });
