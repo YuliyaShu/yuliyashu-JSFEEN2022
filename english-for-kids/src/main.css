@@ -1,0 +1,11 @@
+@import url(./assets/styles/palette.css);
+@import url(./assets/styles/fonts.css);
+@import url(./assets/styles/general.css);
+@import url(./assets/styles/pattern.css);
+@import url(./assets/styles/categories-cards.css);
+@import url(../node_modules/normalize.css/normalize.css);
+@import url(./assets/styles/burger.css);
+@import url(./assets/styles/cards.css);
+@import url(./assets/styles/finish-page.css);
+@import url(./assets/styles/stat.css);
+@import url(./assets/styles/media.css);
