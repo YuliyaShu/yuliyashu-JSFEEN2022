@@ -1,4 +1,4 @@
-const chunk = require("../index.js");
+const chunk = require("../chunk.js");
 
 const firstArg = [1, 'string', null, {}, undefined, false, NaN];
 const secondArg = ['string', {}, [], null, NaN, false];
