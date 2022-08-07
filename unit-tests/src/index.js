@@ -1,7 +1,6 @@
-const chunk = (array, size) => {
-  console.log('333333333333');
-    return "11";//throw new Error('error');
-  }
+const chunk = (arr, size = 1) => {
+  
+}
 
-  module.exports = chunk;
+module.exports = chunk;
   
