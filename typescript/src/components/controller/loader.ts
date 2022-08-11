@@ -17,11 +17,13 @@ class Loader {
         this.load<U>('GET', endpoint, callback, options);
     }
 
-    errorHandler(res: Response): Response {
-        if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
-                console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
-            throw Error(res.statusText);
+    handleError(res: Response): Response {
+        const { ok, status, statusText } = res;
+        if (!ok) {
+            if (status === 401 || status === 404) {
+                console.log(`Sorry, but there is ${status} error: ${statusText}`);
+                throw Error(statusText);
+            }
         }
         return res;
     }
@@ -39,7 +41,7 @@ class Loader {
 
     public load<T>(method: string, endpoint: string, callback: CallBack<T>, options = {}): void {
         fetch(this.makeUrl(options, endpoint), { method })
-            .then(this.errorHandler)
+            .then(this.handleError)
             .then((res: Response) => res.json())
             .then((data: T) => callback(data))
             .catch((err: string) => console.error(err));

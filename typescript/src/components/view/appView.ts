@@ -12,7 +12,7 @@ export class AppView {
     }
 
     drawNews(data?: NewsInt): void {
-        const values: NewsUnit[] = data?.articles ? data.articles : [];
+        const values: NewsUnit[] = data?.articles || [];
         this.news.draw(values as NewsUnit[]);
     }
 
