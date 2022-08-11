@@ -11,7 +11,5 @@ const toPairs = (object) => {
   return res;
 }
 
-console.log(toPairs({ 'a': 1, 'b': 2, 'c': 3 }));
-
 module.exports = toPairs;
     
