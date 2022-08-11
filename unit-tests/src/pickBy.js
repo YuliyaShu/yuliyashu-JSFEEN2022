@@ -14,4 +14,4 @@ const pickBy = (object, predicate) => {
   }
   
   module.exports = pickBy;
-    
+      
