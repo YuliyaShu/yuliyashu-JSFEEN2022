@@ -1,10 +1,20 @@
 const map = (collection, iteratee) => {
-  if (!(typeof collection === 'object')) throw new Error('First argument should be a COLLECTION!');
-  if ((collection instanceof Array && !collection.length) || (collection instanceof Object && !Object.keys(collection).length))
+  if (!(typeof collection === 'object')) {
+    throw new Error('First argument should be a COLLECTION!');
+  } 
+
+  if ((collection instanceof Array && !collection.length) || (collection instanceof Object && !Object.keys(collection).length)) {
     throw new Error('COLLECTION is empty!');
-  if (iteratee === null) throw new Error('Second argument should not be NULL!');
-  if (!(typeof iteratee === 'function') && !(typeof iteratee === 'string'))
+  }
+    
+  if (iteratee === null) {
+    throw new Error('Second argument should not be NULL!');
+  } 
+
+  if (!(typeof iteratee === 'function') && !(typeof iteratee === 'string')) {
     throw new Error('Second argument should be a FUNCTION or STRING!');
+  }
+   
     
   let res = [];
 
@@ -16,8 +26,9 @@ const map = (collection, iteratee) => {
             res = [...res, item[key]];
           }
         }
-      } else
+      } else {
         res = [...res, iteratee(item)];
+      }
     }
   } else {
     if (iteratee instanceof Function) {

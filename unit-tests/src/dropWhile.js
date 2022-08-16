@@ -2,12 +2,15 @@ const dropWhile = (array, predicate) => {
   if (!Array.isArray(array)) {
     throw new Error('First argument should be an ARRAY!');
   } 
+
   if (!array.length) {
     throw new Error('ARRAY is empty!');
   } 
+
   if (predicate === null) {
     throw new Error('Second argument should not be NULL!');
   } 
+  
   if (!(typeof predicate === 'function') &&
       !(typeof predicate === 'object')   &&
       !(typeof predicate === 'string')) {
