@@ -92,18 +92,18 @@ describe('Filter method tests', () => {
 
   test('positive result for function', () => {
     positiveResultFunc.forEach((item) => expect(filter(item.args[0], item.args[1])).toEqual(item.result));
-  })
+  });
 
   test('positive result for Array', () => {
     positiveResultArray.forEach((item) => expect(filter(item.args[0], item.args[1])).toEqual(item.result));
-  })
+  });
   
   test('positive result for string', () => {
     positiveResultString.forEach((item) => expect(filter(item.args[0], item.args[1])).toEqual(item.result));
-  })
+  });
 
   test('positive result for object', () => {
     positiveResultObject.forEach((item) => expect(filter(item.args[0], item.args[1])).toEqual(item.result));
-  })
+  });
 
 })

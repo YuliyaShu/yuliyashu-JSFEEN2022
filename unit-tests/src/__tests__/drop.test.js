@@ -33,6 +33,6 @@ describe('Drop method tests', () => {
 
   test('positive result', () => {
     positiveResult.forEach((item) => expect(drop(item.args[0], item.args[1])).toEqual(item.result));
-  })
+  });
   
 })

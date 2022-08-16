@@ -32,6 +32,6 @@ describe('Chunk method tests', () => {
 
   test('positive result', () => {
     positiveResult.forEach((item) => expect(chunk(item.args[0], item.args[1])).toEqual(item.result));
-  })
+  });
   
 })

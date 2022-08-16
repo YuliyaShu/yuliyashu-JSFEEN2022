@@ -27,6 +27,6 @@ describe('Zip method tests', () => {
 
   test('positive result', () => {
     positiveResult.forEach((item) => expect(zip(...item.args)).toEqual(item.result));
-  })
+  });
   
 })

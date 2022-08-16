@@ -23,6 +23,6 @@ describe('Compact method tests', () => {
 
       test('positive result', () => {
         positiveResult.forEach((item) => expect(compact(item.args)).toEqual(item.result));
-      })
+      });
             
 })

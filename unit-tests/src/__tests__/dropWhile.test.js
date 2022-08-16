@@ -93,18 +93,18 @@ describe('DropWhile method tests', () => {
 
   test('positive result for function', () => {
     positiveResultFunc.forEach((item) => expect(dropWhile(item.args[0], item.args[1])).toEqual(item.result));
-  })
+  });
 
   test('positive result for Array', () => {
     positiveResultArray.forEach((item) => expect(dropWhile(item.args[0], item.args[1])).toEqual(item.result));
-  })
+  });
   
   test('positive result for string', () => {
     positiveResultString.forEach((item) => expect(dropWhile(item.args[0], item.args[1])).toEqual(item.result));
-  })
+  });
 
   test('positive result for object', () => {
     positiveResultObject.forEach((item) => expect(dropWhile(item.args[0], item.args[1])).toEqual(item.result));
-  })
+  });
 
 })

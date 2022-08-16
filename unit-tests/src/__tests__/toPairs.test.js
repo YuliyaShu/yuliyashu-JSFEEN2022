@@ -23,6 +23,6 @@ describe('ToPairs method tests', () => {
 
   test('positive result', () => {
     positiveResult.forEach((item) => expect(toPairs(item.args[0])).toEqual(item.result));
-  })
-  
+  });
+
 })

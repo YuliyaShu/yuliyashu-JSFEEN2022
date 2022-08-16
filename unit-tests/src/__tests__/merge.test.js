@@ -24,6 +24,6 @@ describe('Merge method tests', () => {
 
   test('positive result', () => {
     positiveResult.forEach((item) => expect(merge(...item.args)).toEqual(item.result));
-  })
+  });
   
 })

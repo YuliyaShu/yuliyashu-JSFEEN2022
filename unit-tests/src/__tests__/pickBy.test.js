@@ -28,6 +28,6 @@ describe('PickBy method tests', () => {
 
   test('positive result', () => {
     positiveResult.forEach((item) => expect(pickBy(item.args[0], item.args[1])).toEqual(item.result));
-  })
+  });
   
 })

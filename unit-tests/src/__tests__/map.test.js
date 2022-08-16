@@ -47,6 +47,6 @@ describe('Map method tests', () => {
   
   test('positive result for object', () => {
     positiveResultObject.forEach((item) => expect(map(item.args[0], item.args[1])).toEqual(item.result));
-  })
+  });
 
 })

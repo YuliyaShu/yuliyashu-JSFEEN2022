@@ -28,6 +28,6 @@ describe('Omit method tests', () => {
 
   test('positive result', () => {
     positiveResult.forEach((item) => expect(omit(item.args[0], item.args[1])).toEqual(item.result));
-  })
+  });
   
 })
