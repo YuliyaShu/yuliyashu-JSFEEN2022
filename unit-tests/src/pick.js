@@ -13,7 +13,10 @@ const pick = (object, paths) => {
           throw new Error('Second argument should be a STRING or an ARRAY of STRINGS!');
     } 
   
-    if (paths === undefined) return {};
+    if (paths === undefined) {
+      return {};
+    } 
+    
     let res = Object.assign(object);
     let flag = false;
   

@@ -23,12 +23,13 @@ const omit = (object, paths) => {
         if (key === paths) {
           delete res[key];
         } 
-      } else
+      } else {
         for (path of paths) {
           if (key === path) {
             delete res[key];
           } 
         }
+      }
     }
   
     return res;
