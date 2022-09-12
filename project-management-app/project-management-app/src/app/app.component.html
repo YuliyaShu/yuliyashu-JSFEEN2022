@@ -2,14 +2,21 @@
   <div class="container">
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">ManageYourself</a>
+        <a class="navbar-brand" href="/">ManageYourself</a>
         <div>
-          <a routerLink="/signup">
-            <button class="btn btn-outline-success me-2" type="button">Sign Up</button>
-          </a>
-          <a routerLink="/login">
-            <button class="btn btn-outline-success me-2" type="button">Login</button>
-          </a>
+          <ng-container *ngIf="!isLogIn">
+            <a routerLink="/signup">
+              <button class="btn btn-outline-success me-2" type="button" routerLinkActive="active">Sign Up</button>
+            </a>
+            <a routerLink="/login">
+              <button class="btn btn-outline-success me-2" type="button" routerLinkActive="active">Login</button>
+            </a>
+          </ng-container>
+          <ng-container *ngIf="isLogIn">
+            <a routerLink="/" >
+              <button (click)="signOut()" class="btn btn-outline-success me-2" type="button" >Sign Out</button>
+            </a>
+          </ng-container>
         </div>
       </div>
     </nav>

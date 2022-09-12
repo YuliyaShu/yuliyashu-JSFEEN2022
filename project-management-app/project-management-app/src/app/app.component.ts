@@ -8,12 +8,19 @@ import { BackendService } from './backend.service';
 })
 
 export class AppComponent {
+  isLogIn = false;
   constructor(private backend: BackendService) {};
 
-  onTerm(term: string) {
-    this.backend.search(term).subscribe((response) => {
-      console.log(response);
-    });
+  ngOnInit() {
+    this.backend.isLogIn$.subscribe((isLogIn) => {
+      this.isLogIn = isLogIn
+    })
 
+  }
+  signOut() {
+    this.backend.isLogIn$.next(false);
+    localStorage.setItem('isLogIn', '0');
+    localStorage.removeItem('token');
+    window.location.reload();
   }
 }
