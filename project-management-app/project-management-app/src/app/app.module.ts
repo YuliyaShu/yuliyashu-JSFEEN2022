@@ -4,6 +4,7 @@ import { SignupModule } from './signup/signup.module';
 import { MainModule } from './main/main.module';
 import { LoginModule } from './login/login.module';
 import { BoardModule } from './board/board.module';
+import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -21,7 +22,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     SignupModule,
     MainModule,
     BoardModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
