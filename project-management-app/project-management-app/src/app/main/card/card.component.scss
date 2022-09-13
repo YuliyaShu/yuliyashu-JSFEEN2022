@@ -1,0 +1,8 @@
+.card {
+  &:hover {
+    background-color: green;
+    color: white;
+    transition: 1s;
+    cursor: pointer;
+  }
+}

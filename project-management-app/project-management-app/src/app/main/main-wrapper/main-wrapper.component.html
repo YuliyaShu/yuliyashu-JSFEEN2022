@@ -1,1 +1,20 @@
-<p>main-wrapper works!</p>
+<div class="container container-main">
+  <p class="fs-2">Your boards</p>
+  <div class="cards-wrapper">
+    <app-card
+    style="margin-bottom: 20px;"
+    *ngFor="let card of cards"
+    [title]="card.title"
+    [description]="card.description">
+  </app-card>
+  <div class="card-group h-100" title="Add new board">
+    <div class="card border-success mb-3" style="width: 250px; margin-right: 20px; --bs-border-opacity: .5;">
+      <div class="card-body">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

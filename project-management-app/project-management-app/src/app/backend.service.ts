@@ -24,6 +24,13 @@ export interface LogInFields {
 export interface LogInResponse {
   token: string,
 }
+
+export interface AllBoardsResponse {
+  id: string,
+  title: string,
+  description: string,
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,8 +40,10 @@ export class BackendService {
   usersPath = '/users';
   signUpPath = '/signup';
   logInPath = '/signin';
+  boardsPath = '/boards';
   isLogInFromStorage = !!Number(localStorage.getItem('isLogIn'));
   isLogIn$ = new BehaviorSubject(this.isLogInFromStorage);
+  token = localStorage.getItem('token');
 
   constructor(private http: HttpClient) { }
 
@@ -124,5 +133,29 @@ export class BackendService {
         return of({anotherError: true})
       })
      )
+  }
+
+  public getAllBoards() {
+    return this.http
+    .get<AllBoardsResponse[]>(this.url + this.boardsPath,
+      {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        }
+      })
+    .pipe(
+      map(value => {
+        return value;
+      }),
+      catchError((err) => {
+        if (err.status === 0) {
+          return of({noConnection: true})
+        }
+        if (err.status === 401) {
+          return of({unAuthorized: true})
+        }
+      return of({anotherError: true})
+      })
+    );
   }
 }
