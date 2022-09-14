@@ -25,10 +25,15 @@ export interface LogInResponse {
   token: string,
 }
 
-export interface AllBoardsResponse {
+export interface BoardResponse {
   id: string,
   title: string,
   description: string,
+}
+
+export interface NewBoardFields {
+  description: string,
+  title: string,
 }
 
 @Injectable({
@@ -85,7 +90,6 @@ export class BackendService {
     );
   }
 
-
   public signUp(data: SignUpFields) {
      return this.http.post<SignUpResponse>(this.url + this.signUpPath, data, {
       headers: { 'Content-Type': 'application/json' },
@@ -137,9 +141,10 @@ export class BackendService {
 
   public getAllBoards() {
     return this.http
-    .get<AllBoardsResponse[]>(this.url + this.boardsPath,
+    .get<BoardResponse[]>(this.url + this.boardsPath,
       {
         headers: {
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${this.token}`,
         }
       })
@@ -157,5 +162,31 @@ export class BackendService {
       return of({anotherError: true})
       })
     );
+  }
+
+  public createBoard(data: NewBoardFields) {
+    return this.http.post<BoardResponse>(this.url + this.boardsPath, data, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.token}`,
+      },
+     })
+     .pipe(
+      map(value => {
+        return value;
+      }),
+      catchError((err) => {
+        if (err.status === 0) {
+          return of({noConnection: true})
+        }
+        if (err.status === 400) {
+          return of({badRequest: true})
+        }
+        if (err.status === 401) {
+          return of({unAuthorized: true})
+        }
+        return of({anotherError: true})
+      })
+     )
   }
 }

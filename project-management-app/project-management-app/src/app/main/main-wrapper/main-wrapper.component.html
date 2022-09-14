@@ -2,19 +2,35 @@
   <p class="fs-2">Your boards</p>
   <div class="cards-wrapper">
     <app-card
-    style="margin-bottom: 20px;"
-    *ngFor="let card of cards"
-    [title]="card.title"
-    [description]="card.description">
-  </app-card>
-  <div class="card-group h-100" title="Add new board">
-    <div class="card border-success mb-3" style="width: 250px; margin-right: 20px; --bs-border-opacity: .5;">
-      <div class="card-body">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-        </svg>
+      style="margin-bottom: 20px;"
+      *ngFor="let card of cards"
+      [title]="card.title"
+      [description]="card.description">
+    </app-card>
+    <!-- <app-modal-new-board></app-modal-new-board> -->
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Create new board</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
       </div>
-    </div>
-  </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="title">Title</label>
+            <input type="text" id="title" class="form-control" (input)="inputTitle($event)">
+          </div>
+          <div class="mb-3">
+            <label for="description">Description</label>
+            <input type="text" id="description" class="form-control" (input)="inputDescription($event)">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); submitNewBoard()" >Create</button>
+      </div>
+    </ng-template>
+      <div class="card border-success mb-3" style="width: 250px; margin-right: 20px; " >
+        <button class="btn btn-lg " (click)="open(content)">Create new board</button>
+      </div>
   </div>
 </div>
