@@ -1,6 +1,8 @@
-<div class="example-container">
-  <h2>{{ title }}</h2>
-  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let column of allColumns" cdkDrag>{{column}}</div>
-  </div>
+<div class="card-group  card border-success mb-3">
+    <div class="cdk-drag example-box ng-star-inserted card-body">
+      <h2 class="card-header">{{ title }}</h2>
+      <div class="example-box" >
+        <app-tasks [columnId]="id"></app-tasks>
+      </div>
+    </div>
 </div>

@@ -1,0 +1,10 @@
+.container-main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cards-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+}

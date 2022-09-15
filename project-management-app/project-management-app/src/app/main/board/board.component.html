@@ -1,8 +1,9 @@
 <div class="container container-main">
   <p class="fs-2">{{ boardName }}</p>
-  <div class="cards-wrapper">
+  <div cdkDropList class=" cards-wrapper cdk-drop-list example-list card-group h-100" (cdkDropListDropped)="drop($event)">
       <app-column
-      style="margin-bottom: 20px;"
+      cdkDrag
+      style="margin-bottom: 20px; margin-right: 20px;"
             *ngFor="let column of columns"
             [title]="column.title"
             [order]="column.order"

@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { BackendService, BoardResponse, ColumnsResponse } from 'src/app/backend.service';
 import { CardComponent } from '../card/card.component';
@@ -19,11 +20,13 @@ export class BoardComponent implements OnInit {
 
   }
 
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
+  }
+
   columnsConfig() {
     let result: ColumnsResponse[] = [];
     const boardId = localStorage.getItem('boardId') as string;
-    console.log('🚀 ~ this.board', this.card);
-    console.log('🚀 ~ boardId', boardId);
     this.backend.getAllColumns(boardId).subscribe(resp => {
       if (Array.isArray(resp) && !resp.length) {
         return;

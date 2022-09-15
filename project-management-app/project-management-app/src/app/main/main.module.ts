@@ -8,6 +8,7 @@ import { DialogModule } from '@angular/cdk/dialog';
 import { BoardComponent } from './board/board.component';
 import { ColumnComponent } from './board/column/column.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TasksComponent } from './board/column/tasks/tasks.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     CardComponent,
     BoardComponent,
     ColumnComponent,
+    TasksComponent,
   ],
   imports: [
     CommonModule,

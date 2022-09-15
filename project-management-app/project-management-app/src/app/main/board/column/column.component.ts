@@ -1,5 +1,4 @@
 import { Component, Injectable, Input, OnInit } from '@angular/core';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { BoardComponent } from '../board.component';
 import { ColumnsResponse } from 'src/app/backend.service';
 
@@ -19,10 +18,5 @@ export class ColumnComponent implements OnInit {
   allColumns: ColumnsResponse[] = this.board.columns;
 
   ngOnInit(): void {
-  }
-
-
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.allColumns, event.previousIndex, event.currentIndex);
   }
 }
