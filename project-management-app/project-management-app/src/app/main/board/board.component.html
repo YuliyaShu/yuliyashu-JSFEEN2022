@@ -3,7 +3,7 @@
   <div cdkDropList class=" cards-wrapper cdk-drop-list example-list card-group h-100" (cdkDropListDropped)="drop($event)">
       <app-column
       cdkDrag
-      style="margin-bottom: 20px; margin-right: 20px;"
+      style="margin-bottom: 20px; margin-right: 20px; width: 250px;"
             *ngFor="let column of columns"
             [title]="column.title"
             [order]="column.order"
