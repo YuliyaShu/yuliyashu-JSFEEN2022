@@ -1,1 +1,12 @@
-<p>board works!</p>
+<div class="container container-main">
+  <p class="fs-2">{{ boardName }}</p>
+  <div class="cards-wrapper">
+      <app-column
+      style="margin-bottom: 20px;"
+            *ngFor="let column of columns"
+            [title]="column.title"
+            [order]="column.order"
+            [id]="column.id"
+      ></app-column>
+  </div>
+</div>

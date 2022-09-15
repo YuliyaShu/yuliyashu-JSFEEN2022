@@ -10,7 +10,7 @@ import { BackendService } from 'src/app/backend.service';
 export class CardComponent implements OnInit {
   @Input() title = '';
   @Input() description = '';
-  @Input() id ='';
+  @Input() id = '';
 
   constructor(private backend: BackendService, private modalService: NgbModal) { }
 
@@ -32,5 +32,8 @@ export class CardComponent implements OnInit {
     this.title = title;
     this.id = id;
     this.description = description;
+    localStorage.setItem('boardTitle', title);
+    localStorage.setItem('boardId', id);
+    localStorage.setItem('boardDescription', description);
   }
 }

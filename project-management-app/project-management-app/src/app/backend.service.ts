@@ -36,6 +36,12 @@ export interface NewBoardFields {
   title: string,
 }
 
+export interface ColumnsResponse {
+  id:	string,
+  title:	string,
+  order:	number
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -46,6 +52,7 @@ export class BackendService {
   signUpPath = '/signup';
   logInPath = '/signin';
   boardsPath = '/boards';
+  columnsPath = '/columns';
   isLogInFromStorage = !!Number(localStorage.getItem('isLogIn'));
   isLogIn$ = new BehaviorSubject(this.isLogInFromStorage);
   token = localStorage.getItem('token');
@@ -217,5 +224,31 @@ export class BackendService {
         return of({anotherError: true})
       })
      )
+  }
+
+  public getAllColumns(boardId: string) {
+    return this.http
+    .get<ColumnsResponse[]>(this.url + this.boardsPath + '/' + boardId + this.columnsPath,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.token}`,
+        }
+      })
+    .pipe(
+      map(value => {
+        console.log('🚀 ~ value', value);
+        return value;
+      }),
+      catchError((err) => {
+        if (err.status === 0) {
+          return of({noConnection: true})
+        }
+        if (err.status === 404) {
+          return of({boardNotFound: true})
+        }
+      return of({anotherError: true})
+      })
+    );
   }
 }

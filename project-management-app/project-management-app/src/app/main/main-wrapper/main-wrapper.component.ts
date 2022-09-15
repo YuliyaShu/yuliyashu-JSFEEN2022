@@ -39,7 +39,6 @@ export class MainWrapperComponent implements OnInit {
   }
 
   submitNewBoard() {
-    console.log('submit');
     return this.backend.createBoard(
       {
         description: this.description,
