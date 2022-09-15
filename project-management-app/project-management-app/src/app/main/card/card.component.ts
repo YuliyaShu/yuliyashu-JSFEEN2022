@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Injectable } from '@angular/core';
+import { Component, OnInit, Input, Injectable, TemplateRef } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BackendService } from 'src/app/backend.service';
 @Injectable({ providedIn: 'root' })
 @Component({
@@ -11,14 +12,17 @@ export class CardComponent implements OnInit {
   @Input() description = '';
   @Input() id ='';
 
-  constructor(private backend: BackendService) { }
+  constructor(private backend: BackendService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
 
+  open(content: TemplateRef<any>) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', centered: true});
+  }
+
   deleteBoard(id: string) {
     return this.backend.deleteBoard(id).subscribe(resp => {
-      console.log('🚀 ~ resp', resp);
       window.location.reload();
       return resp;
     });
@@ -26,7 +30,6 @@ export class CardComponent implements OnInit {
 
   getAttributes(title: string, id: string, description: string) {
     this.title = title;
-    console.log('🚀 ~ this.title ', this.title );
     this.id = id;
     this.description = description;
   }
