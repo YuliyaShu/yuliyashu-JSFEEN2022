@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Injectable } from '@angular/core';
 import { BackendService } from 'src/app/backend.service';
-
+@Injectable({ providedIn: 'root' })
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -22,5 +22,12 @@ export class CardComponent implements OnInit {
       window.location.reload();
       return resp;
     });
+  }
+
+  getAttributes(title: string, id: string, description: string) {
+    this.title = title;
+    console.log('🚀 ~ this.title ', this.title );
+    this.id = id;
+    this.description = description;
   }
 }

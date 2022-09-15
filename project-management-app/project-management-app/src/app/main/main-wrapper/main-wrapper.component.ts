@@ -1,8 +1,9 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, Injectable, OnInit, TemplateRef } from '@angular/core';
 import { BackendService } from 'src/app/backend.service';
 import { BoardResponse } from 'src/app/backend.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+@Injectable({ providedIn: 'root' })
 @Component({
   selector: 'app-main-wrapper',
   templateUrl: './main-wrapper.component.html',
