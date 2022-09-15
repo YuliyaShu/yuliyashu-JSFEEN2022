@@ -5,9 +5,9 @@
       style="margin-bottom: 20px;"
       *ngFor="let card of cards"
       [title]="card.title"
-      [description]="card.description">
+      [description]="card.description"
+      [id]="card.id">
     </app-card>
-    <!-- <app-modal-new-board></app-modal-new-board> -->
     <ng-template #content let-modal>
       <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Create new board</h4>
@@ -29,7 +29,7 @@
         <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); submitNewBoard()" >Create</button>
       </div>
     </ng-template>
-      <div class="card border-success mb-3" style="width: 250px; margin-right: 20px; " >
+      <div class="card border-success mb-3" style="width: 250px; margin-right: 20px; height: 50px;" >
         <button class="btn btn-lg " (click)="open(content)">Create new board</button>
       </div>
   </div>

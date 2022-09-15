@@ -15,6 +15,7 @@ export class MainWrapperComponent implements OnInit {
   cards = this.cardsConfig();
   title: string = '';
   description: string = '';
+  id: string = '';
 
   ngOnInit(): void {
 
