@@ -1,7 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Injectable, OnInit, TemplateRef } from '@angular/core';
 import { BackendService, ColumnResponse } from 'src/app/backend.service';
-import { CardComponent } from '../card/card.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable({ providedIn: 'root' })
@@ -39,8 +38,6 @@ export class BoardComponent implements OnInit {
 
   submitNewColumn() {
     const orderFromLength = this.columns.length + 1
-    console.log('🚀 ~ this.columns', this.columns);
-    console.log('🚀 ~ orderFromLength', orderFromLength);
     return this.backend.createColumn(
       {
         title: this.title,

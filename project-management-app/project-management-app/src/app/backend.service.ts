@@ -282,4 +282,33 @@ export class BackendService {
       })
      )
   }
+
+  public deleteColumn(boardId: string, columnId: string) {
+    return this.http.delete(this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId, {
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+      },
+     })
+     .pipe(
+      map(value => {
+        console.log('🚀 ~ value', value);
+        return value;
+      }),
+      catchError((err) => {
+        if (err.status === 0) {
+          return of({noConnection: true})
+        }
+        if (err.status === 404) {
+          return of({notExist: true})
+        }
+        if (err.status === 401) {
+          return of({unAuthorized: true})
+        }
+        if (err.status === 400) {
+          return of({badRequest: true})
+        }
+        return of({anotherError: true})
+      })
+     )
+  }
 }

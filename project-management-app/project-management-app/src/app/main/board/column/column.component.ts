@@ -1,6 +1,7 @@
-import { Component, Injectable, Input, OnInit } from '@angular/core';
+import { Component, Injectable, Input, OnInit, TemplateRef } from '@angular/core';
 import { BoardComponent } from '../board.component';
-import { ColumnResponse } from 'src/app/backend.service';
+import { BackendService, ColumnResponse } from 'src/app/backend.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable({ providedIn: 'root' })
 @Component({
@@ -13,10 +14,23 @@ export class ColumnComponent implements OnInit {
   @Input() id = '';
   @Input() order = 0;
 
-  constructor(private board: BoardComponent) { }
+  constructor(private board: BoardComponent, private modalService: NgbModal, private backend: BackendService) { }
 
   allColumns: ColumnResponse[] = this.board.columns;
+  boardTitle = this.board.boardName;
 
   ngOnInit(): void {
+  }
+
+  open(content: TemplateRef<any>) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', centered: true});
+  }
+
+  deleteColumn(columnId: string) {
+    const boardId = this.board.boardId;
+    return this.backend.deleteColumn(boardId, columnId).subscribe(resp => {
+      window.location.reload();
+      return resp;
+    });
   }
 }
