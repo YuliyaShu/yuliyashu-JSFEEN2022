@@ -1,7 +1,8 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, Injectable, OnInit } from '@angular/core';
-import { BackendService, BoardResponse, ColumnsResponse } from 'src/app/backend.service';
+import { Component, Injectable, OnInit, TemplateRef } from '@angular/core';
+import { BackendService, ColumnResponse } from 'src/app/backend.service';
 import { CardComponent } from '../card/card.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable({ providedIn: 'root' })
 @Component({
@@ -12,20 +13,51 @@ import { CardComponent } from '../card/card.component';
 export class BoardComponent implements OnInit {
   columns = this.columnsConfig();
 
-  constructor(private backend: BackendService, private card: CardComponent) { }
+  constructor(private backend: BackendService, private modalService: NgbModal) { }
 
   boardName = localStorage.getItem('boardTitle');
+  boardId = localStorage.getItem('boardId') as string;
+  title: string = '';
 
   ngOnInit(): void {
 
+  }
+
+  open(content: TemplateRef<any>) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', centered: true});
+  }
+
+  inputTitle(event: Event) {
+    const { value } = event.target as HTMLInputElement;
+    console.log(value);
+    this.title = value;
   }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
   }
 
+  submitNewColumn() {
+    const orderFromLength = this.columns.length + 1
+    console.log('🚀 ~ this.columns', this.columns);
+    console.log('🚀 ~ orderFromLength', orderFromLength);
+    return this.backend.createColumn(
+      {
+        title: this.title,
+        order: orderFromLength,
+      },
+      this.boardId
+    ).subscribe(resp => {
+      if ('id' in resp) {
+        window.location.reload();
+      } else {
+        this.addInfoAboutError('failed to create your board, try later')
+      }
+    });
+  }
+
   columnsConfig() {
-    let result: ColumnsResponse[] = [];
+    let result: ColumnResponse[] = [];
     const boardId = localStorage.getItem('boardId') as string;
     this.backend.getAllColumns(boardId).subscribe(resp => {
       if (Array.isArray(resp) && !resp.length) {

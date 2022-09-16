@@ -36,10 +36,15 @@ export interface NewBoardFields {
   title: string,
 }
 
-export interface ColumnsResponse {
+export interface ColumnResponse {
   id:	string,
   title:	string,
   order:	number
+}
+
+export interface NewColumnFields {
+  title:	string,
+  order:	number,
 }
 
 @Injectable({
@@ -228,7 +233,7 @@ export class BackendService {
 
   public getAllColumns(boardId: string) {
     return this.http
-    .get<ColumnsResponse[]>(this.url + this.boardsPath + '/' + boardId + this.columnsPath,
+    .get<ColumnResponse[]>(this.url + this.boardsPath + '/' + boardId + this.columnsPath,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -250,5 +255,31 @@ export class BackendService {
       return of({anotherError: true})
       })
     );
+  }
+
+  public createColumn(data: NewColumnFields, boardId: string) {
+    return this.http.post<ColumnResponse>(this.url + this.boardsPath + '/' + boardId + this.columnsPath, data, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.token}`,
+      },
+     })
+     .pipe(
+      map(value => {
+        return value;
+      }),
+      catchError((err) => {
+        if (err.status === 0) {
+          return of({noConnection: true})
+        }
+        if (err.status === 400) {
+          return of({badRequest: true})
+        }
+        if (err.status === 404) {
+          return of({columnsNotFound: true})
+        }
+        return of({anotherError: true})
+      })
+     )
   }
 }

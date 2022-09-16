@@ -1,6 +1,6 @@
 import { Component, Injectable, Input, OnInit } from '@angular/core';
 import { BoardComponent } from '../board.component';
-import { ColumnsResponse } from 'src/app/backend.service';
+import { ColumnResponse } from 'src/app/backend.service';
 
 @Injectable({ providedIn: 'root' })
 @Component({
@@ -15,7 +15,7 @@ export class ColumnComponent implements OnInit {
 
   constructor(private board: BoardComponent) { }
 
-  allColumns: ColumnsResponse[] = this.board.columns;
+  allColumns: ColumnResponse[] = this.board.columns;
 
   ngOnInit(): void {
   }

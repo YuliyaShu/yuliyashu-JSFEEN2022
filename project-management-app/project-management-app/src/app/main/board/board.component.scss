@@ -9,3 +9,23 @@
   flex-flow: row nowrap;
   overflow-x: auto;
 }
+
+.card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-new {
+  width: 250px;
+}
+
+.btn {
+  &:hover {
+    background-color: green;
+    color: white;
+    transition: 1s;
+    cursor: pointer;
+  }
+}
+

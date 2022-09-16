@@ -1,6 +1,6 @@
 <div class="container container-main">
   <p class="fs-2">{{ boardName }}</p>
-  <div cdkDropList class=" cards-wrapper cdk-drop-list example-list card-group h-100" (cdkDropListDropped)="drop($event)">
+  <div cdkDropList class=" cards-wrapper cdk-drop-list example-list card-group h-100" (cdkDropListDropped)="drop($event)" >
       <app-column
       cdkDrag
       style="margin-bottom: 20px; margin-right: 20px; width: 250px;"
@@ -9,5 +9,25 @@
             [order]="column.order"
             [id]="column.id"
       ></app-column>
+      <ng-template #content let-modal>
+        <div class="modal-header" >
+          <h4 class="modal-title" id="modal-basic-title">Create new column</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="title">Title</label>
+              <input type="text" id="title" class="form-control" (input)="inputTitle($event)">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); submitNewColumn()" >Create</button>
+        </div>
+      </ng-template>
+      <div class="card-new border-success mb-3" style="width: 250px; margin-right: 20px; height: 50px;" >
+        <button class="btn btn-lg border-success" style="width: 250px;"  (click)="open(content)">Create new column</button>
+      </div>
   </div>
 </div>
