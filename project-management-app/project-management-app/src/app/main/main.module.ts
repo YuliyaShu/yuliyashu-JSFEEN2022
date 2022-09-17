@@ -9,6 +9,7 @@ import { BoardComponent } from './board/board.component';
 import { ColumnComponent } from './board/column/column.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TasksComponent } from './board/column/tasks/tasks.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TasksComponent } from './board/column/tasks/tasks.component';
     FormsModule,
     DialogModule,
     DragDropModule,
+    ReactiveFormsModule,
   ],
 })
 export class MainModule { }
