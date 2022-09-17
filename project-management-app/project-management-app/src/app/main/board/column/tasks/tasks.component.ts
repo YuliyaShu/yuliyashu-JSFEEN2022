@@ -7,13 +7,21 @@ import { ColumnComponent } from '../column.component';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
+  @Input() taskId = '';
+  @Input() title = '';
+  @Input() done = false;
+  @Input() order = 0;
+  @Input() description = '';
+  @Input() userId = '';
+  @Input() boardId = '';
   @Input() columnId = '';
+  @Input() filename = '';
+  @Input() fileSize = 0;
 
   constructor(private column: ColumnComponent) { }
 
 
   ngOnInit(): void {
-    console.log('🚀 ~ boardId', this.columnId);
   }
 
 }

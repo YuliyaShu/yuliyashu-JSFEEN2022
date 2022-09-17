@@ -1,7 +1,8 @@
 import { Component, Injectable, Input, OnInit, TemplateRef } from '@angular/core';
 import { BoardComponent } from '../board.component';
-import { BackendService, ColumnResponse } from 'src/app/backend.service';
+import { BackendService, ColumnResponse, TaskResponse } from 'src/app/backend.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Injectable({ providedIn: 'root' })
 @Component({
@@ -13,10 +14,10 @@ export class ColumnComponent implements OnInit {
   @Input() title = '';
   @Input() id = '';
   @Input() order = 0;
+  @Input() tasks: TaskResponse[] = [];
 
   constructor(private board: BoardComponent, private modalService: NgbModal, private backend: BackendService) { }
 
-  allColumns: ColumnResponse[] = this.board.columns;
   boardTitle = this.board.boardName;
 
   ngOnInit(): void {
@@ -26,11 +27,17 @@ export class ColumnComponent implements OnInit {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', centered: true});
   }
 
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
+  }
+
   deleteColumn(columnId: string) {
     const boardId = this.board.boardId;
+    this.id = columnId;
     return this.backend.deleteColumn(boardId, columnId).subscribe(resp => {
       window.location.reload();
       return resp;
     });
   }
+
 }

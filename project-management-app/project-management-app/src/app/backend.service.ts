@@ -39,12 +39,32 @@ export interface NewBoardFields {
 export interface ColumnResponse {
   id:	string,
   title:	string,
-  order:	number
+  order:	number,
+}
+
+export interface ColumnTasksResponse {
+  id:	string,
+  title:	string,
+  order:	number,
+  tasks: TaskResponse[]
 }
 
 export interface NewColumnFields {
   title:	string,
   order:	number,
+}
+
+export interface TaskResponse {
+  id: string,
+  title: string,
+  done: boolean,
+  order: number,
+  description: string,
+  userId: string,
+  boardId: string,
+  columnId: string,
+  filename: string,
+  fileSize: number,
 }
 
 @Injectable({
@@ -58,6 +78,7 @@ export class BackendService {
   logInPath = '/signin';
   boardsPath = '/boards';
   columnsPath = '/columns';
+  tasksPath = '/tasks';
   isLogInFromStorage = !!Number(localStorage.getItem('isLogIn'));
   isLogIn$ = new BehaviorSubject(this.isLogInFromStorage);
   token = localStorage.getItem('token');
@@ -310,5 +331,30 @@ export class BackendService {
         return of({anotherError: true})
       })
      )
+  }
+
+  public getAllTasks(boardId: string, columnId: string) {
+    return this.http
+    .get<TaskResponse[]>(this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId + this.tasksPath,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.token}`,
+        }
+      })
+    .pipe(
+      map(value => {
+        return value;
+      }),
+      catchError((err) => {
+        if (err.status === 0) {
+          return of({noConnection: true})
+        }
+        if (err.status === 404) {
+          return of({tasksNotFound: true})
+        }
+      return of({anotherError: true})
+      })
+    );
   }
 }
