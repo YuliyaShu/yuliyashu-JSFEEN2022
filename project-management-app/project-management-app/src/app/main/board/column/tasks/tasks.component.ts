@@ -20,6 +20,7 @@ export class TasksComponent implements OnInit {
 
   constructor(private column: ColumnComponent) { }
 
+  tasks = this.column.tasks;
 
   ngOnInit(): void {
   }

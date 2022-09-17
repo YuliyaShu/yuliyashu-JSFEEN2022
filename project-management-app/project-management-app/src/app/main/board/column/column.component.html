@@ -5,7 +5,7 @@
         <div cdkDropList class=" cards-wrapper cdk-drop-list example-list card-group h-100" (cdkDropListDropped)="drop($event)" >
           <app-tasks
           cdkDrag
-          style="margin-bottom: 20px; margin-right: 20px; width: 250px;"
+          style="margin-bottom: 20px; margin-right: 20px; width: 100%;"
           *ngFor="let task of tasks"
           [taskId] = "task.id"
           [title] = "task.title"
