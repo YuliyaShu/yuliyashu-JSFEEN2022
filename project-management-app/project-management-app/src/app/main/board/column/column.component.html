@@ -20,6 +20,20 @@
           ></app-tasks>
         </div>
       </div>
+      <ng-template #content1 let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Create new task</h4>
+          <a routerLink="/board/{{ title }}">
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+          </a>
+        </div>
+        <div class="modal-footer">
+          <a routerLink="/board/{{ boardTitle }}">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); createNewTask(id)" >Create</button>
+          </a>
+        </div>
+      </ng-template>
+      <button class="btn btn-lg border-success" style="width: 220px;"  (click)="open(content1)">Create new task</button>
     </div>
     <ng-template #content let-modal>
       <div class="modal-header">

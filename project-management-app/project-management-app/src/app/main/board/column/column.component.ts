@@ -19,6 +19,8 @@ export class ColumnComponent implements OnInit {
   constructor(private board: BoardComponent, private modalService: NgbModal, private backend: BackendService) { }
 
   boardTitle = this.board.boardName;
+  taskTitle = ''; // come from modal
+  taskDescription = ''; // come from modal
 
   ngOnInit(): void {
   }
@@ -38,6 +40,33 @@ export class ColumnComponent implements OnInit {
       window.location.reload();
       return resp;
     });
+  }
+
+  createNewTask(columnId: string) {
+    const tasks = this.backend.getAllTasks(this.board.boardId, columnId);
+    const orderFromLength = this.tasks.length + 1;
+    const userId = localStorage.getItem('id') as string;
+    return this.backend.createTask(
+      {
+        title: this.taskTitle,
+        done: false,
+        order: orderFromLength,
+        description: this.taskDescription,
+        userId: userId,
+      },
+      this.board.boardId,
+      columnId
+    ).subscribe(resp => {
+      if ('id' in resp) {
+        window.location.reload();
+      } else {
+        this.addInfoAboutError('failed to create your task, try later');
+      }
+    });
+  }
+
+  addInfoAboutError(text: string) {
+    alert(text);
   }
 
 }

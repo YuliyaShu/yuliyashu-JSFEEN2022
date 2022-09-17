@@ -67,6 +67,25 @@ export interface TaskResponse {
   fileSize: number,
 }
 
+export interface NewTaskFields {
+  title: string,
+  done: boolean,
+  order: number,
+  description: string,
+  userId: string,
+}
+
+export interface NewTaskResponse {
+  id: string,
+  title: string,
+  done: boolean,
+  order: number,
+  description: string,
+  userId: string,
+  boardId: string,
+  columnId: string,
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -356,5 +375,31 @@ export class BackendService {
       return of({anotherError: true})
       })
     );
+  }
+
+  public createTask(data: NewTaskFields, boardId: string, columnId: string) {
+    return this.http.post<NewTaskResponse>(this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId + this.tasksPath, data, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.token}`,
+      },
+     })
+     .pipe(
+      map(value => {
+        return value;
+      }),
+      catchError((err) => {
+        if (err.status === 0) {
+          return of({noConnection: true})
+        }
+        if (err.status === 400) {
+          return of({badRequest: true})
+        }
+        if (err.status === 404) {
+          return of({taskNotFound: true})
+        }
+        return of({anotherError: true})
+      })
+     )
   }
 }

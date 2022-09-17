@@ -47,7 +47,7 @@ export class BoardComponent implements OnInit {
       if ('id' in resp) {
         window.location.reload();
       } else {
-        this.addInfoAboutError('failed to create your board, try later')
+        this.addInfoAboutError('failed to create your column, try later')
       }
     });
   }

@@ -1,8 +1,13 @@
 .card {
   &:hover {
+    cursor: pointer;
+  }
+}
+
+.btn {
+  &:hover {
     background-color: green;
     color: white;
-    transition: 1s;
-    cursor: pointer;
+    transition: 0.5s;
   }
 }
