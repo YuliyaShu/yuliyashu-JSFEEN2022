@@ -76,7 +76,9 @@ export class MainWrapperComponent implements OnInit {
 
   cardsConfig() {
     let result: BoardResponse[] = [];
+    console.log(localStorage.getItem('token'));
     this.backend.getAllBoards().subscribe(resp => {
+      console.log(localStorage.getItem('token'));
       if (Array.isArray(resp) && 'id' in resp[0]) {
         Array.from(resp).forEach((element) => {
           result.push({

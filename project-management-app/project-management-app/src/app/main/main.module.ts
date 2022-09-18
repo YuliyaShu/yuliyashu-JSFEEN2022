@@ -10,6 +10,7 @@ import { ColumnComponent } from './board/column/column.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TasksComponent } from './board/column/tasks/tasks.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FilterIdsListPipe } from './board/column/filter-ids-list.pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BoardComponent,
     ColumnComponent,
     TasksComponent,
+    FilterIdsListPipe,
   ],
   imports: [
     CommonModule,

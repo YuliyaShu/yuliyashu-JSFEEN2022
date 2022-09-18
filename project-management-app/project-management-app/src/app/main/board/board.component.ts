@@ -18,6 +18,8 @@ export class BoardComponent implements OnInit {
   boardId = localStorage.getItem('boardId') as string;
   title: string = '';
   columns = this.columnsConfig(this.boardId);
+  resInitial: string[] = [];
+  idsForDragAndDrop: string[] = [];
 
   newColumnForm = new FormGroup({
     title: new FormControl('',
@@ -30,7 +32,6 @@ export class BoardComponent implements OnInit {
   controlTitle = this.newColumnForm.get('title') as FormControl;
 
   ngOnInit(): void {
-
   }
 
   open(content: TemplateRef<any>) {
@@ -59,6 +60,7 @@ export class BoardComponent implements OnInit {
       this.boardId
     ).subscribe(resp => {
       if ('id' in resp) {
+        this.idsForDragAndDrop.push(resp.id);
         window.location.reload();
       } else {
         this.addInfoAboutError('failed to create your column, try later')
@@ -78,8 +80,10 @@ export class BoardComponent implements OnInit {
             id: element?.id,
             title: element?.title,
             order: element?.order,
-            tasks: this.configTasks(element.id),
-          })
+            tasks: this.configTasks(element.id).result,
+            tasksIds: this.configTasks(element.id).taskIds,
+          });
+          this.idsForDragAndDrop.push(element.id);
         });
       } else if ('noConnection' in resp) {
         this.addInfoAboutError('no Internet Connection, failed to load your columns')
@@ -94,6 +98,7 @@ export class BoardComponent implements OnInit {
 
   configTasks(columnId: string) {
     let result: TaskResponse[] = [];
+    let taskIds: string[] = [];
     this.backend.getAllTasks(this.boardId, columnId).subscribe(resp => {
       if (Array.isArray(resp) && !resp.length) {
         return;
@@ -108,10 +113,11 @@ export class BoardComponent implements OnInit {
             description: element.description,
             userId: element.userId,
             boardId: element.boardId,
-            columnId: element.boardId,
+            columnId: element.columnId,
             filename: element.filename,
             fileSize: element.fileSize,
-          })
+          });
+          taskIds.push(element.id);
         });
       } else if ('noConnection' in resp) {
         this.addInfoAboutError('no Internet Connection, failed to load your tasks')
@@ -120,8 +126,12 @@ export class BoardComponent implements OnInit {
       } else {
         this.addInfoAboutError('failed to load your tasks, try later')
       }
-    })
-    return result;
+    });
+    return {
+      result: result,
+      taskIds: taskIds,
+    }
+
   }
 
   addInfoAboutError(text: string) {

@@ -46,7 +46,8 @@ export interface ColumnTasksResponse {
   id:	string,
   title:	string,
   order:	number,
-  tasks: TaskResponse[]
+  tasks: TaskResponse[],
+  tasksIds: string[],
 }
 
 export interface NewColumnFields {
@@ -197,7 +198,7 @@ export class BackendService {
       {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${this.token}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
       })
     .pipe(
@@ -220,7 +221,7 @@ export class BackendService {
     return this.http.post<BoardResponse>(this.url + this.boardsPath, data, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.token}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
      })
      .pipe(
@@ -245,7 +246,7 @@ export class BackendService {
   public deleteBoard(id: string) {
     return this.http.delete(this.url + this.boardsPath + '/' + id, {
       headers: {
-        Authorization: `Bearer ${this.token}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
      })
      .pipe(
@@ -277,12 +278,11 @@ export class BackendService {
       {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${this.token}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
       })
     .pipe(
       map(value => {
-        console.log('🚀 ~ value', value);
         return value;
       }),
       catchError((err) => {
@@ -301,7 +301,7 @@ export class BackendService {
     return this.http.post<ColumnResponse>(this.url + this.boardsPath + '/' + boardId + this.columnsPath, data, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.token}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
      })
      .pipe(
@@ -326,7 +326,7 @@ export class BackendService {
   public deleteColumn(boardId: string, columnId: string) {
     return this.http.delete(this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId, {
       headers: {
-        Authorization: `Bearer ${this.token}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
      })
      .pipe(
@@ -358,7 +358,7 @@ export class BackendService {
       {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${this.token}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
       })
     .pipe(
@@ -381,7 +381,7 @@ export class BackendService {
     return this.http.post<NewTaskResponse>(this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId + this.tasksPath, data, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.token}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
      })
      .pipe(
@@ -406,7 +406,7 @@ export class BackendService {
   public deleteTask(boardId: string, columnId: string, taskId: string) {
     return this.http.delete(this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId + this.tasksPath + '/' + taskId, {
       headers: {
-        Authorization: `Bearer ${this.token}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
      })
      .pipe(

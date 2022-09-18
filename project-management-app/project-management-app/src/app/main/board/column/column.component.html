@@ -2,21 +2,29 @@
     <div class="cdk-drag example-box ng-star-inserted card-body">
       <h2 class="card-header">{{ title }}</h2>
       <div class="example-box" >
-        <div cdkDropList class=" cards-wrapper cdk-drop-list example-list card-group h-100" (cdkDropListDropped)="drop($event)" >
+        <p></p>
+        <div
+          cdkDropList
+          #{{id}}="cdkDropList"
+          [id]=id
+          [cdkDropListData]="tasks"
+          [cdkDropListConnectedTo]="idsForDragAndDrop | filterIdsList: id"
+          class=" cards-wrapper cdk-drop-list example-list card-group h-100"
+          (cdkDropListDropped)="drop($event, tasks)">
           <app-tasks
-          cdkDrag
-          style="margin-bottom: 20px; margin-right: 20px; width: 100%;"
-          *ngFor="let task of tasks"
-          [taskId] = "task.id"
-          [title] = "task.title"
-          [done] = "task.done"
-          [order] = "task.order"
-          [description] = "task.description"
-          [userId] = "task.userId"
-          [boardId] = "task.boardId"
-          [columnId] = "task.boardId"
-          [filename] = "task.filename"
-          [fileSize] = "task.fileSize"
+            cdkDrag
+            style="margin-bottom: 20px; margin-right: 20px; width: 100%;"
+            *ngFor="let task of tasks"
+            [taskId] = "task.id"
+            [title] = "task.title"
+            [done] = "task.done"
+            [order] = "task.order"
+            [description] = "task.description"
+            [userId] = "task.userId"
+            [boardId] = "task.boardId"
+            [columnId] = "task.columnId"
+            [filename] = "task.filename"
+            [fileSize] = "task.fileSize"
           ></app-tasks>
         </div>
       </div>
@@ -32,6 +40,7 @@
               <input type="text" id="title" class="form-control" (input)="inputTitle($event)" formControlName="taskTitle" [formControl]="controlTitle">
               <p class="fs-6 fw-light" *ngIf="controlTitle?.errors?.['required']">*required field</p>
               <p class="fs-6 fw-light" *ngIf="controlTitle?.errors?.['minlength']">*should be longer than 1</p>
+              <p class="fs-6 fw-light" *ngIf="controlTitle?.errors?.['maxlength']">*should be no more than 20</p>
             </div>
             <div class="mb-3" [formGroup]="newTaskForm">
               <label for="description">Description</label>

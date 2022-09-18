@@ -1,8 +1,8 @@
 import { Component, Injectable, Input, OnInit, TemplateRef } from '@angular/core';
 import { BoardComponent } from '../board.component';
-import { BackendService, ColumnResponse, TaskResponse } from 'src/app/backend.service';
+import { BackendService, TaskResponse } from 'src/app/backend.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
@@ -16,18 +16,23 @@ export class ColumnComponent implements OnInit {
   @Input() id = '';
   @Input() order = 0;
   @Input() tasks: TaskResponse[] = [];
+  @Input() tasksIds: string[] = [];
 
   constructor(private board: BoardComponent, private modalService: NgbModal, private backend: BackendService) { }
 
   boardTitle = this.board.boardName;
-  taskTitle = ''; // come from modal
-  taskDescription = ''; // come from modal
+  taskTitle = '';
+  taskDescription = '';
+  idsForDragAndDrop = this.board.idsForDragAndDrop;
+  res: string[] = [];
 
   newTaskForm = new FormGroup({
+
     taskTitle: new FormControl('',
       [
         Validators.required,
         Validators.minLength(1),
+        Validators.maxLength(20),
       ],
     ),
     taskDescription: new FormControl('',
@@ -47,8 +52,19 @@ export class ColumnComponent implements OnInit {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', centered: true});
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
+  drop(event: CdkDragDrop<TaskResponse[]>, tasks: TaskResponse[]) {
+    if (event.previousContainer === event.container) {
+      console.log('🚀 ~ event.container', event.container);
+      console.log('🚀 ~ event.previousContainer', event.previousContainer);
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 
   deleteColumn(columnId: string) {
@@ -71,7 +87,6 @@ export class ColumnComponent implements OnInit {
   }
 
   submitNewTask(columnId: string) {
-    const tasks = this.backend.getAllTasks(this.board.boardId, columnId);
     const orderFromLength = this.tasks.length + 1;
     const userId = localStorage.getItem('id') as string;
     return this.backend.createTask(
