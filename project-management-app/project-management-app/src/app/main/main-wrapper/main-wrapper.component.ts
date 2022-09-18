@@ -1,5 +1,5 @@
 import { Component, Injectable, OnInit, TemplateRef } from '@angular/core';
-import { BackendService, NewBoardFields } from 'src/app/backend.service';
+import { BackendService } from 'src/app/backend.service';
 import { BoardResponse } from 'src/app/backend.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -18,7 +18,7 @@ export class MainWrapperComponent implements OnInit {
   title: string = '';
   description: string = '';
   id: string = '';
-  authForm = new FormGroup({
+  newBoardForm = new FormGroup({
     title: new FormControl('',
       [
         Validators.required,
@@ -32,8 +32,8 @@ export class MainWrapperComponent implements OnInit {
       ],
     ),
   });
-  controlTitle = this.authForm.get('title') as FormControl;
-  controlDescription = this.authForm.get('description') as FormControl;
+  controlTitle = this.newBoardForm.get('title') as FormControl;
+  controlDescription = this.newBoardForm.get('description') as FormControl;
 
 
   ngOnInit(): void {
@@ -46,22 +46,19 @@ export class MainWrapperComponent implements OnInit {
 
   inputTitle(event: Event) {
     const { value } = event.target as HTMLInputElement;
-    console.log(value);
     this.title = value;
   }
 
   inputDescription(event: Event) {
     const { value } = event.target as HTMLInputElement;
-    console.log(value);
     this.description = value;
   }
 
   submitNewBoard() {
-    if (this.authForm.invalid) {
+    if (this.newBoardForm.invalid) {
       return;
     }
 
-    const data = this.authForm.value as NewBoardFields;
     return this.backend.createBoard(
       {
         description: this.description,

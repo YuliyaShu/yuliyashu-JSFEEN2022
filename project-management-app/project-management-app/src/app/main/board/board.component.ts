@@ -2,6 +2,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Injectable, OnInit, TemplateRef } from '@angular/core';
 import { BackendService, ColumnTasksResponse, TaskResponse } from 'src/app/backend.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 @Component({
@@ -17,6 +18,16 @@ export class BoardComponent implements OnInit {
   boardId = localStorage.getItem('boardId') as string;
   title: string = '';
   columns = this.columnsConfig(this.boardId);
+
+  newColumnForm = new FormGroup({
+    title: new FormControl('',
+      [
+        Validators.required,
+        Validators.minLength(1)
+      ]
+    )
+  });
+  controlTitle = this.newColumnForm.get('title') as FormControl;
 
   ngOnInit(): void {
 
@@ -36,6 +47,9 @@ export class BoardComponent implements OnInit {
   }
 
   submitNewColumn() {
+    if (this.newColumnForm.invalid) {
+      return;
+    }
     const orderFromLength = this.columns.length + 1
     return this.backend.createColumn(
       {
