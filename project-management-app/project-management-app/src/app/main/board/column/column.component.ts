@@ -3,6 +3,7 @@ import { BoardComponent } from '../board.component';
 import { BackendService, ColumnResponse, TaskResponse } from 'src/app/backend.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 @Component({
@@ -21,6 +22,23 @@ export class ColumnComponent implements OnInit {
   boardTitle = this.board.boardName;
   taskTitle = ''; // come from modal
   taskDescription = ''; // come from modal
+
+  newTaskForm = new FormGroup({
+    taskTitle: new FormControl('',
+      [
+        Validators.required,
+        Validators.minLength(1),
+      ],
+    ),
+    taskDescription: new FormControl('',
+      [
+        Validators.required,
+        Validators.minLength(1),
+      ],
+    ),
+    })
+  controlTitle = this.newTaskForm.get('taskTitle') as FormControl;
+  controlDescription = this.newTaskForm.get('taskDescription') as FormControl;
 
   ngOnInit(): void {
   }
@@ -42,7 +60,17 @@ export class ColumnComponent implements OnInit {
     });
   }
 
-  createNewTask(columnId: string) {
+  inputTitle(event: Event) {
+    const { value } = event.target as HTMLInputElement;
+    this.taskTitle = value;
+  }
+
+  inputDescription(event: Event) {
+    const { value } = event.target as HTMLInputElement;
+    this.taskDescription = value;
+  }
+
+  submitNewTask(columnId: string) {
     const tasks = this.backend.getAllTasks(this.board.boardId, columnId);
     const orderFromLength = this.tasks.length + 1;
     const userId = localStorage.getItem('id') as string;

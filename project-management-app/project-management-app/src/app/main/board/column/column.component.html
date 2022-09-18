@@ -21,16 +21,28 @@
         </div>
       </div>
       <ng-template #content1 let-modal>
-        <div class="modal-header">
+        <div class="modal-header" [formGroup]="newTaskForm">
           <h4 class="modal-title" id="modal-basic-title">Create new task</h4>
-          <a routerLink="/board/{{ title }}">
-            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-          </a>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3" [formGroup]="newTaskForm">
+              <label for="title">Title</label>
+              <input type="text" id="title" class="form-control" (input)="inputTitle($event)" formControlName="taskTitle" [formControl]="controlTitle">
+              <p class="fs-6 fw-light" *ngIf="controlTitle?.errors?.['required']">*required field</p>
+              <p class="fs-6 fw-light" *ngIf="controlTitle?.errors?.['minlength']">*should be longer than 1</p>
+            </div>
+            <div class="mb-3" [formGroup]="newTaskForm">
+              <label for="description">Description</label>
+              <input type="text" id="description" class="form-control" (input)="inputDescription($event)" formControlName="taskDescription" [formControl]="controlDescription">
+            </div>
+            <p class="fs-6 fw-light" *ngIf="controlDescription?.errors?.['required']">*required field</p>
+            <p class="fs-6 fw-light" *ngIf="controlDescription?.errors?.['minlength']">*should be longer than 1</p>
+          </form>
         </div>
         <div class="modal-footer">
-          <a routerLink="/board/{{ boardTitle }}">
-            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); createNewTask(id)" >Create</button>
-          </a>
+          <button type="button" [disabled]="newTaskForm.invalid" class="btn btn-outline-dark" (click)="modal.close('Save click'); submitNewTask(id)" >Create</button>
         </div>
       </ng-template>
       <button class="btn btn-lg border-success" style="width: 220px;"  (click)="open(content1)">Create new task</button>

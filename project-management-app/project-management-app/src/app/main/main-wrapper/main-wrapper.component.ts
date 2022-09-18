@@ -15,9 +15,10 @@ export class MainWrapperComponent implements OnInit {
 
   constructor(private backend: BackendService, private modalService: NgbModal) { }
   cards = this.cardsConfig();
-  title: string = '';
-  description: string = '';
-  id: string = '';
+  title = '';
+  description = '';
+  id = '';
+
   newBoardForm = new FormGroup({
     title: new FormControl('',
       [
