@@ -1,4 +1,4 @@
-import { Component, Injectable, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, Injectable, Input, OnInit, ReflectiveInjector, TemplateRef } from '@angular/core';
 import { BoardComponent } from '../board.component';
 import { BackendService, TaskResponse } from 'src/app/backend.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -54,8 +54,6 @@ export class ColumnComponent implements OnInit {
 
   drop(event: CdkDragDrop<TaskResponse[]>, tasks: TaskResponse[]) {
     if (event.previousContainer === event.container) {
-      console.log('🚀 ~ event.container', event.container);
-      console.log('🚀 ~ event.previousContainer', event.previousContainer);
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(
@@ -68,13 +66,22 @@ export class ColumnComponent implements OnInit {
   }
 
   deleteColumn(columnId: string) {
-    const boardId = this.board.boardId;
-    this.id = columnId;
-    return this.backend.deleteColumn(boardId, columnId).subscribe(resp => {
-      window.location.reload();
-      return resp;
-    });
-  }
+      const boardId = this.board.boardId;
+      this.id = columnId;
+      const orderOfDeleted = this.order;
+      this.backend.deleteColumn(boardId, columnId).subscribe(resp => {
+        this.board.columns.forEach(column => {
+          if (column.order > orderOfDeleted) {
+              this.backend.updateColumn({
+                title: column.title,
+                order: column.order - 1,
+              }, boardId, column.id).subscribe();
+            };
+        return;
+      });
+    })
+    setTimeout(()=> window.location.reload(), 1000) ;
+}
 
   inputTitle(event: Event) {
     const { value } = event.target as HTMLInputElement;

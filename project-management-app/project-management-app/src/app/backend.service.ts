@@ -92,7 +92,7 @@ export interface NewTaskResponse {
 })
 
 export class BackendService {
-  url = 'https://pmasearch.herokuapp.com';
+  url = 'https://quiet-basin-48217.herokuapp.com';
   usersPath = '/users';
   signUpPath = '/signup';
   logInPath = '/signin';
@@ -297,6 +297,32 @@ export class BackendService {
     );
   }
 
+  public getColumn(boardId: string, columnId: string) {
+    return this.http.put<ColumnResponse>(this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+     })
+     .pipe(
+      map(value => {
+        return value;
+      }),
+      catchError((err) => {
+        if (err.status === 0) {
+          return of({noConnection: true})
+        }
+        if (err.status === 400) {
+          return of({badRequest: true})
+        }
+        if (err.status === 404) {
+          return of({columnNotFound: true})
+        }
+        return of({anotherError: true})
+      })
+     )
+  }
+
   public createColumn(data: NewColumnFields, boardId: string) {
     return this.http.post<ColumnResponse>(this.url + this.boardsPath + '/' + boardId + this.columnsPath, data, {
       headers: {
@@ -323,6 +349,35 @@ export class BackendService {
      )
   }
 
+  public updateColumn(data: NewColumnFields, boardId: string, columnId: string) {
+    return this.http.put<ColumnResponse>(this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId, data, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+     })
+     .pipe(
+      map(value => {
+        return value;
+      }),
+      catchError((err) => {
+        if (err.status === 0) {
+          return of({noConnection: true})
+        }
+        if (err.status === 401) {
+          return of({notAuthorized: true})
+        }
+        if (err.status === 400) {
+          return of({badRequest: true})
+        }
+        if (err.status === 404) {
+          return of({columnNotFound: true})
+        }
+        return of({anotherError: true})
+      })
+     )
+  }
+
   public deleteColumn(boardId: string, columnId: string) {
     return this.http.delete(this.url + this.boardsPath + '/' + boardId + this.columnsPath + '/' + columnId, {
       headers: {
@@ -331,7 +386,6 @@ export class BackendService {
      })
      .pipe(
       map(value => {
-        console.log('🚀 ~ value', value);
         return value;
       }),
       catchError((err) => {

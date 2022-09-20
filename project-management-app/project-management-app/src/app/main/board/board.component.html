@@ -1,8 +1,13 @@
 <div class="container container-main">
   <p class="fs-2">{{ boardName }}</p>
-  <div cdkDropList cdkDropListOrientation="horizontal" class=" cards-wrapper cdk-drop-list example-box card-group h-100" (cdkDropListDropped)="drop($event)" >
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class=" cards-wrapper cdk-drop-list example-box card-group h-100"
+    (cdkDropListDropped)="drop($event)" >
       <app-column
       cdkDrag
+
       style="margin-bottom: 20px; margin-right: 20px; width: 250px;"
             *ngFor="let column of columns"
             [title]="column.title"
