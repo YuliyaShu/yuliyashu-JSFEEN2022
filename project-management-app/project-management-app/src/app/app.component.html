@@ -16,6 +16,53 @@
             <a routerLink="/main">
               <button class="btn btn-outline-success me-2" type="button" routerLinkActive="active">Your boards</button>
             </a>
+            <ng-template #content let-modal>
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Update your settings</h4>
+                  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+              </div>
+              <div class="modal-body">
+              <form [formGroup]="userUpdateForm">
+                <div class="col-12">
+                  <label for="inputName1" class="col-sm-12 col-form-label">Name</label>
+                  <div class="col-sm-12" [formGroup]="userUpdateForm">
+                    <input formControlName="name" type="text" class="form-control" id="inputName1" [formControl]="controlName" >
+                  </div>
+                  <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['required']">*required field</p>
+                  <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['minlength']">*should be longer than 3</p>
+                  <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['maxlength']">*should be shorter than 20</p>
+                  <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['pattern']">*should use only small letters or numbers </p>
+                </div>
+
+                <div class="col-12">
+                  <label for="inputLogin1" class="col-sm-12 col-form-label">Login</label>
+                  <div class="col-sm-12" [formGroup]="userUpdateForm">
+                    <input formControlName="login" type="text" class="form-control" id="inputLogin1" [formControl]="controlLogin" >
+                  </div>
+                </div>
+                <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['required']">*required field</p>
+                <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['minlength']">*should be longer than 3</p>
+                <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['maxlength']">*should be shorter than 20</p>
+                <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['pattern']">*should use only small letters or numbers </p>
+
+                <div class="col-12">
+                  <label for="inputPassword3" class="col-sm-12 col-form-label">Password</label>
+                  <div class="col-sm-12" [formGroup]="userUpdateForm">
+                    <input formControlName="password" type="password" class="form-control" id="inputPassword3" [formControl]="controlPassword" >
+                  </div>
+                </div>
+                <p class="fs-6 fw-light" *ngIf="controlPassword?.errors?.['required']">*required field</p>
+                <p class="fs-6 fw-light" *ngIf="controlPassword?.errors?.['minlength']">*should be longer than 4</p>
+                <p class="fs-6 fw-light" *ngIf="controlPassword?.errors?.['maxlength']">*should be shorter than 20</p>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" [disabled]="userUpdateForm.invalid" class="btn btn-outline-dark" (click)="modal.close('Save click'); changeUserData()" >Submit</button>
+            </div>
+            </ng-template>
+            <button class="btn-transparent" style="width: 40px;" (click)="open(content)">
+              <img src="../assets/images/settings.svg" alt="settings">
+            </button>
             <a routerLink="/" >
               <button (click)="signOut()" class="btn btn-outline-success me-2" type="button" >Sign Out</button>
             </a>
