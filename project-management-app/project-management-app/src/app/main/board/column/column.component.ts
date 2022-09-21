@@ -37,7 +37,7 @@ export class ColumnComponent implements OnInit {
   boardTitle = this.board.boardName;
   taskTitle = '';
   taskDescription = '';
-  columnTitle = '';
+  columnTitle = this.id;
   idsForDragAndDrop = this.board.idsForDragAndDrop;
   res: string[] = [];
 
@@ -68,11 +68,12 @@ export class ColumnComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  open(content: TemplateRef<any>) {
+  open(content: TemplateRef<any>, columnTitle: string = '') {
     this.modalService.open(content, {
       ariaLabelledBy: 'modal-basic-title',
       centered: true,
     });
+    this.controlColumnTitle.setValue(columnTitle);
   }
 
   drop(event: CdkDragDrop<TaskResponse[]>) {
@@ -157,7 +158,7 @@ export class ColumnComponent implements OnInit {
       )
       .subscribe((resp) => {
         if ('id' in resp) {
-          window.location.reload();
+          this.title = this.columnTitle;
         } else {
           this.addInfoAboutError(
             'failed to update your column title, try later'

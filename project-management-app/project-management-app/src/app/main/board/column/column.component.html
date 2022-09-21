@@ -1,4 +1,4 @@
-<div class="card-group  card border-success mb-3" style=" width: 250px; display: flex; flex-direction: column;">
+<div class="card-group  card border-success mb-3" style=" width: 250px; display: flex; flex-direction: column; cursor: default;">
     <div class="cdk-drag example-box ng-star-inserted card-body">
       <div class="card-header">
         <h2 >{{ title }}</h2>
@@ -11,10 +11,10 @@
             <form>
               <div class="mb-3" [formGroup]="newColumnTitleForm">
                 <label for="title">Title</label>
-                <input type="text" id="title" class="form-control" (input)="inputColumnTitle($event)" formControlName="columnTitle" [formControl]="controlColumnTitle" [placeholder]="title">
-                <p class="fs-6 fw-light" *ngIf="controlTitle?.errors?.['required']">*required field</p>
-                <p class="fs-6 fw-light" *ngIf="controlTitle?.errors?.['minlength']">*should be longer than 1</p>
-                <p class="fs-6 fw-light" *ngIf="controlTitle?.errors?.['maxlength']">*should be no more than 20</p>
+                <input type="text" id="title" class="form-control" (input)="inputColumnTitle($event)" formControlName="columnTitle" [formControl]="controlColumnTitle">
+                <p class="fs-6 fw-light" *ngIf="controlColumnTitle?.errors?.['required']">*required field</p>
+                <p class="fs-6 fw-light" *ngIf="controlColumnTitle?.errors?.['minlength']">*should be longer than 1</p>
+                <p class="fs-6 fw-light" *ngIf="controlColumnTitle?.errors?.['maxlength']">*should be no more than 20</p>
               </div>
             </form>
           </div>
@@ -22,7 +22,7 @@
             <button type="button" [disabled]="newColumnTitleForm.invalid" class="btn btn-outline-dark" (click)="modal.close('Save click'); submitColumnTitle(id, order)" >Submit</button>
           </div>
         </ng-template>
-        <button (click)="open(content2)" style="border: none; background-color: transparent">
+        <button (click)="open(content2, title)" style="border: none; background-color: transparent">
           <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
             width="25" height="25"
             viewBox="0 0 32 32"
@@ -76,9 +76,9 @@
             <div class="mb-3" [formGroup]="newTaskForm">
               <label for="description">Description</label>
               <input type="text" id="description" class="form-control" (input)="inputDescription($event)" formControlName="taskDescription" [formControl]="controlDescription">
+              <p class="fs-6 fw-light" *ngIf="controlDescription?.errors?.['required']">*required field</p>
+              <p class="fs-6 fw-light" *ngIf="controlDescription?.errors?.['minlength']">*should be longer than 1</p>
             </div>
-            <p class="fs-6 fw-light" *ngIf="controlDescription?.errors?.['required']">*required field</p>
-            <p class="fs-6 fw-light" *ngIf="controlDescription?.errors?.['minlength']">*should be longer than 1</p>
           </form>
         </div>
         <div class="modal-footer">
