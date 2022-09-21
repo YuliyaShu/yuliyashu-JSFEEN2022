@@ -107,24 +107,10 @@ export class BackendService {
   constructor(private http: HttpClient) {}
 
   public getUsers() {
-    return this.http.get(this.url + this.usersPath).pipe(
-      map((value) => {
-        return value;
-      }),
-      catchError((err) => {
-        if (err.status === 401) {
-          return of({ unAuthorized: true });
-        }
-        return of({ anotherError: true });
-      })
-    );
-  }
-
-  public getUser(id: string, token: string) {
     return this.http
-      .get(this.url + this.usersPath + '/' + id, {
+      .get<SignUpResponse[]>(this.url + this.usersPath, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
@@ -136,6 +122,65 @@ export class BackendService {
         catchError((err) => {
           if (err.status === 401) {
             return of({ unAuthorized: true });
+          }
+          if (err.status === 404) {
+            return of({ usersNotFounded: true });
+          }
+          return of({ anotherError: true });
+        })
+      );
+  }
+
+  public getUser(id: string) {
+    return this.http
+      .get<SignUpResponse>(this.url + this.usersPath + '/' + id, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      })
+      .pipe(
+        map((value) => {
+          return value;
+        }),
+        catchError((err) => {
+          if (err.status === 401) {
+            return of({ unAuthorized: true });
+          }
+          if (err.status === 404) {
+            return of({ userNotFounded: true });
+          }
+          return of({ anotherError: true });
+        })
+      );
+  }
+
+  public updateUser(userId: string, data: SignUpFields) {
+    return this.http
+      .put<SignUpResponse>(this.url + this.usersPath + '/' + userId, data, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .pipe(
+        map((value) => {
+          return value;
+        }),
+        catchError((err) => {
+          if (err.status === 0) {
+            return of({ noConnection: true });
+          }
+          if (err.status === 404) {
+            return of({ userNotExist: true });
+          }
+          if (err.status === 401) {
+            return of({ unAuthorized: true });
+          }
+          if (err.status === 400) {
+            return of({ badRequest: true });
           }
           return of({ anotherError: true });
         })

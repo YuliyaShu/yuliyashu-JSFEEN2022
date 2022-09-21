@@ -10,7 +10,7 @@
       <form>
         <div class="mb-3" [formGroup]="updateTaskForm">
           <label for="titleId">Title</label>
-          <input type="text" #titleId id="titleId" class="form-control" (input)="inputTitle($event, title)" formControlName="taskTitle" [formControl]="controlTitle" >
+          <input type="text" id="titleId" class="form-control" (input)="inputTitle($event, title)" formControlName="taskTitle" [formControl]="controlTitle" >
           <p class="fs-6 fw-light" *ngIf="controlTitle?.errors?.['required']">*required field</p>
           <p class="fs-6 fw-light" *ngIf="controlTitle?.errors?.['minlength']">*should be longer than 1</p>
           <p class="fs-6 fw-light" *ngIf="controlTitle?.errors?.['maxlength']">*should be no more than 20</p>
