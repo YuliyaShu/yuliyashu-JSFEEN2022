@@ -98,9 +98,9 @@ export class ColumnComponent implements OnInit {
     this.id = columnId;
     const orderOfDeleted = this.order;
     this.backend.deleteColumn(boardId, columnId).subscribe((resp) => {
+      window.location.reload();
       return resp;
     });
-    window.location.reload();
   }
 
   inputTitle(event: Event) {
