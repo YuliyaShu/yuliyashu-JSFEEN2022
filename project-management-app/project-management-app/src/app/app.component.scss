@@ -1,8 +1,20 @@
-:host {
+@use '../styles.scss';
+
+:host, .main-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  height: calc(100vh - 60px);
+  background-color: styles.$primary-color-dark;
+  margin: 0 auto;
+  font-family: styles.$font-cinzel;
+  width: 95vw;
+}
+
+.main-wrapper {
+  max-width: 1400px;
+  background-image: url('../assets/images/bg.jpg') ;
+  background-size: cover;
 }
 
 ul {
@@ -25,4 +37,10 @@ main {
   border: none;
   background-color: transparent;
   margin-right: 8px;
+}
+
+header,
+main,
+footer {
+  background: transparent;
 }

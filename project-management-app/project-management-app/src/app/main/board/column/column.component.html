@@ -19,7 +19,7 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" [disabled]="newColumnTitleForm.invalid" class="btn btn-outline-dark" (click)="modal.close('Save click'); submitColumnTitle(id, order)" >Submit</button>
+            <button type="button" [disabled]="newColumnTitleForm.invalid" class="btn btn-outline-dark" (click)="modal.close('Save click'); submitColumnTitle(id, order, title)" >Submit</button>
           </div>
         </ng-template>
         <button (click)="open(content2, title)" style="border: none; background-color: transparent">

@@ -1,6 +1,9 @@
+@use '../../../styles.scss';
+
 .container-main {
   display: flex;
   flex-direction: column;
+  padding: 20px;
 }
 
 .cards-wrapper {

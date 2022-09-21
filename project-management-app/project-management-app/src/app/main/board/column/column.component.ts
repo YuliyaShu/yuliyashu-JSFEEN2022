@@ -146,11 +146,11 @@ export class ColumnComponent implements OnInit {
     this.columnTitle = value;
   }
 
-  submitColumnTitle(columnId: string, order: number) {
+  submitColumnTitle(columnId: string, order: number, currentTitle: string) {
     return this.backend
       .updateColumn(
         {
-          title: this.columnTitle,
+          title: this.columnTitle || currentTitle,
           order: order,
         },
         this.board.boardId,
@@ -158,7 +158,7 @@ export class ColumnComponent implements OnInit {
       )
       .subscribe((resp) => {
         if ('id' in resp) {
-          this.title = this.columnTitle;
+          this.title = this.columnTitle || currentTitle;
         } else {
           this.addInfoAboutError(
             'failed to update your column title, try later'

@@ -21,7 +21,32 @@ $prefix: "mo-";
 @import "../node_modules/bootstrap/scss/grid";
 @import "../node_modules/bootstrap/scss/helpers";
 @import "../node_modules/bootstrap/scss/utilities/api";
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap');
 
+$font-inter: 'Inter', sans-serif;
+$font-cinzel: 'Cinzel Decorative', serif;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+$primary-color-dark: #2b6377;
+$primary-color-light: #ccdfe3;
+$secondary-color-dark: #94ccdf;
+$secondary-color-light: #faf6f1;
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html {
+  height: 100%;
+  background-color: $primary-color-dark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 ;
+}
