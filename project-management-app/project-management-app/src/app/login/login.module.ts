@@ -4,7 +4,6 @@ import { LoginRoutingModule } from './login-routing.module';
 import { LoginWrapperComponent } from './login-wrapper/login-wrapper.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     LoginWrapperComponent

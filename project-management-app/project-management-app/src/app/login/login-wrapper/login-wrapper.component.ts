@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BackendService, LogInFields } from 'src/app/backend.service';
 
+@Injectable()
 @Component({
   selector: 'app-login-wrapper',
   templateUrl: './login-wrapper.component.html',

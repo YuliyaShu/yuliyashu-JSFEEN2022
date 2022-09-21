@@ -50,7 +50,16 @@ export class SignupWrapperComponent implements OnInit {
     this.backend.signUp(data)
       .subscribe((resp) => {
         if ('id' in resp) {
-          this.router.navigateByUrl('/main');
+          this.backend.logIn({
+            login: data.login,
+            password: data.password,
+          }).subscribe(resp => {
+            if ('token' in resp) {
+              localStorage.setItem('token', resp.token);
+              this.router.navigateByUrl('/main');
+            }
+          });
+          // this.router.navigateByUrl('/main');
         } else if ('noConnection' in resp) {
           this.addInfoAboutError('no Internet Connection, failed to sign up')
         } else if ('userIsExist' in resp) {

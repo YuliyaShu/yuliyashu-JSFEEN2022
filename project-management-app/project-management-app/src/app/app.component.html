@@ -13,6 +13,9 @@
             </a>
           </ng-container>
           <ng-container *ngIf="isLogIn">
+            <a routerLink="/main">
+              <button class="btn btn-outline-success me-2" type="button" routerLinkActive="active">Your boards</button>
+            </a>
             <a routerLink="/" >
               <button (click)="signOut()" class="btn btn-outline-success me-2" type="button" >Sign Out</button>
             </a>

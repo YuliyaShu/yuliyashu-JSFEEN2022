@@ -1,1 +1,40 @@
-<p>main-wrapper works!</p>
+<div class="container container-main">
+  <p class="fs-2">Your boards</p>
+  <div class="cards-wrapper">
+    <app-card
+      style="margin-bottom: 20px;"
+      *ngFor="let card of cards"
+      [title]="card.title"
+      [description]="card.description"
+      [id]="card.id">
+    </app-card>
+    <ng-template #content let-modal>
+      <div class="modal-header" [formGroup]="newBoardForm">
+        <h4 class="modal-title" id="modal-basic-title">Create new board</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3" [formGroup]="newBoardForm">
+            <label for="title">Title</label>
+            <input type="text" id="title" class="form-control" (input)="inputTitle($event)" formControlName="title" [formControl]="controlTitle">
+            <p class="fs-6 fw-light" *ngIf="controlTitle?.errors?.['required']">*required field</p>
+            <p class="fs-6 fw-light" *ngIf="controlTitle?.errors?.['minlength']">*should be longer than 1</p>
+          </div>
+          <div class="mb-3" [formGroup]="newBoardForm">
+            <label for="description">Description</label>
+            <input type="text" id="description" class="form-control" (input)="inputDescription($event)" formControlName="description" [formControl]="controlDescription">
+          </div>
+          <p class="fs-6 fw-light" *ngIf="controlDescription?.errors?.['required']">*required field</p>
+          <p class="fs-6 fw-light" *ngIf="controlDescription?.errors?.['minlength']">*should be longer than 1</p>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" [disabled]="newBoardForm.invalid" class="btn btn-outline-dark" (click)="modal.close('Save click'); submitNewBoard()" >Create</button>
+      </div>
+    </ng-template>
+      <div class="card border-success mb-3" style="width: 250px; margin-right: 20px; height: 50px;" >
+        <button class="btn btn-lg " (click)="open(content)">Create new board</button>
+      </div>
+  </div>
+</div>
