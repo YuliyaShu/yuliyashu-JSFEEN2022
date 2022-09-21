@@ -63,9 +63,18 @@
             <button class="btn-transparent" style="width: 40px;" (click)="open(content)">
               <img src="../assets/images/settings.svg" alt="settings">
             </button>
-            <a routerLink="/" >
-              <button (click)="signOut()" class="btn btn-outline-success me-2" type="button" >Sign Out</button>
-            </a>
+            <ng-template #content1 let-modal>
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Do you really want to sign out?</h4>
+                  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+              </div>
+              <div class="modal-footer">
+                <a routerLink="/">
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); signOut()" >Yes</button>
+                </a>
+              </div>
+            </ng-template>
+              <button (click)="open(content1)" class="btn btn-outline-success me-2" type="button" >Sign Out</button>
           </ng-container>
         </div>
       </div>

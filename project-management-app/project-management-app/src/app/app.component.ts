@@ -43,11 +43,11 @@ export class AppComponent {
       this.isLogIn = isLogIn;
     });
   }
+
   signOut() {
     this.backend.isLogIn$.next(false);
     localStorage.setItem('isLogIn', '0');
     localStorage.removeItem('token');
-    window.location.reload();
   }
 
   open(content: TemplateRef<any>) {
