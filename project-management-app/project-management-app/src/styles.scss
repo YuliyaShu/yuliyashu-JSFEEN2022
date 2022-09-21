@@ -24,8 +24,16 @@ $prefix: "mo-";
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap');
 
+@font-face {
+  font-family: 'Krylon';
+  src: url('./assets/fonts/Krylon-Regular.otf') format('otf');
+  src: url('./assets/fonts/Krylon-Regular.woff') format('woff');
+  src: url('./assets/fonts/Krylon-Regular.woff2') format('woff2');
+}
+
 $font-inter: 'Inter', sans-serif;
 $font-cinzel: 'Cinzel Decorative', serif;
+$font-krylon: 'Krylon', serif;
 
 $primary-color-dark: #2b6377;
 $primary-color-light: #ccdfe3;

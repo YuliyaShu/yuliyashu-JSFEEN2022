@@ -7,7 +7,7 @@
   height: calc(100vh - 60px);
   background-color: styles.$primary-color-dark;
   margin: 0 auto;
-  font-family: styles.$font-cinzel;
+  font-family: styles.$font-inter;
   width: 95vw;
 }
 
@@ -44,3 +44,51 @@ main,
 footer {
   background: transparent;
 }
+
+.button {
+  background: transparent;
+  border: none;
+
+  &:hover {
+    transform: scale(1.2);
+    transition: 0.5s ease-in-out;
+  }
+}
+
+.btn-transparent  {
+  img {
+    width: 31px;
+  }
+
+  &:hover {
+    transform: scale(1.2);
+    transition: 0.5s ease-in-out;
+  }
+}
+
+.navbar-brand {
+  font-size: 40px;
+  color: styles.$primary-color-dark;
+  font-family: styles.$font-krylon;
+  font-style: light;
+
+  &:hover {
+    transform: scale(1.2);
+    transition: 0.5s ease-in-out;
+    color: styles.$primary-color-dark;
+  }
+}
+
+@media (max-width: 350px) {
+  .btn-transparent {
+    img {
+      width: 20px;
+    }
+  }
+
+  .navbar-brand  {
+    font-size: 30px;
+  }
+}
+
+

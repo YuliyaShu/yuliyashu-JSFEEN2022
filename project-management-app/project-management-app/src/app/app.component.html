@@ -3,20 +3,25 @@
     <div class="container">
       <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">ManageYourself</a>
+          <button class="btn-transparent" type="button" style="width: 40px;" >
+            <img src="../assets/images/menu.png" style="width: 31px;" alt="menu">
+          </button>
+          <div>
+            <a class="navbar-brand" href="/">PM App</a>
+            <img src="../assets/images/StarSmall.svg" style="margin-bottom: -25px; margin-left: -25px;" alt="star">
+          </div>
           <div>
             <ng-container *ngIf="!isLogIn">
               <a routerLink="/signup">
-                <button class="btn btn-outline-success me-2" type="button" routerLinkActive="active">Sign Up</button>
-              </a>
-              <a routerLink="/login">
-                <button class="btn btn-outline-success me-2" type="button" routerLinkActive="active">Login</button>
+                <button class="button" type="button" >
+                  <img src="../assets/images/auth.svg" alt="auth">
+                </button>
               </a>
             </ng-container>
             <ng-container *ngIf="isLogIn">
-              <a routerLink="/main">
+              <!-- <a routerLink="/main">
                 <button class="btn btn-outline-success me-2" type="button" routerLinkActive="active">Your boards</button>
-              </a>
+              </a> -->
               <ng-template #content let-modal>
                 <div class="modal-header">
                   <h4 class="modal-title" id="modal-basic-title">Update your settings</h4>
@@ -61,8 +66,8 @@
                 <button type="button" [disabled]="userUpdateForm.invalid" class="btn btn-outline-dark" (click)="modal.close('Save click'); changeUserData()" >Submit</button>
               </div>
               </ng-template>
-              <button class="btn-transparent" style="width: 40px;" (click)="open(content)">
-                <img src="../assets/images/settings.svg" alt="settings">
+              <button class="btn-transparent" style="width: 40px; " (click)="open(content)">
+                <img src="../assets/images/settings.png"  alt="settings">
               </button>
               <ng-template #content1 let-modal>
                 <div class="modal-header">
@@ -75,7 +80,9 @@
                   </a>
                 </div>
               </ng-template>
-                <button (click)="open(content1)" class="btn btn-outline-success me-2" type="button" >Sign Out</button>
+                <button (click)="open(content1)" class="btn-transparent" type="button" style="width: 40px;" >
+                  <img src="../assets/images/logout.png" style="transform: rotate(90deg);" alt="logout">
+                </button>
             </ng-container>
           </div>
         </div>
