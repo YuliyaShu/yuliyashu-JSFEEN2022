@@ -94,6 +94,7 @@ export type UpdatedTaskFields = Omit<NewTaskResponse, 'id'>;
 })
 export class BackendService {
   url = 'https://quiet-basin-48217.herokuapp.com';
+
   usersPath = '/users';
   signUpPath = '/signup';
   logInPath = '/signin';

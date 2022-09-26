@@ -27,4 +27,43 @@
     grid-area: 3/3/3/5;
     background-color: styles.$secondary-color-light;
   }
+
+  &__additional-text {
+    grid-area: 2/1/2/3;
+    font-size: 20px;
+    line-height: 150%;
+    text-transform: capitalize;
+    width: 80%;
+  }
+}
+
+@media (max-width: 1000px) {
+
+  .main {
+    &__header {
+      font-size: 50px;
+    }
+  }
+
+}
+
+
+@media (max-width: 730px) {
+
+  .main {
+    &__header {
+      font-size: 35px;
+    }
+  }
+
+}
+
+@media (max-width: 500px) {
+
+  .main {
+    &__header {
+      font-size: 20px;
+    }
+  }
+
 }
