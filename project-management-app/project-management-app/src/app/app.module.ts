@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { SignupModule } from './signup/signup.module';
+import { MatButtonModule } from '@angular/material/button';
 import { MainModule } from './main/main.module';
 import { LoginModule } from './login/login.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

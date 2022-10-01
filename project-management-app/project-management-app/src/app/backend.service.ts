@@ -70,8 +70,6 @@ export interface TaskResponse {
 
 export interface NewTaskFields {
   title: string;
-  done: boolean;
-  order: number;
   description: string;
   userId: string;
 }
@@ -87,14 +85,22 @@ export interface NewTaskResponse {
   columnId: string;
 }
 
-export type UpdatedTaskFields = Omit<NewTaskResponse, 'id'>;
+export interface UpdatedTaskFields {
+  title: string;
+  order: number;
+  description: string;
+  userId: string;
+  boardId: string;
+  columnId: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class BackendService {
-  url = 'https://quiet-basin-48217.herokuapp.com';
+  url = 'https://yuliyashu-pma-final.herokuapp.com';
 
+  // https://quiet-basin-48217.herokuapp.com
   usersPath = '/users';
   signUpPath = '/signup';
   logInPath = '/signin';
@@ -383,11 +389,11 @@ export class BackendService {
       );
   }
 
-  public createColumn(data: NewColumnFields, boardId: string) {
+  public createColumn(title: string, boardId: string) {
     return this.http
       .post<ColumnResponse>(
         this.url + this.boardsPath + '/' + boardId + this.columnsPath,
-        data,
+        { title },
         {
           headers: {
             'Content-Type': 'application/json',

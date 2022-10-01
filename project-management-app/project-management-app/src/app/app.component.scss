@@ -79,6 +79,10 @@ footer {
   }
 }
 
+.nav-link {
+  color: styles.$primary-color-dark;
+}
+
 @media (max-width: 350px) {
   .btn-transparent {
     img {

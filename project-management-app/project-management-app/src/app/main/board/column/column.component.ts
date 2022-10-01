@@ -120,8 +120,6 @@ export class ColumnComponent implements OnInit {
       .createTask(
         {
           title: this.taskTitle,
-          done: false,
-          order: orderFromLength,
           description: this.taskDescription,
           userId: userId,
         },
