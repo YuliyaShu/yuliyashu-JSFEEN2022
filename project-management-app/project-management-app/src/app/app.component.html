@@ -19,9 +19,6 @@
               </a>
             </ng-container>
             <ng-container *ngIf="isLogIn">
-              <!-- <a routerLink="/main">
-                <button class="btn btn-outline-success me-2" type="button" routerLinkActive="active">Your boards</button>
-              </a> -->
               <ng-template #content let-modal>
                 <div class="modal-header">
                   <h4 class="modal-title" id="modal-basic-title">Update your settings</h4>
@@ -39,7 +36,6 @@
                     <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['maxlength']">*should be shorter than 20</p>
                     <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['pattern']">*should use only small letters or numbers </p>
                   </div>
-
                   <div class="col-12">
                     <label for="inputLogin1" class="col-sm-12 col-form-label">Login</label>
                     <div class="col-sm-12" [formGroup]="userUpdateForm">
@@ -50,7 +46,6 @@
                   <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['minlength']">*should be longer than 3</p>
                   <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['maxlength']">*should be shorter than 20</p>
                   <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['pattern']">*should use only small letters or numbers </p>
-
                   <div class="col-12">
                     <label for="inputPassword3" class="col-sm-12 col-form-label">Password</label>
                     <div class="col-sm-12" [formGroup]="userUpdateForm">

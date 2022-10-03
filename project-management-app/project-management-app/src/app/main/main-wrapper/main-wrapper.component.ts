@@ -8,41 +8,37 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-main-wrapper',
   templateUrl: './main-wrapper.component.html',
-  styleUrls: ['./main-wrapper.component.scss']
+  styleUrls: ['./main-wrapper.component.scss'],
 })
 export class MainWrapperComponent implements OnInit {
   closeResult = '';
 
-  constructor(private backend: BackendService, private modalService: NgbModal) { }
+  constructor(
+    private backend: BackendService,
+    private modalService: NgbModal
+  ) {}
   cards = this.cardsConfig();
   title = '';
   description = '';
   id = '';
 
   newBoardForm = new FormGroup({
-    title: new FormControl('',
-      [
-        Validators.required,
-        Validators.minLength(1),
-      ],
-    ),
-    description: new FormControl('',
-      [
-        Validators.required,
-        Validators.minLength(1),
-      ],
-    ),
+    title: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    description: new FormControl('', [
+      Validators.required,
+      Validators.minLength(1),
+    ]),
   });
   controlTitle = this.newBoardForm.get('title') as FormControl;
   controlDescription = this.newBoardForm.get('description') as FormControl;
 
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   open(content: TemplateRef<any>) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', centered: true});
+    this.modalService.open(content, {
+      ariaLabelledBy: 'modal-basic-title',
+      centered: true,
+    });
   }
 
   inputTitle(event: Event) {
@@ -59,42 +55,41 @@ export class MainWrapperComponent implements OnInit {
     if (this.newBoardForm.invalid) {
       return;
     }
-
-    return this.backend.createBoard(
-      {
+    return this.backend
+      .createBoard({
         description: this.description,
         title: this.title,
-      }
-    ).subscribe(resp => {
-      if ('id' in resp) {
-        window.location.reload();
-      } else {
-        this.addInfoAboutError('failed to create your board, try later')
-      }
-    });
+      })
+      .subscribe((resp) => {
+        if ('id' in resp) {
+          window.location.reload();
+        } else {
+          this.addInfoAboutError('failed to create your board, try later');
+        }
+      });
   }
 
   cardsConfig() {
     let result: BoardResponse[] = [];
-    console.log(localStorage.getItem('token'));
-    this.backend.getAllBoards().subscribe(resp => {
-      console.log(localStorage.getItem('token'));
+    this.backend.getAllBoards().subscribe((resp) => {
       if (Array.isArray(resp) && 'id' in resp[0]) {
         Array.from(resp).forEach((element) => {
           result.push({
             id: element?.id,
             title: element?.title,
             description: element?.description,
-          })
+          });
         });
       } else if ('noConnection' in resp) {
-        this.addInfoAboutError('no Internet Connection, failed to load your boards')
+        this.addInfoAboutError(
+          'no Internet Connection, failed to load your boards'
+        );
       } else if ('unAuthorized' in resp) {
-        this.addInfoAboutError("not authorized, try to login")
+        this.addInfoAboutError('not authorized, try to login');
       } else {
-        this.addInfoAboutError('failed to load your boards, try later')
+        this.addInfoAboutError('failed to load your boards, try later');
       }
-    })
+    });
     return result;
   }
 

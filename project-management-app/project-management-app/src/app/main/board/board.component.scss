@@ -25,11 +25,10 @@
 }
 
 .btn {
-  &:hover {
-    background-color: green;
-    color: white;
-    transition: 1s;
-    cursor: pointer;
+  background: white;
+
+  &:first-child:hover {
+    background-color: styles.$secondary-color-light;
   }
 }
 
@@ -43,7 +42,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   box-sizing: border-box;
-  background: white;
+  background: transparent;
   font-size: 14px;
 }
 
@@ -70,6 +69,3 @@
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-
-
-

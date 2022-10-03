@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BackendService } from 'src/app/backend.service';
+
 @Injectable({ providedIn: 'root' })
 @Component({
   selector: 'app-card',

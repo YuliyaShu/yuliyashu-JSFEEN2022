@@ -1,4 +1,3 @@
-
   <ng-template #content1 let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Change task</h4>
@@ -40,7 +39,7 @@
     </div>
     <div class="modal-footer">
       <a routerLink="/board/{{ boardTitle }}">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); deleteTask(taskId)" >Delete</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); deleteTask(taskId)">Delete</button>
       </a>
     </div>
   </ng-template>
@@ -50,16 +49,3 @@
     </svg>
   </button>
 </div>
-
-
-<!--
-[taskId] = "task.id"
-          [title] = "task.title"
-          [done] = "task.done"
-          [order] = "task.order"
-          [description] = "task.description"
-          [userId] = "task.userId"
-          [boardId] = "task.boardId"
-          [columnId] = "task.boardId"
-          [filename] = "task.filename"
-          [fileSize] = "task.fileSize" -->
