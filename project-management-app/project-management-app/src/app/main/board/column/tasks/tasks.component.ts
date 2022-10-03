@@ -91,7 +91,6 @@ export class TasksComponent implements OnInit {
       .updateTask(
         {
           title: this.taskTitle || taskTitle,
-          done: false,
           order: taskOrder,
           description: this.taskDescription || taskDescription,
           userId: userId,

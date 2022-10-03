@@ -1,103 +1,112 @@
-<header>
-  <div class="container">
-    <nav class="navbar navbar-expand-lg bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">ManageYourself</a>
-        <div>
-          <ng-container *ngIf="!isLogIn">
-            <a routerLink="/signup">
-              <button class="btn btn-outline-success me-2" type="button" routerLinkActive="active">Sign Up</button>
-            </a>
-            <a routerLink="/login">
-              <button class="btn btn-outline-success me-2" type="button" routerLinkActive="active">Login</button>
-            </a>
-          </ng-container>
-          <ng-container *ngIf="isLogIn">
-            <a routerLink="/main">
-              <button class="btn btn-outline-success me-2" type="button" routerLinkActive="active">Your boards</button>
-            </a>
-            <ng-template #content let-modal>
-              <div class="modal-header">
-                <h4 class="modal-title" id="modal-basic-title">Update your settings</h4>
-                  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-              </div>
-              <div class="modal-body">
-              <form [formGroup]="userUpdateForm">
-                <div class="col-12">
-                  <label for="inputName1" class="col-sm-12 col-form-label">Name</label>
-                  <div class="col-sm-12" [formGroup]="userUpdateForm">
-                    <input formControlName="name" type="text" class="form-control" id="inputName1" [formControl]="controlName" >
-                  </div>
-                  <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['required']">*required field</p>
-                  <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['minlength']">*should be longer than 3</p>
-                  <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['maxlength']">*should be shorter than 20</p>
-                  <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['pattern']">*should use only small letters or numbers </p>
+<div class="main-wrapper">
+  <header>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+          <button class="btn-transparent" type="button" style="width: 40px;" >
+            <img src="../assets/images/menu.png" style="width: 31px;" alt="menu">
+          </button>
+          <div>
+            <a class="navbar-brand" href="/">PM App</a>
+            <img src="../assets/images/StarSmall.svg" style="margin-bottom: -25px; margin-left: -25px;" alt="star">
+          </div>
+          <div>
+            <ng-container *ngIf="!isLogIn">
+              <a routerLink="/signup">
+                <button class="button" type="button" >
+                  <img src="../assets/images/auth.svg" alt="auth">
+                </button>
+              </a>
+            </ng-container>
+            <ng-container *ngIf="isLogIn">
+              <!-- <a routerLink="/main">
+                <button class="btn btn-outline-success me-2" type="button" routerLinkActive="active">Your boards</button>
+              </a> -->
+              <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Update your settings</h4>
+                    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
                 </div>
+                <div class="modal-body">
+                <form [formGroup]="userUpdateForm">
+                  <div class="col-12">
+                    <label for="inputName1" class="col-sm-12 col-form-label">Name</label>
+                    <div class="col-sm-12" [formGroup]="userUpdateForm">
+                      <input formControlName="name" type="text" class="form-control" id="inputName1" [formControl]="controlName" >
+                    </div>
+                    <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['required']">*required field</p>
+                    <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['minlength']">*should be longer than 3</p>
+                    <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['maxlength']">*should be shorter than 20</p>
+                    <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['pattern']">*should use only small letters or numbers </p>
+                  </div>
 
-                <div class="col-12">
-                  <label for="inputLogin1" class="col-sm-12 col-form-label">Login</label>
-                  <div class="col-sm-12" [formGroup]="userUpdateForm">
-                    <input formControlName="login" type="text" class="form-control" id="inputLogin1" [formControl]="controlLogin" >
+                  <div class="col-12">
+                    <label for="inputLogin1" class="col-sm-12 col-form-label">Login</label>
+                    <div class="col-sm-12" [formGroup]="userUpdateForm">
+                      <input formControlName="login" type="text" class="form-control" id="inputLogin1" [formControl]="controlLogin" >
+                    </div>
                   </div>
-                </div>
-                <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['required']">*required field</p>
-                <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['minlength']">*should be longer than 3</p>
-                <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['maxlength']">*should be shorter than 20</p>
-                <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['pattern']">*should use only small letters or numbers </p>
+                  <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['required']">*required field</p>
+                  <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['minlength']">*should be longer than 3</p>
+                  <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['maxlength']">*should be shorter than 20</p>
+                  <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['pattern']">*should use only small letters or numbers </p>
 
-                <div class="col-12">
-                  <label for="inputPassword3" class="col-sm-12 col-form-label">Password</label>
-                  <div class="col-sm-12" [formGroup]="userUpdateForm">
-                    <input formControlName="password" type="password" class="form-control" id="inputPassword3" [formControl]="controlPassword" >
+                  <div class="col-12">
+                    <label for="inputPassword3" class="col-sm-12 col-form-label">Password</label>
+                    <div class="col-sm-12" [formGroup]="userUpdateForm">
+                      <input formControlName="password" type="password" class="form-control" id="inputPassword3" [formControl]="controlPassword" >
+                    </div>
                   </div>
-                </div>
-                <p class="fs-6 fw-light" *ngIf="controlPassword?.errors?.['required']">*required field</p>
-                <p class="fs-6 fw-light" *ngIf="controlPassword?.errors?.['minlength']">*should be longer than 4</p>
-                <p class="fs-6 fw-light" *ngIf="controlPassword?.errors?.['maxlength']">*should be shorter than 20</p>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" [disabled]="userUpdateForm.invalid" class="btn btn-outline-dark" (click)="modal.close('Save click'); changeUserData()" >Submit</button>
-            </div>
-            </ng-template>
-            <button class="btn-transparent" style="width: 40px;" (click)="open(content)">
-              <img src="../assets/images/settings.svg" alt="settings">
-            </button>
-            <ng-template #content1 let-modal>
-              <div class="modal-header">
-                <h4 class="modal-title" id="modal-basic-title">Do you really want to sign out?</h4>
-                  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                  <p class="fs-6 fw-light" *ngIf="controlPassword?.errors?.['required']">*required field</p>
+                  <p class="fs-6 fw-light" *ngIf="controlPassword?.errors?.['minlength']">*should be longer than 4</p>
+                  <p class="fs-6 fw-light" *ngIf="controlPassword?.errors?.['maxlength']">*should be shorter than 20</p>
+                </form>
               </div>
               <div class="modal-footer">
-                <a routerLink="/">
-                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); signOut()" >Yes</button>
-                </a>
+                <button type="button" [disabled]="userUpdateForm.invalid" class="btn btn-outline-dark" (click)="modal.close('Save click'); changeUserData()" >Submit</button>
               </div>
-            </ng-template>
-              <button (click)="open(content1)" class="btn btn-outline-success me-2" type="button" >Sign Out</button>
-          </ng-container>
+              </ng-template>
+              <button class="btn-transparent" style="width: 40px; " (click)="open(content)">
+                <img src="../assets/images/settings.png"  alt="settings">
+              </button>
+              <ng-template #content1 let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Do you really want to sign out?</h4>
+                    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                </div>
+                <div class="modal-footer">
+                  <a routerLink="/">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); signOut()" >Yes</button>
+                  </a>
+                </div>
+              </ng-template>
+                <button (click)="open(content1)" class="btn-transparent" type="button" style="width: 40px;" >
+                  <img src="../assets/images/logout.png" style="transform: rotate(90deg);" alt="logout">
+                </button>
+            </ng-container>
+          </div>
         </div>
-      </div>
-    </nav>
-  </div>
-</header>
-<main>
-  <router-outlet></router-outlet>
-</main>
-<footer>
-  <div class="container">
-    <ul class="nav">
-      <li class="nav-item">
-        <a class="nav-link" href="https://github.com/YuliyaShu">YuliyaShu</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">september 2022</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://rs.school/">
-          <img src="../assets/images/rsSchoolLogo.svg" alt="rs-logo" width="100">
-        </a>
-      </li>
-    </ul>
-  </div>
-</footer>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  <footer>
+    <div class="container">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/YuliyaShu">YuliyaShu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">september 2022</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://rs.school/">
+            <img src="../assets/images/rsSchoolLogo.svg" alt="rs-logo" width="100">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+</div>

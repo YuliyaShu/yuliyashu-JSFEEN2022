@@ -53,7 +53,7 @@ export class BoardComponent implements OnInit {
       .updateColumn(
         {
           title: currentColumn.title,
-          order: Math.round(Math.random() * 9000 + 1000),
+          order: previousColumn.order,
         },
         this.boardId,
         currentColumn.id
@@ -71,25 +71,6 @@ export class BoardComponent implements OnInit {
             )
             .subscribe((resp) => {
               if ('id' in resp) {
-                this.backend
-                  .updateColumn(
-                    {
-                      title: currentColumn.title,
-                      order: previousColumn.order,
-                    },
-                    this.boardId,
-                    currentColumn.id
-                  )
-                  .subscribe((resp) => {
-                    if ('id' in resp) {
-                      window.location.reload();
-                      return resp;
-                    } else {
-                      return this.addInfoAboutError(
-                        'failed to create your column, try later'
-                      );
-                    }
-                  });
                 return resp;
               } else {
                 return this.addInfoAboutError(
@@ -114,13 +95,7 @@ export class BoardComponent implements OnInit {
     }
     const order = this.getColumnOrder();
     return this.backend
-      .createColumn(
-        {
-          title: this.title,
-          order: order,
-        },
-        this.boardId
-      )
+      .createColumn(this.title, this.boardId)
       .subscribe((resp) => {
         if ('id' in resp) {
           this.idsForDragAndDrop.push(resp.id);
