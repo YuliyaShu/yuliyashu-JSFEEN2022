@@ -1,4 +1,4 @@
-<div class="card-group  card border-success mb-3" style=" width: 250px; display: flex; flex-direction: column; cursor: default;">
+<div class="card-group  card border-light mb-3" style=" width: 250px; display: flex; flex-direction: column; cursor: default;">
     <div class="cdk-drag example-box ng-star-inserted card-body">
       <div class="card-header">
         <h2 >{{ title }}</h2>
@@ -33,7 +33,6 @@
         </button>
       </div>
       <div class="example-box" >
-        {{id}}
         <div
           cdkDropList
           #{{id}}="cdkDropList"
@@ -85,7 +84,7 @@
           <button type="button" [disabled]="newTaskForm.invalid" class="btn btn-outline-dark" (click)="modal.close('Save click'); submitNewTask(id)" >Create</button>
         </div>
       </ng-template>
-      <button class="btn btn-lg border-success" style="width: 220px;"  (click)="open(content1)">Create new task</button>
+      <button class="btn btn-lg border-light" style="width: 220px;"  (click)="open(content1)">Create new task</button>
     </div>
     <ng-template #content let-modal>
       <div class="modal-header">

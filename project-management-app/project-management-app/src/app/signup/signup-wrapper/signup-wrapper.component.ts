@@ -40,7 +40,6 @@ export class SignupWrapperComponent implements OnInit {
     if (this.authForm.invalid) {
       return;
     }
-
     const data = this.authForm.value as SignUpFields;
     this.backend.signUp(data).subscribe((resp) => {
       if ('id' in resp) {

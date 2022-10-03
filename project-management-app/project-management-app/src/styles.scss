@@ -63,3 +63,28 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.fs-2 {
+  font-family: $font-cinzel;
+  font-weight: 700;
+  font-size: 40px;
+  color: $primary-color-dark;
+}
+
+.card {
+  &:hover {
+    background-color: $secondary-color-light;
+    transition: 1s;
+    cursor: pointer;
+  }
+}
+
+h2 {
+  color: $primary-color-dark;
+  font-family: $font-cinzel;
+}
+
+a {
+  text-decoration: none;
+  color: $primary-color-dark;
+}

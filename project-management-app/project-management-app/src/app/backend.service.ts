@@ -99,8 +99,6 @@ export interface UpdatedTaskFields {
 })
 export class BackendService {
   url = 'https://yuliyashu-pma-final.herokuapp.com';
-
-  // https://quiet-basin-48217.herokuapp.com
   usersPath = '/users';
   signUpPath = '/signup';
   logInPath = '/signin';
@@ -305,7 +303,6 @@ export class BackendService {
       })
       .pipe(
         map((value) => {
-          console.log('🚀 ~ value', value);
           return value;
         }),
         catchError((err) => {
@@ -595,7 +592,6 @@ export class BackendService {
       )
       .pipe(
         map((value) => {
-          console.log('🚀 ~ value', value);
           return value;
         }),
         catchError((err) => {
@@ -643,7 +639,6 @@ export class BackendService {
       )
       .pipe(
         map((value) => {
-          console.log('🚀 ~ value', value);
           return value;
         }),
         catchError((err) => {
