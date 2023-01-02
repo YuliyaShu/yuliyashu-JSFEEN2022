@@ -1,0 +1,37 @@
+<div class="container">
+  <form [formGroup]="authForm">
+    <h2>Sign Up</h2>
+    <div class="col-12">
+      <label for="inputName1" class="col-sm-12 col-form-label">Name</label>
+      <div class="col-sm-12" [formGroup]="authForm">
+        <input formControlName="name" type="text" class="form-control" id="inputName1" [formControl]="controlName" autocomplete="new-password">
+      </div>
+      <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['required']">*required field</p>
+      <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['minlength']">*should be longer than 3</p>
+      <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['maxlength']">*should be shorter than 20</p>
+      <p class="fs-6 fw-light" *ngIf="controlName?.errors?.['pattern']">*should use only small letters or numbers </p>
+    </div>
+    <div class="col-12">
+      <label for="inputLogin1" class="col-sm-12 col-form-label">Login</label>
+      <div class="col-sm-12" [formGroup]="authForm">
+        <input formControlName="login" type="text" class="form-control" id="inputLogin1" [formControl]="controlLogin" autocomplete="new-password">
+      </div>
+    </div>
+    <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['required']">*required field</p>
+    <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['minlength']">*should be longer than 3</p>
+    <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['maxlength']">*should be shorter than 20</p>
+    <p class="fs-6 fw-light" *ngIf="controlLogin?.errors?.['pattern']">*should use only small letters or numbers </p>
+    <div class="col-12">
+      <label for="inputPassword3" class="col-sm-12 col-form-label">Password</label>
+      <div class="col-sm-12" [formGroup]="authForm">
+        <input formControlName="password" type="password" class="form-control" id="inputPassword3" [formControl]="controlPassword" autocomplete="new-password">
+      </div>
+    </div>
+    <p class="fs-6 fw-light" *ngIf="controlPassword?.errors?.['required']">*required field</p>
+    <p class="fs-6 fw-light" *ngIf="controlPassword?.errors?.['minlength']">*should be longer than 4</p>
+    <p class="fs-6 fw-light" *ngIf="controlPassword?.errors?.['maxlength']">*should be shorter than 20</p>
+    <button type="submit" [disabled]="authForm.invalid" (click)="onSingUpButton()" class="btn btn-primary">Sign Up</button>
+    <tr></tr>
+    <a routerLink="/login">Already have an account? Log In!</a>
+  </form>
+</div>

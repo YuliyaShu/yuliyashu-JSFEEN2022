@@ -1,0 +1,15 @@
+@use '../../../styles.scss';
+
+form {
+  width: 280px;
+  margin: 0 auto;
+
+  h2 {
+    text-align: center;
+  }
+
+  button {
+    margin-left: 100px;
+    margin-top: 10px;
+  }
+}

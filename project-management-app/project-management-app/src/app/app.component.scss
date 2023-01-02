@@ -1,0 +1,96 @@
+@use '../styles.scss';
+
+:host, .main-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 60px);
+  background-color: styles.$primary-color-dark;
+  margin: 0 auto;
+  font-family: styles.$font-inter;
+  width: 95vw;
+}
+
+.main-wrapper {
+  max-width: 1400px;
+  background-image: url('../assets/images/bg.jpg') ;
+  background-size: cover;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.active {
+  background-color: green;
+  color: white;
+}
+
+main {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.btn-transparent {
+  border: none;
+  background-color: transparent;
+  margin-right: 8px;
+}
+
+header,
+main,
+footer {
+  background: transparent;
+}
+
+.button {
+  background: transparent;
+  border: none;
+
+  &:hover {
+    transform: scale(1.2);
+    transition: 0.5s ease-in-out;
+  }
+}
+
+.btn-transparent  {
+  img {
+    width: 31px;
+  }
+
+  &:hover {
+    transform: scale(1.2);
+    transition: 0.5s ease-in-out;
+  }
+}
+
+.navbar-brand {
+  font-size: 40px;
+  color: styles.$primary-color-dark;
+  font-family: styles.$font-krylon;
+  font-style: light;
+
+  &:hover {
+    transform: scale(1.2);
+    transition: 0.5s ease-in-out;
+    color: styles.$primary-color-dark;
+  }
+}
+
+.nav-link {
+  color: styles.$primary-color-dark;
+}
+
+@media (max-width: 350px) {
+  .btn-transparent {
+    img {
+      width: 20px;
+    }
+  }
+
+  .navbar-brand  {
+    font-size: 30px;
+  }
+}
